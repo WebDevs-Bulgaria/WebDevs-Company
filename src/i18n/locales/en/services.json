@@ -1,0 +1,213 @@
+{
+  "meta": {
+    "title": "Services — websites, online stores and applications",
+    "description": "Corporate websites and online stores, maintenance, hosting and SEO. Web and mobile applications and custom software."
+  },
+  "title": "Services",
+  "lead": "We build websites and maintain them. For businesses that need more, we build custom applications.",
+  "groups": {
+    "websites": {
+      "title": "Websites",
+      "lead": "From a company website to an online store — with care for speed, search visibility and maintenance after launch."
+    },
+    "applications": {
+      "title": "Applications",
+      "lead": "Systems built around your processes: portals, platforms, mobile apps and connections between the systems you already use."
+    }
+  },
+  "items": [
+    {
+      "id": "corporate-websites",
+      "group": "websites",
+      "title": "Corporate websites",
+      "summary": "A company website that explains clearly what you do and leads the visitor to an enquiry.",
+      "points": [
+        "Structure and copy focused on the customer",
+        "Multiple languages",
+        "Works on phone, tablet and desktop",
+        "Easy content updates"
+      ],
+      "intro": "Your website is the first place customers check. We build it so that within seconds it is clear what you offer, why they should choose you and how to get in touch. We make it fast and structured for search engines from the ground up, not as an afterthought.",
+      "suitable": [
+        "You have no website, or the current one is outdated and brings no enquiries.",
+        "You want to update texts and images yourself, without looking for a developer.",
+        "You work with customers in more than one country and need several languages."
+      ],
+      "result": [
+        "A working website on your domain, checked on phone, tablet and desktop.",
+        "Access to content management and a short training on how to use it.",
+        "The source code and documentation — the website is yours.",
+        "Registration in Google Search Console and a submitted sitemap."
+      ]
+    },
+    {
+      "id": "online-stores",
+      "group": "websites",
+      "title": "Online stores",
+      "summary": "A store with a catalogue, basket and checkout that handles load and is easy to manage.",
+      "points": [
+        "Catalogue, filters and search",
+        "Card payments and cash on delivery",
+        "Courier and stock integrations",
+        "Admin panel for orders"
+      ],
+      "intro": "An online store has to sell without creating extra work for you. We build the catalogue, basket and checkout so that an order goes through smoothly and you see everything in one place — orders, stock and payments.",
+      "suitable": [
+        "You sell products and want your own store, not only a social media page.",
+        "Your current store is slow, hard to manage or loses orders.",
+        "You want orders to go straight to the courier and the warehouse, with no manual copying."
+      ],
+      "result": [
+        "A store with a catalogue, basket and checkout, tested with real orders before launch.",
+        "An admin panel for products, orders and customers.",
+        "Connected payments and delivery with the providers you choose.",
+        "A guide for day-to-day work with the store."
+      ]
+    },
+    {
+      "id": "website-care",
+      "group": "websites",
+      "title": "Maintenance, hosting and SEO",
+      "summary": "We keep the website running, secure and visible in search engines.",
+      "points": [
+        "Hosting, certificate and backups",
+        "Updates and security",
+        "Search engine and speed optimisation",
+        "Monitoring and incident response"
+      ],
+      "intro": "A website is not finished on launch day — that is when its work begins. We take care of keeping it available, secure and fast, and visible in search engines, so you do not have to think about servers, certificates and updates.",
+      "suitable": [
+        "You have a website, but nobody maintains it and you do not know what state it is in.",
+        "The website is slow or does not appear on Google for what you offer.",
+        "You want one person to call when something stops working."
+      ],
+      "result": [
+        "Hosting with a certificate and regular backups.",
+        "Updates and security monitoring.",
+        "Uptime monitoring and a response when there is a problem.",
+        "A review of search visibility and speed, with concrete improvements."
+      ]
+    },
+    {
+      "id": "web-applications",
+      "group": "applications",
+      "title": "Web applications and portals",
+      "summary": "Customer portals, admin panels and multi-user platforms.",
+      "points": [
+        "User accounts, roles and permissions",
+        "Online payments and subscriptions",
+        "Requests, reports and notifications",
+        "Works on every device"
+      ],
+      "intro": "When your work does not fit into off-the-shelf software, we build a web application for your own processes — a customer portal, an admin panel or a multi-user platform. It runs in the browser, on any device, with nothing to install.",
+      "suitable": [
+        "Your customers need their own login — for requests, documents or payments.",
+        "Your team works with spreadsheets and emails where a system is needed.",
+        "You have an idea for an online platform and are looking for a team to build it."
+      ],
+      "result": [
+        "A working application with user accounts, roles and permissions.",
+        "An admin panel and reports on what matters to you.",
+        "The source code, documentation and a description of the architecture.",
+        "A maintenance plan and the next steps for development."
+      ]
+    },
+    {
+      "id": "mobile-applications",
+      "group": "applications",
+      "title": "Mobile applications",
+      "summary": "iOS and Android applications connected to your website and systems.",
+      "points": [
+        "One code base for both platforms",
+        "Notifications and offline use",
+        "Integration with existing systems",
+        "Publishing to the app stores"
+      ],
+      "intro": "A mobile app makes sense when your customers use it often, or when they need notifications and offline use. We build it for iOS and Android from one code base and connect it to your website and systems.",
+      "suitable": [
+        "Your customers come back often and you want to be one tap away.",
+        "You need notifications, the camera, location or offline use.",
+        "You already have a website or a system and want a mobile version of it."
+      ],
+      "result": [
+        "An app for iOS and Android, published in both stores.",
+        "A connection to your existing systems and data.",
+        "The source code and access to the publishing accounts.",
+        "Support through operating system updates."
+      ]
+    },
+    {
+      "id": "custom-software",
+      "group": "applications",
+      "title": "Custom software and integrations",
+      "summary": "We connect your systems and automate repetitive work.",
+      "points": [
+        "Process and requirements analysis",
+        "Connecting CRM, accounting and internal systems",
+        "AI assistants working on your own data",
+        "Documentation and code handover"
+      ],
+      "intro": "A lot of time is lost copying data from one system into another. We connect the systems you already use, automate repetitive work and, where it makes sense, add an AI assistant that works on your own documents and data.",
+      "suitable": [
+        "The same data is entered by hand in several places.",
+        "You have a process that takes hours every week and could be automated.",
+        "You want customers or your team to get answers from your documents without waiting for a person."
+      ],
+      "result": [
+        "A working connection between systems, with a description of how information flows.",
+        "An automated process that you can monitor and stop.",
+        "The source code and documentation.",
+        "Monitoring and maintenance after launch."
+      ]
+    }
+  ],
+  "onPage": "On this page",
+  "detail": {
+    "includes": "What it includes",
+    "includesLead": "This is the work that goes into the service. The exact scope is agreed for each project.",
+    "suitable": "It is a good fit when",
+    "result": "What you get in the end",
+    "others": "More services",
+    "all": "All services",
+    "open": "View the service",
+    "process": "How we work",
+    "inquiryEyebrow": "Enquiry",
+    "inquiryTitle": "Ask about this service",
+    "inquiryLead": "Tell us briefly about your project. We will reply within one business day with questions or a first estimate.",
+    "inquiryAbout": "Enquiry about",
+    "inquiryOr": "Or give us a call",
+    "inquiryNextTitle": "What happens next",
+    "inquiryNext": [
+      "We reply within one business day — with questions or a first estimate.",
+      "A short call to clarify exactly what you need.",
+      "A written proposal with timelines and price, with no obligation on your side."
+    ]
+  },
+  "process": {
+    "title": "How we work",
+    "lead": "A clear process with visible results at every stage. You know what is being done, why it is being done and when it will be ready.",
+    "eyebrow": "Process",
+    "steps": [
+      {
+        "title": "Understanding the task",
+        "text": "We start with questions. We clarify what problem we are solving, who will use the system and how we will know the project is a success."
+      },
+      {
+        "title": "Plan and architecture",
+        "text": "We define the scope, split the work into stages and choose the technology. You receive a plan with timelines and a price before a line of code is written."
+      },
+      {
+        "title": "Staged development",
+        "text": "We work in short stages. After each one you see a working version and can change direction while change is still cheap."
+      },
+      {
+        "title": "Testing and launch",
+        "text": "We test functionality, speed and security. We launch according to a plan, with a prepared way to roll back."
+      },
+      {
+        "title": "Support and growth",
+        "text": "After launch we monitor how the system performs, fix problems and add what your business needs next."
+      }
+    ]
+  }
+}

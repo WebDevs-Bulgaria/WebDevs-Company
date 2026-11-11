@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "title": "Web Devs Bulgaria — website and application development",
+    "description": "Websites, online stores and custom applications. Fast websites that are found on Google and bring enquiries, with maintenance and hosting from one team in Sofia."
+  },
+  "hero": {
+    "eyebrow": "Software company · Sofia",
+    "lead": "We build websites that load fast, are found on Google and bring enquiries. And when your business needs more, we build custom web and mobile applications.",
+    "titleStart": "Websites that",
+    "titleAccent": "work",
+    "titleEnd": "for your business"
+  },
+  "strip": {
+    "label": "We work with",
+    "items": [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "PostgreSQL",
+      "Docker",
+      "WordPress"
+    ]
+  },
+  "websites": {
+    "eyebrow": "Websites",
+    "title": "Website development",
+    "lead": "Your website is the first place customers check. We make it fast, clear and easy to find — and we stay to maintain it.",
+    "cta": "Website services",
+    "short": "Corporate websites, online stores, maintenance and SEO."
+  },
+  "applications": {
+    "eyebrow": "Applications",
+    "title": "Custom applications",
+    "lead": "When off-the-shelf tools are not enough, we build a system for your own processes — a customer portal, an internal system or a mobile app.",
+    "cta": "Application services",
+    "short": "Portals, mobile apps and custom software."
+  },
+  "explore": {
+    "label": "Explore",
+    "solutions": {
+      "title": "Solutions",
+      "text": "The websites and systems we build and the technology behind them."
+    },
+    "about": {
+      "title": "About us",
+      "text": "Who we are, how we work and what you get as a client."
+    },
+    "technology": {
+      "title": "Technology",
+      "text": "The tools we work with and why we choose them."
+    }
+  }
+}
