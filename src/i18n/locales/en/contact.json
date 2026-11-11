@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "Contact — get in touch with Web Devs Bulgaria",
+    "description": "Tell us about your project. Reach us by phone, email or the enquiry form and we will reply within one business day."
+  },
+  "title": "Contact",
+  "lead": "Tell us about your project. We reply within one business day.",
+  "detailsTitle": "Contact details",
+  "phoneLabel": "Phone",
+  "emailLabel": "Email",
+  "locationLabel": "Location",
+  "formTitle": "Send an enquiry",
+  "form": {
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "optional": "optional",
+    "message": "Message",
+    "messageHint": "Briefly describe what you want to achieve.",
+    "consentPrefix": "I agree to my data being processed in order to receive a reply, in accordance with the",
+    "consentLink": "privacy policy",
+    "submit": "Send enquiry",
+    "sending": "Sending…",
+    "success": "Thank you. We have received your enquiry and will get back to you.",
+    "errorGeneric": "The enquiry was not sent. Please try again or email us directly.",
+    "errorRateLimited": "You have sent several enquiries in a short time. Please try again in a moment.",
+    "errors": {
+      "name": "Enter a name (at least 2 characters).",
+      "email": "Enter a valid email address.",
+      "phone": "The phone number contains invalid characters.",
+      "message": "The message must be between 10 and 5000 characters.",
+      "consent": "Consent is required for us to process the enquiry."
+    }
+  }
+}

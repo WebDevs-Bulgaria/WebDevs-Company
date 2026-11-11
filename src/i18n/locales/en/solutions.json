@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "title": "Solutions — the websites and systems we build",
+    "description": "Corporate and multilingual websites, online stores, online learning platforms, customer portals, internal systems and AI assistants."
+  },
+  "title": "Solutions",
+  "lead": "The kinds of websites and systems we design and build. Each solution is shaped around the specific business.",
+  "items": [
+    {
+      "title": "Corporate and multilingual websites",
+      "text": "Fast websites with strong search visibility that your team can update without a developer."
+    },
+    {
+      "title": "Online stores",
+      "text": "Catalogue, basket, payment and delivery, connected to your stock and accounting."
+    },
+    {
+      "title": "Online learning platforms",
+      "text": "Courses, lessons, progress tracking, enrolment and payment, certificates and an admin panel."
+    },
+    {
+      "title": "Customer portals",
+      "text": "A secure place where your customers submit requests, follow their status, pay and find their documents."
+    },
+    {
+      "title": "Internal systems and integrations",
+      "text": "Admin panels, reports and connections between systems that replace spreadsheets and manual copying of data."
+    },
+    {
+      "title": "AI assistants",
+      "text": "Assistants that answer from your documents and data and handle repetitive enquiries."
+    }
+  ],
+  "note": "We publish information about specific projects only with our clients' consent.",
+  "technology": {
+    "title": "Technology",
+    "lead": "We choose the technology to fit the task, not the other way round. We work with established tools that are maintained for the long term and easy to hire for.",
+    "eyebrow": "Technology",
+    "groups": [
+      {
+        "title": "Front end",
+        "reason": "Pages are sent ready from the server, so the website loads fast and is found by search engines. TypeScript catches errors before they reach the visitor.",
+        "items": [
+          "React",
+          "Next.js",
+          "TypeScript",
+          "Tailwind CSS"
+        ]
+      },
+      {
+        "title": "Back end",
+        "reason": "Node.js for custom-built applications. WordPress when your team needs to update the content themselves, without a developer.",
+        "items": [
+          "Node.js",
+          "Express",
+          "PHP",
+          "WordPress"
+        ]
+      },
+      {
+        "title": "Data",
+        "reason": "Established open-source databases: no licence fees and no dependence on a single vendor. Your data stays portable.",
+        "items": [
+          "PostgreSQL",
+          "MySQL",
+          "Sequelize",
+          "Firebase"
+        ]
+      },
+      {
+        "title": "Infrastructure",
+        "reason": "The system runs the same on our machines and on the server. Updates are released automatically and can be rolled back.",
+        "items": [
+          "Docker",
+          "Linux",
+          "Nginx",
+          "CI/CD"
+        ]
+      }
+    ]
+  }
+}

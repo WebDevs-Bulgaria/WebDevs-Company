@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "title": "About us — a web studio and software company from Sofia",
+    "description": "Web Devs Bulgaria EOOD builds websites and applications. See how we work, the principles we follow and what you get as a client."
+  },
+  "title": "About us",
+  "lead": "Web Devs Bulgaria builds websites and applications. We make them so that a business can rely on them every day.",
+  "sections": [
+    {
+      "title": "Who we are",
+      "text": "A team of developers with experience in building and maintaining websites and platforms used daily by real users. We have worked on corporate websites, online learning systems, customer portals, integrations and server infrastructure."
+    },
+    {
+      "title": "How we see the work",
+      "text": "Software is a means, not an end. Before we propose a solution, we want to understand the problem. Sometimes the best solution is smaller than you expected — and we will tell you so."
+    },
+    {
+      "title": "What you get",
+      "text": "One team accountable for the whole project. Code and documentation that remain yours. Clear timelines, regular demonstrations and support after launch."
+    }
+  ],
+  "valuesTitle": "Principles",
+  "values": [
+    {
+      "title": "Clarity",
+      "text": "We speak plainly and say what can and what cannot be done."
+    },
+    {
+      "title": "Accountability",
+      "text": "What we launch, we maintain. We do not leave a client alone with a problem."
+    },
+    {
+      "title": "Quality",
+      "text": "We write code that the next developer can read and continue."
+    },
+    {
+      "title": "Security",
+      "text": "Data protection is considered from day one, not added at the end."
+    }
+  ],
+  "companyTitle": "Company details",
+  "companyLabels": {
+    "name": "Name",
+    "registration": "Company ID (EIK)",
+    "seat": "Registered seat"
+  }
+}
