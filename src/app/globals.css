@@ -1,0 +1,339 @@
+@import "tailwindcss";
+
+/* Вариантът dark: се включва от атрибута data-theme="dark" на <html>, не от системата. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/*
+ * Цветове и шрифтове на сайта. Марката се сменя оттук, без да се пипат компонентите.
+ *
+ * Две оси:
+ *  - data-theme ("light" | "dark") — избира го посетителят (components/theme/ThemeToggle.tsx);
+ *    при първо посещение следва настройката на устройството.
+ *  - data-palette — цветовата палитра, също по избор на посетителя
+ *    (components/theme/PaletteSwitcher.tsx; списъкът е в components/theme/palettes.ts).
+ *
+ * Стойностите в @theme са палитрата „emerald“ в светла тема. Цветовете „night“ са за
+ * контрастните ленти (процес, футър). --brand-from/--brand-to са градиентът на марката
+ * като фон (под бял текст) и не се менят с темата; --color-accent и --color-brand-2 са
+ * същите цветове като текст и икони и в тъмната тема стават по-светли.
+ */
+@theme {
+  --color-canvas: #ffffff;
+  --color-surface: #f2f6f4;
+  --color-surface-raised: #ffffff;
+  --color-line: #dfe7e3;
+  --color-ink: #0c1512;
+  --color-ink-muted: #4a5a53;
+  --color-accent: #067a4e;
+  --color-accent-strong: #05603d;
+  --color-accent-ink: #ffffff;
+  --color-accent-soft: #e1f4ea;
+  --color-brand-2: #0a7f8f;
+  --color-teal: #0f8a6d;
+  --color-amber: #f59e0b;
+  --color-danger: #b42318;
+  --color-success: #0a7a55;
+
+  --color-night: #0b1512;
+  --color-night-raised: #14231d;
+  --color-night-line: #26382f;
+  --color-night-ink: #ffffff;
+  --color-night-muted: #c3d2ca;
+  --color-night-accent: #5fe0a5;
+
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-code), ui-monospace, monospace;
+
+  --shadow-card: 0 1px 2px rgb(var(--shadow-rgb) / 0.04), 0 8px 24px rgb(var(--shadow-rgb) / 0.07);
+  --shadow-float: 0 4px 12px rgb(var(--shadow-rgb) / 0.08), 0 24px 60px rgb(var(--shadow-rgb) / 0.16);
+}
+
+/* ── Палитра „emerald“ (по подразбиране): зелено към петролено ────────── */
+
+:root {
+  --brand-from: #067a4e;
+  --brand-to: #0a7f8f;
+  /* Цветовете на мекия фон зад горната част и на сенките (R G B). */
+  --mesh-1: 10 127 143;
+  --mesh-2: 6 122 78;
+  --mesh-3: 95 224 165;
+  --mesh-strength: 1;
+  --shadow-rgb: 12 21 18;
+}
+
+:root[data-theme="dark"] {
+  --color-canvas: #0a100d;
+  --color-surface: #111a16;
+  --color-surface-raised: #17221d;
+  --color-line: #26382f;
+  --color-ink: #edf5f0;
+  --color-ink-muted: #a9bab1;
+  --color-accent: #4ade98;
+  --color-accent-strong: #7beab4;
+  --color-accent-soft: #12301f;
+  --color-brand-2: #45cfe0;
+  --color-teal: #45d1ad;
+  --color-danger: #ff9b8f;
+  --color-success: #6fdc9c;
+
+  --color-night: #050907;
+  --color-night-raised: #111a16;
+  --color-night-line: #26382f;
+  --color-night-muted: #a9bab1;
+
+  --mesh-strength: 0.75;
+  --shadow-rgb: 0 0 0;
+}
+
+/* ── Палитри „turquoise“ и „violet“: синьо към тюркоазено / виолетово ── */
+
+:root[data-palette="turquoise"],
+:root[data-palette="violet"] {
+  --color-canvas: #ffffff;
+  --color-surface-raised: #ffffff;
+  --color-surface: #f4f6fb;
+  --color-line: #e2e7f0;
+  --color-ink: #0b1530;
+  --color-ink-muted: #4a5670;
+  --color-accent: #2f5bff;
+  --color-accent-strong: #1e44d6;
+  --color-accent-soft: #e9eeff;
+  --color-brand-2: #0a9fb2;
+  --color-teal: #00a892;
+  --color-danger: #c62828;
+
+  --color-night: #0b1530;
+  --color-night-raised: #142048;
+  --color-night-line: #27335e;
+  --color-night-muted: #b9c3da;
+  --color-night-accent: #8aa4ff;
+
+  --brand-from: #2f5bff;
+  --brand-to: #0a9fb2;
+  --mesh-1: 10 190 205;
+  --mesh-2: 47 91 255;
+  --mesh-3: 0 168 146;
+  --shadow-rgb: 11 21 48;
+}
+
+:root[data-palette="violet"] {
+  --color-brand-2: #7c4dff;
+  --brand-to: #7c4dff;
+  --mesh-1: 124 77 255;
+}
+
+:root[data-palette="turquoise"][data-theme="dark"],
+:root[data-palette="violet"][data-theme="dark"] {
+  --color-canvas: #0a0f1f;
+  --color-surface: #111931;
+  --color-surface-raised: #18223f;
+  --color-line: #2a3659;
+  --color-ink: #eef2ff;
+  --color-ink-muted: #aeb9d6;
+  --color-accent: #8aa4ff;
+  --color-accent-strong: #aabcff;
+  --color-accent-soft: #1c2a5e;
+  --color-brand-2: #4fd3e0;
+  --color-teal: #3fd4ba;
+  --color-danger: #ff9b9b;
+  --color-success: #6fdc9c;
+
+  --color-night: #060914;
+  --color-night-raised: #111931;
+  --color-night-line: #2a3659;
+  --color-night-muted: #aeb9d6;
+
+  --mesh-strength: 0.75;
+  --shadow-rgb: 0 0 0;
+}
+
+:root[data-palette="violet"][data-theme="dark"] {
+  --color-brand-2: #b7a1ff;
+}
+
+/* ─────────────────────────────────────────────────────────────────────── */
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Мек цветен фон зад горната част на страниците. */
+.mesh-backdrop {
+  opacity: var(--mesh-strength);
+  background:
+    radial-gradient(60% 70% at 85% 10%, rgb(var(--mesh-1) / 0.2), transparent 70%),
+    radial-gradient(50% 60% at 100% 60%, rgb(var(--mesh-2) / 0.18), transparent 70%),
+    radial-gradient(40% 50% at 60% 100%, rgb(var(--mesh-3) / 0.14), transparent 70%),
+    radial-gradient(40% 40% at 0% 0%, rgb(var(--mesh-2) / 0.07), transparent 70%);
+}
+
+/* Градиентът на марката като фон: бутони, знакът, лентата с покана. */
+.brand-gradient {
+  background-image: linear-gradient(120deg, var(--brand-from) 0%, var(--brand-to) 100%);
+}
+
+/* Градиентът на марката като текст; следва темата, за да се чете и на тъмен фон. */
+.text-brand-gradient {
+  background-image: linear-gradient(120deg, var(--color-accent) 0%, var(--color-brand-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Фон от фини точки — за секциите с „инженерен“ характер. */
+.dot-grid {
+  background-image: radial-gradient(rgb(var(--shadow-rgb) / 0.16) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+:root[data-theme="dark"] .dot-grid {
+  background-image: radial-gradient(rgb(255 255 255 / 0.1) 1px, transparent 1px);
+}
+
+/* Едър текст само с контур: номерата на стъпките, надписът във футъра. */
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--outline-color, var(--color-line));
+}
+
+/* Светлинните ленти бавно се люлеят. */
+@keyframes ribbon-drift {
+  0% {
+    transform: translate3d(-1.5%, 1%, 0) rotate(-0.6deg);
+  }
+  100% {
+    transform: translate3d(1.5%, -1.5%, 0) rotate(0.8deg);
+  }
+}
+
+.ribbon-drift {
+  transform-origin: 50% 50%;
+  animation: ribbon-drift 16s ease-in-out infinite alternate;
+}
+
+/* Пулсиране на възлите в мрежата. */
+@keyframes node-pulse {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.node-pulse {
+  animation: node-pulse 4s ease-in-out infinite;
+}
+
+/* Движеща се лента: съдържанието е повторено два пъти и се измества с половината си ширина. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 38s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Глобусът от линии: всеки меридиан е окръжност, която се свива и разпуска по
+   хоризонтала; изместени във времето, заедно изглеждат като въртящо се кълбо. */
+@keyframes sphere-meridian {
+  0%,
+  100% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(-1);
+  }
+}
+
+.sphere-meridian {
+  transform-box: fill-box;
+  transform-origin: center;
+  /* Синусоидална крива — така свиването следва косинус, както при истинско въртене. */
+  animation: sphere-meridian 26s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+}
+
+@keyframes sphere-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.sphere-orbit {
+  transform-origin: 0 0;
+  animation: sphere-orbit 16s linear infinite;
+}
+
+/* Плавно появяване отдолу нагоре. .rise-in — при зареждане на страницата, със
+   закъснение от --delay; .reveal — когато елементът влезе в екрана при скрол
+   (само в браузъри, които поддържат анимации, вързани за скрола; в останалите
+   елементът просто е видим). */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise-in {
+  animation: rise-in 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: var(--delay, 0s);
+}
+
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: rise-in linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 45%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation: none !important;
+  }
+}
