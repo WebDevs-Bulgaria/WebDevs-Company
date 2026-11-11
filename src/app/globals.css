@@ -12,7 +12,8 @@
  *  - data-palette — цветовата палитра, също по избор на посетителя
  *    (components/theme/PaletteSwitcher.tsx; списъкът е в components/theme/palettes.ts).
  *
- * Стойностите в @theme са палитрата „emerald“ в светла тема. Цветовете „night“ са за
+ * Стойностите в @theme са палитрата „emerald“ в светла тема. По подразбиране е „turquoise“
+ * (defaultPalette в palettes.ts; root layout-ът я слага като data-palette на <html>). Цветовете „night“ са за
  * контрастните ленти (процес, футър). --brand-from/--brand-to са градиентът на марката
  * като фон (под бял текст) и не се менят с темата; --color-accent и --color-brand-2 са
  * същите цветове като текст и икони и в тъмната тема стават по-светли.
@@ -49,7 +50,7 @@
   --shadow-float: 0 4px 12px rgb(var(--shadow-rgb) / 0.08), 0 24px 60px rgb(var(--shadow-rgb) / 0.16);
 }
 
-/* ── Палитра „emerald“ (по подразбиране): зелено към петролено ────────── */
+/* ── Палитра „emerald“ (стойностите без блок data-palette): зелено към петролено ────────── */
 
 :root {
   --brand-from: #067a4e;

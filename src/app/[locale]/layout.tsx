@@ -6,6 +6,7 @@ import { isIndexable, siteUrl } from "@/lib/site";
 import { ThemeScript } from "@/components/theme/ThemeScript";
 import { fontVariables } from "../fonts";
 import "../globals.css";
+import { defaultPalette } from "@/components/theme/palettes";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -41,6 +42,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[lo
     <html
       lang={locale}
       data-theme="light"
+      data-palette={defaultPalette}
       // Плавният скрол (scroll-behavior: smooth в globals.css) се изключва от Next.js при смяна на страница.
       data-scroll-behavior="smooth"
       className={`${fontVariables} h-full antialiased`}
