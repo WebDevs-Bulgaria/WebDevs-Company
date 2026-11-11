@@ -6,6 +6,7 @@ import { company } from "@/lib/company";
 import { ThemeScript } from "@/components/theme/ThemeScript";
 import { fontVariables } from "./fonts";
 import "./globals.css";
+import { defaultPalette } from "@/components/theme/palettes";
 
 /*
  * Страница 404 за адрес, който не съвпада с нито един маршрут.
@@ -30,6 +31,7 @@ export default async function GlobalNotFound() {
     <html
       lang="bg"
       data-theme="light"
+      data-palette={defaultPalette}
       data-scroll-behavior="smooth"
       className={`${fontVariables} h-full antialiased`}
       suppressHydrationWarning
