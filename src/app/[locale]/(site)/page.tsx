@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { localizedPath } from "@/i18n/config";
-import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { getLocale, getT } from "@/i18n/server";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { pagePath } from "@/lib/site";
 import { CtaBand } from "@/components/sections/CtaBand";
@@ -72,7 +72,8 @@ function Arrow({ className = "" }: { className?: string }) {
  */
 export default async function HomePage() {
   const locale = await getLocale();
-  const { home, common } = await getDictionary(locale);
+  const { t } = await getT("common");
+  const { t: tHome } = await getT("home");
 
   const servicesHref = localizedPath(locale, pagePath("services"));
   const solutionsHref = localizedPath(locale, pagePath("projects"));
@@ -83,7 +84,7 @@ export default async function HomePage() {
       tone: "light",
       number: "01",
       href: `${servicesHref}#websites`,
-      text: home.websites,
+      text: tHome("websites"),
       visual: <RibbonField className="absolute inset-0 h-full w-full" />,
     },
     {
@@ -91,15 +92,15 @@ export default async function HomePage() {
       tone: "night",
       number: "02",
       href: `${servicesHref}#applications`,
-      text: home.applications,
+      text: tHome("applications"),
       visual: <NodeGraph className="absolute inset-0 h-full w-full" />,
     },
   ] as const;
 
   const quickLinks = [
-    { href: solutionsHref, ...home.explore.solutions },
-    { href: `${solutionsHref}#technology`, ...home.explore.technology },
-    { href: localizedPath(locale, pagePath("about")), ...home.explore.about },
+    { href: solutionsHref, ...tHome("explore.solutions") },
+    { href: `${solutionsHref}#technology`, ...tHome("explore.technology") },
+    { href: localizedPath(locale, pagePath("about")), ...tHome("explore.about") },
   ];
 
   return (
@@ -118,26 +119,26 @@ export default async function HomePage() {
               style={delay(0)}
             >
               <span aria-hidden="true" className="h-px w-10 bg-accent" />
-              {home.hero.eyebrow}
+              {tHome("hero.eyebrow")}
             </p>
             <h1
               className="rise-in mt-8 text-5xl font-extrabold leading-[0.98] tracking-tight text-ink sm:text-7xl xl:text-8xl"
               style={delay(0.1)}
             >
-              {home.hero.titleStart}{" "}
-              <span className="text-brand-gradient">{home.hero.titleAccent}</span>{" "}
-              {home.hero.titleEnd}
+              {tHome("hero.titleStart")}{" "}
+              <span className="text-brand-gradient">{tHome("hero.titleAccent")}</span>{" "}
+              {tHome("hero.titleEnd")}
             </h1>
             <p
               className="rise-in mt-8 max-w-xl text-base leading-7 text-ink-muted sm:text-lg sm:leading-8"
               style={delay(0.25)}
             >
-              {home.hero.lead}
+              {tHome("hero.lead")}
             </p>
             <div className="rise-in mt-10 flex flex-wrap gap-4" style={delay(0.4)}>
-              <ButtonLink href={localizedPath(locale, pagePath("contact"))}>{common.contactCta}</ButtonLink>
+              <ButtonLink href={localizedPath(locale, pagePath("contact"))}>{t("actions.contactCta")}</ButtonLink>
               <ButtonLink href={servicesHref} variant="secondary">
-                {common.viewServices}
+                {t("actions.viewServices")}
               </ButtonLink>
             </div>
           </div>
@@ -148,12 +149,12 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      <TechMarquee label={home.strip.label} items={home.strip.items} />
+      <TechMarquee label={tHome("strip.label")} items={tHome("strip.items")} />
 
       {/* Двете дейности: една секция на цялата ширина, разделена на светла и тъмна половина.
           Без кутии — половините опират в краищата на екрана и една в друга, а текстът им е
           подравнен с останалото съдържание. Всяка половина е връзка към своята част от „Услуги“. */}
-      <section aria-label={common.viewServices} className="grid lg:grid-cols-2">
+      <section aria-label={t("actions.viewServices")} className="grid lg:grid-cols-2">
         {activities.map((activity) => {
           const tone = tones[activity.tone];
           return (
@@ -204,12 +205,12 @@ export default async function HomePage() {
         <Container className="py-20 sm:py-28">
           <SectionHeading
             id="home-commitments"
-            eyebrow={home.commitments.eyebrow}
-            title={home.commitments.title}
-            lead={home.commitments.lead}
+            eyebrow={t("commitments.eyebrow")}
+            title={t("commitments.title")}
+            lead={t("commitments.lead")}
           />
           <dl className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {home.commitments.items.map((item) => (
+            {t("commitments.items").map((item) => (
               <div
                 key={item.label}
                 className="reveal group relative flex flex-col-reverse justify-end overflow-hidden border border-line bg-surface-raised p-7 transition duration-300 hover:-translate-y-1 hover:shadow-float"
@@ -234,11 +235,11 @@ export default async function HomePage() {
       </section>
 
       {/* Бързи връзки към останалото */}
-      <section aria-label={home.explore.label}>
+      <section aria-label={tHome("explore.label")}>
         <Container className="py-16 sm:py-20">
           <p className="flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-accent">
             <span aria-hidden="true" className="h-px w-10 bg-accent" />
-            {home.explore.label}
+            {tHome("explore.label")}
           </p>
           <ul className="mt-8 grid border-t border-line md:grid-cols-3">
             {quickLinks.map((item) => (

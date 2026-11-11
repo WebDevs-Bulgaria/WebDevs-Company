@@ -1,5 +1,5 @@
 import { localizedPath } from "@/i18n/config";
-import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { getLocale, getT } from "@/i18n/server";
 import { company } from "@/lib/company";
 import { pagePath } from "@/lib/site";
 import { ButtonLink } from "@/components/ui/ButtonLink";
@@ -9,7 +9,7 @@ import { RibbonField } from "@/components/visuals/RibbonField";
 // Покана за връзка в края на страницата: едро заглавие върху светлинните ленти.
 export async function CtaBand() {
   const locale = await getLocale();
-  const dictionary = await getDictionary(locale);
+  const { t } = await getT("common");
 
   return (
     <section aria-labelledby="cta-title" className="relative overflow-hidden border-t border-line">
@@ -20,14 +20,14 @@ export async function CtaBand() {
           id="cta-title"
           className="max-w-4xl text-5xl font-extrabold leading-[1.02] tracking-tight text-ink sm:text-7xl"
         >
-          {dictionary.home.cta.title}
+          {t("cta.title")}
         </h2>
         <p className="mt-8 max-w-2xl text-base leading-7 text-ink-muted sm:text-lg sm:leading-8">
-          {dictionary.home.cta.lead}
+          {t("cta.lead")}
         </p>
         <div className="mt-10 flex flex-wrap items-center gap-x-10 gap-y-6">
           <ButtonLink href={localizedPath(locale, pagePath("contact"))}>
-            {dictionary.common.contactCta}
+            {t("actions.contactCta")}
           </ButtonLink>
           <a
             href={`tel:${company.phone.international}`}

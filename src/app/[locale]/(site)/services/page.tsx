@@ -1,5 +1,5 @@
-import { getDictionary, getLocale } from "@/i18n/dictionaries";
-import { getServices, serviceGroups } from "@/lib/content";
+import { getT } from "@/i18n/server";
+import { serviceGroups } from "@/lib/content";
 import { breadcrumbJsonLd } from "@/lib/seo/json-ld";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { ProcessSteps } from "@/components/sections/ProcessSteps";
@@ -20,26 +20,25 @@ export function generateMetadata() {
  * Нарочно няма покана „Имате проект или идея?“ накрая — бутонът за връзка е в шапката.
  */
 export default async function ServicesPage() {
-  const locale = await getLocale();
-  const dictionary = await getDictionary(locale);
-  const services = await getServices();
+  const { t: tHome } = await getT("home");
+  const { t: tServices } = await getT("services");
 
   const sections = [
     ...serviceGroups.map((group) => ({
       id: group,
-      title: services.groups[group].title,
-      count: services.items.filter((service) => service.group === group).length,
+      title: tServices("groups")[group].title,
+      count: tServices("items").filter((service) => service.group === group).length,
     })),
-    { id: "process", title: dictionary.home.process.title, count: null },
+    { id: "process", title: tServices("process.title"), count: null },
   ];
 
   return (
     <>
-      <PageHeader pageKey="services" title={services.title} lead={services.lead} />
+      <PageHeader pageKey="services" title={tServices("title")} lead={tServices("lead")} />
 
       {/* Залепваща лента с връзки към частите на страницата (под шапката, която е висока 4.5rem) */}
       <nav
-        aria-label={services.onPage}
+        aria-label={tServices("onPage")}
         className="sticky top-18 z-30 border-b border-line bg-canvas/90 backdrop-blur-md"
       >
         <Container>
@@ -94,9 +93,9 @@ export default async function ServicesPage() {
                 <SectionHeading
                   id={`${group}-title`}
                   tone={night ? "night" : "light"}
-                  eyebrow={`${String(groupIndex + 1).padStart(2, "0")} — ${dictionary.home[group].eyebrow}`}
-                  title={services.groups[group].title}
-                  lead={services.groups[group].lead}
+                  eyebrow={`${String(groupIndex + 1).padStart(2, "0")} — ${tHome(`${group}.eyebrow`)}`}
+                  title={tServices("groups")[group].title}
+                  lead={tServices("groups")[group].lead}
                 />
               </div>
               <ServiceRows group={group} tone={night ? "night" : "light"} />
@@ -113,9 +112,9 @@ export default async function ServicesPage() {
         <Container className="py-24 sm:py-28">
           <SectionHeading
             id="services-process"
-            eyebrow={`03 — ${dictionary.home.process.eyebrow}`}
-            title={dictionary.home.process.title}
-            lead={dictionary.home.process.lead}
+            eyebrow={`03 — ${tServices("process.eyebrow")}`}
+            title={tServices("process.title")}
+            lead={tServices("process.lead")}
           />
           <div className="mt-16">
             <ProcessSteps />
@@ -123,7 +122,7 @@ export default async function ServicesPage() {
         </Container>
       </section>
 
-      <JsonLd data={breadcrumbJsonLd(locale, dictionary, "services")} />
+      <JsonLd data={await breadcrumbJsonLd("services")} />
     </>
   );
 }

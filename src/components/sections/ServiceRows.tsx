@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { localizedPath } from "@/i18n/config";
-import { getLocale } from "@/i18n/dictionaries";
+import { getLocale } from "@/i18n/server";
 import { getServices, type ServiceGroup } from "@/lib/content";
 import { servicePath } from "@/lib/services";
 
@@ -40,7 +40,7 @@ export async function ServiceRows({
 
   return (
     <ul className={`border-b ${style.row}`}>
-      {services.items.map((service, index) => {
+      {services.map((service, index) => {
         if (service.group !== group) return null;
 
         return (

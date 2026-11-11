@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useActionState, type ReactNode } from "react";
 import type { Locale } from "@/i18n/config";
-import type { Dictionary } from "@/i18n/dictionaries";
+import type contactMessages from "@/i18n/locales/bg/contact.json";
 import { submitContactForm, type ContactFormState } from "@/lib/actions/contact";
 
 const initialState: ContactFormState = { status: "idle" };
@@ -110,7 +110,7 @@ export function ContactForm({
   tone = "light",
 }: {
   locale: Locale;
-  labels: Dictionary["contact"]["form"];
+  labels: (typeof contactMessages)["form"];
   privacyHref: string;
   // В страницата на услуга: id-то се изпраща със запитването.
   serviceId?: string;

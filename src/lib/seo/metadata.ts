@@ -1,8 +1,18 @@
 import type { Metadata } from "next";
 import { defaultLocale, localeTags, localizedPath, locales } from "@/i18n/config";
-import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { getLocale, getT } from "@/i18n/server";
 import { servicePath } from "@/lib/services";
 import { pagePath, type SitePageKey } from "@/lib/site";
+
+// В кой namespace са заглавието и описанието (meta.title, meta.description) на всяка страница.
+const metaNamespace = {
+  home: "home",
+  services: "services",
+  projects: "solutions",
+  about: "about",
+  contact: "contact",
+  privacy: "privacy",
+} as const satisfies Record<SitePageKey, string>;
 
 // Общото за всяка страница: каноничен адрес, връзки към другите езикови версии
 // (hreflang) и данни за споделяне. path е адресът без езиковия префикс.
@@ -18,7 +28,8 @@ async function buildMetadata({
   absoluteTitle?: boolean;
 }): Promise<Metadata> {
   const locale = await getLocale();
-  const dictionary = await getDictionary(locale);
+  const { t } = await getT("common");
+  const { t: tHome } = await getT("home");
   const url = localizedPath(locale, path);
 
   const languages: Record<string, string> = {
@@ -34,7 +45,7 @@ async function buildMetadata({
     url: `/${locale}/opengraph-image`,
     width: 1200,
     height: 630,
-    alt: dictionary.meta.home.title,
+    alt: tHome("meta.title"),
   };
 
   return {
@@ -44,7 +55,7 @@ async function buildMetadata({
     alternates: { canonical: url, languages },
     openGraph: {
       type: "website",
-      siteName: dictionary.meta.siteName,
+      siteName: t("siteName"),
       title,
       description,
       url,
@@ -58,20 +69,25 @@ async function buildMetadata({
   };
 }
 
-// Мета данните на една от основните страници (заглавие и описание от meta.<ключ> в речника).
+// Мета данните на една от основните страници (meta.title и meta.description от нейния namespace).
 export async function buildPageMetadata(key: SitePageKey): Promise<Metadata> {
-  const { title, description } = (await getDictionary()).meta[key];
-  return buildMetadata({ title, description, path: pagePath(key), absoluteTitle: key === "home" });
+  const { t } = await getT(metaNamespace[key]);
+  return buildMetadata({
+    title: t("meta.title"),
+    description: t("meta.description"),
+    path: pagePath(key),
+    absoluteTitle: key === "home",
+  });
 }
 
-// Мета данните на страницата на една услуга: заглавието е името ѝ, описанието — резюмето ѝ.
+// Мета данните на страницата на една услуга: заглавието е името ѝ, описанието — въведението ѝ.
 export async function buildServiceMetadata(id: string): Promise<Metadata> {
-  const { services } = await getDictionary();
-  const service = services.items.find((item) => item.id === id);
+  const { t } = await getT("services");
+  const service = t("items").find((item) => item.id === id);
   if (!service) return {};
 
   return buildMetadata({
-    title: `${service.title} — ${services.title}`,
+    title: `${service.title} — ${t("title")}`,
     description: service.intro,
     path: servicePath(id),
   });

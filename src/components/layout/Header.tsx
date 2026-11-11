@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import { localizedPath } from "@/i18n/config";
-import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { getLocale, getT } from "@/i18n/server";
 import { company } from "@/lib/company";
 import { navPages, pagePath } from "@/lib/site";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
@@ -11,18 +11,18 @@ import { MobileMenu } from "./MobileMenu";
 
 export async function Header() {
   const locale = await getLocale();
-  const dictionary = await getDictionary(locale);
+  const { t } = await getT("common");
 
   const contact = {
     href: localizedPath(locale, pagePath("contact")),
-    label: dictionary.common.contactCta,
+    label: t("actions.contactCta"),
   };
   // „Контакт“ е бутонът вдясно, затова не се повтаря като връзка в навигацията.
   const links = navPages
     .filter((page) => page.key !== "contact")
     .map((page) => ({
       href: localizedPath(locale, page.path),
-      label: dictionary.nav[page.key],
+      label: t("nav")[page.key],
     }));
 
   return (
@@ -45,7 +45,7 @@ export async function Header() {
           <span className="sr-only sm:not-sr-only">{company.brandName}</span>
         </Link>
 
-        <nav aria-label={dictionary.nav.mainLabel} className="hidden lg:block">
+        <nav aria-label={t("nav.mainLabel")} className="hidden lg:block">
           <ul className="flex items-center gap-9 text-sm font-semibold">
             {links.map((link) => (
               <li key={link.href}>
@@ -62,9 +62,9 @@ export async function Header() {
 
         <div className="flex items-center justify-end gap-2 sm:gap-3">
           <Suspense fallback={null}>
-            <LanguageSwitcher current={locale} label={dictionary.nav.languageLabel} />
+            <LanguageSwitcher current={locale} label={t("nav.languageLabel")} />
           </Suspense>
-          <ThemeToggle label={dictionary.nav.themeToggle} />
+          <ThemeToggle label={t("nav.themeToggle")} />
           {/* Постоянна ширина: надписът е с различна дължина на двата езика. */}
           <Link
             href={contact.href}
@@ -92,9 +92,9 @@ export async function Header() {
             links={links}
             cta={contact}
             labels={{
-              open: dictionary.nav.openMenu,
-              close: dictionary.nav.closeMenu,
-              navigation: dictionary.nav.mainLabel,
+              open: t("nav.openMenu"),
+              close: t("nav.closeMenu"),
+              navigation: t("nav.mainLabel"),
             }}
           />
         </div>

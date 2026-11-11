@@ -1,8 +1,7 @@
 import { notFound } from "next/navigation";
 import { localizedPath } from "@/i18n/config";
-import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { getLocale, getT } from "@/i18n/server";
 import { company } from "@/lib/company";
-import { getServices } from "@/lib/content";
 import { buildServiceMetadata } from "@/lib/seo/metadata";
 import { serviceIds } from "@/lib/services";
 import { pagePath } from "@/lib/site";
@@ -33,17 +32,16 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/services
 export default async function ServicePage({ params }: PageProps<"/[locale]/services/[service]">) {
   const { service: id } = await params;
   const locale = await getLocale();
-  const dictionary = await getDictionary(locale);
-  const services = await getServices();
-  const service = services.items.find((item) => item.id === id);
+  const { t: tServices } = await getT("services");
+  const { t: tContact } = await getT("contact");
+  const service = tServices("items").find((item) => item.id === id);
   // Адрес с непознато име на услуга не е генериран при build и стига дотук при заявка.
   if (!service) notFound();
 
-  const labels = services.detail;
   const servicesHref = localizedPath(locale, pagePath("services"));
   const lists = [
-    { title: labels.suitable, items: service.suitable },
-    { title: labels.result, items: service.result },
+    { title: tServices("detail.suitable"), items: service.suitable },
+    { title: tServices("detail.result"), items: service.result },
   ];
 
   return (
@@ -53,7 +51,7 @@ export default async function ServicePage({ params }: PageProps<"/[locale]/servi
       <section aria-labelledby="service-includes">
         <Container className="grid gap-x-16 gap-y-12 py-24 sm:py-28 lg:grid-cols-[22rem_1fr]">
           <div className="lg:sticky lg:top-28 lg:self-start">
-            <SectionHeading id="service-includes" title={labels.includes} lead={labels.includesLead} />
+            <SectionHeading id="service-includes" title={tServices("detail.includes")} lead={tServices("detail.includesLead")} />
           </div>
           <div>
             <p className="text-lg leading-8 text-ink sm:text-xl sm:leading-9">{service.intro}</p>
@@ -110,16 +108,16 @@ export default async function ServicePage({ params }: PageProps<"/[locale]/servi
             <SectionHeading
               id="service-inquiry"
               tone="night"
-              eyebrow={labels.inquiryEyebrow}
-              title={labels.inquiryTitle}
-              lead={labels.inquiryLead}
+              eyebrow={tServices("detail.inquiryEyebrow")}
+              title={tServices("detail.inquiryTitle")}
+              lead={tServices("detail.inquiryLead")}
             />
 
             <h3 className="mt-12 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-night-accent">
-              {labels.inquiryNextTitle}
+              {tServices("detail.inquiryNextTitle")}
             </h3>
             <ol className="mt-5 space-y-5">
-              {labels.inquiryNext.map((step, index) => (
+              {tServices("detail.inquiryNext").map((step, index) => (
                 <li key={step} className="flex gap-4">
                   <span
                     aria-hidden="true"
@@ -133,7 +131,7 @@ export default async function ServicePage({ params }: PageProps<"/[locale]/servi
             </ol>
 
             <div className="mt-12 border-t border-night-line pt-6">
-              <p className="font-mono text-xs uppercase tracking-[0.16em] text-night-muted">{labels.inquiryOr}</p>
+              <p className="font-mono text-xs uppercase tracking-[0.16em] text-night-muted">{tServices("detail.inquiryOr")}</p>
               <a
                 href={`tel:${company.phone.international}`}
                 className="mt-2 inline-flex min-h-8 items-center font-display text-3xl font-extrabold tracking-tight text-night-ink transition-colors hover:text-night-accent"
@@ -147,7 +145,7 @@ export default async function ServicePage({ params }: PageProps<"/[locale]/servi
           <div className="lg:border-l lg:border-night-line lg:pl-16">
             <p className="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b border-night-line pb-6">
               <span className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-night-muted">
-                {labels.inquiryAbout}
+                {tServices("detail.inquiryAbout")}
               </span>
               <span className="text-brand-gradient font-display text-2xl font-extrabold tracking-tight [--color-accent:var(--color-night-accent)] [--color-brand-2:var(--color-night-ink)]">
                 {service.title}
@@ -157,7 +155,7 @@ export default async function ServicePage({ params }: PageProps<"/[locale]/servi
               <ContactForm
                 tone="night"
                 locale={locale}
-                labels={dictionary.contact.form}
+                labels={tContact("form")}
                 privacyHref={localizedPath(locale, pagePath("privacy"))}
                 serviceId={service.id}
               />
@@ -169,10 +167,10 @@ export default async function ServicePage({ params }: PageProps<"/[locale]/servi
       {/* Връзки обратно към „Услуги“ */}
       <Container className="flex flex-wrap gap-3 py-12">
         <ButtonLink href={servicesHref} variant="secondary">
-          {labels.all}
+          {tServices("detail.all")}
         </ButtonLink>
         <ButtonLink href={`${servicesHref}#process`} variant="secondary">
-          {labels.process}
+          {tServices("detail.process")}
         </ButtonLink>
       </Container>
     </>

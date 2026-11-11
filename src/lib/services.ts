@@ -1,8 +1,8 @@
-import messages from "@/messages/bg.json";
+import services from "@/i18n/locales/bg/services.json";
 
 // Идентификаторите на услугите (те са и последната част от адреса на страницата на
-// услугата). Взимат се от българския речник; двата речника имат едни и същи id.
-export const serviceIds = messages.services.items.map((service) => service.id);
+// услугата). Взимат се от българския файл с преводи; на всички езици id-тата са едни и същи.
+export const serviceIds = services.items.map((service) => service.id);
 
 export const isServiceId = (value: string) => serviceIds.includes(value);
 

@@ -1,6 +1,5 @@
-import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { getLocale, getT } from "@/i18n/server";
 import { company } from "@/lib/company";
-import { getAboutContent } from "@/lib/content";
 import { breadcrumbJsonLd } from "@/lib/seo/json-ld";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { CtaBand } from "@/components/sections/CtaBand";
@@ -15,16 +14,16 @@ export function generateMetadata() {
 
 export default async function AboutPage() {
   const locale = await getLocale();
-  const dictionary = await getDictionary(locale);
-  const about = await getAboutContent();
+  const { t } = await getT("common");
+  const { t: tAbout } = await getT("about");
 
   return (
     <>
-      <PageHeader pageKey="about" title={about.title} lead={about.lead} />
+      <PageHeader pageKey="about" title={tAbout("title")} lead={tAbout("lead")} />
 
       <Container className="py-24 sm:py-28">
         <div className="grid border-t border-line lg:grid-cols-3">
-          {about.sections.map((section, index) => (
+          {tAbout("sections").map((section, index) => (
             <section
               key={section.title}
               aria-label={section.title}
@@ -44,12 +43,12 @@ export default async function AboutPage() {
         <Container className="py-24 sm:py-28">
           <SectionHeading
             id="about-commitments"
-            eyebrow={dictionary.home.commitments.eyebrow}
-            title={dictionary.home.commitments.title}
-            lead={dictionary.home.commitments.lead}
+            eyebrow={t("commitments.eyebrow")}
+            title={t("commitments.title")}
+            lead={t("commitments.lead")}
           />
           <dl className="mt-16 grid border-t border-line sm:grid-cols-2 lg:grid-cols-4">
-            {dictionary.home.commitments.items.map((item) => (
+            {t("commitments.items").map((item) => (
               <div
                 key={item.label}
                 className="flex flex-col-reverse justify-end border-b border-line py-8 sm:px-6 lg:border-b-0 lg:border-l lg:first:border-l-0 lg:first:pl-0"
@@ -72,10 +71,10 @@ export default async function AboutPage() {
       <section aria-labelledby="about-values" className="relative overflow-hidden bg-night">
         <Container className="py-24 sm:py-28">
           <h2 id="about-values" className="text-4xl font-extrabold tracking-tight text-night-ink sm:text-6xl">
-            {about.valuesTitle}
+            {tAbout("valuesTitle")}
           </h2>
           <dl className="mt-16 grid border-t border-night-line sm:grid-cols-2 lg:grid-cols-4">
-            {about.values.map((value) => (
+            {tAbout("values").map((value) => (
               <div
                 key={value.title}
                 className="border-b border-night-line py-8 sm:px-6 lg:border-b-0 lg:border-l lg:first:border-l-0 lg:first:pl-0"
@@ -91,14 +90,14 @@ export default async function AboutPage() {
       <section aria-labelledby="about-company">
         <Container className="py-24 sm:py-28">
           <h2 id="about-company" className="text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
-            {about.companyTitle}
+            {tAbout("companyTitle")}
           </h2>
           <dl className="mt-10 grid max-w-3xl gap-x-12 gap-y-4 border-t border-line pt-8 text-base sm:grid-cols-[auto_1fr]">
-            <dt className="text-ink-muted">{about.companyLabels.name}</dt>
+            <dt className="text-ink-muted">{tAbout("companyLabels.name")}</dt>
             <dd className="text-ink">{company.legalName[locale]}</dd>
-            <dt className="text-ink-muted">{about.companyLabels.registration}</dt>
+            <dt className="text-ink-muted">{tAbout("companyLabels.registration")}</dt>
             <dd className="text-ink">{company.registrationNumber}</dd>
-            <dt className="text-ink-muted">{about.companyLabels.seat}</dt>
+            <dt className="text-ink-muted">{tAbout("companyLabels.seat")}</dt>
             <dd className="text-ink">
               {company.address.locality[locale]}, {company.address.country[locale]}
             </dd>
@@ -107,7 +106,7 @@ export default async function AboutPage() {
       </section>
 
       <CtaBand />
-      <JsonLd data={breadcrumbJsonLd(locale, dictionary, "about")} />
+      <JsonLd data={await breadcrumbJsonLd("about")} />
     </>
   );
 }

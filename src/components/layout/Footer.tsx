@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { localizedPath } from "@/i18n/config";
-import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { getLocale, getT } from "@/i18n/server";
 import { company } from "@/lib/company";
 import { sitePages } from "@/lib/site";
 import { Container } from "@/components/ui/Container";
@@ -11,7 +11,7 @@ const titleClass = "font-mono text-xs font-semibold uppercase tracking-[0.18em] 
 
 export async function Footer() {
   const locale = await getLocale();
-  const dictionary = await getDictionary(locale);
+  const { t } = await getT("common");
   const links = sitePages.filter((page) => page.key !== "home");
 
   return (
@@ -19,17 +19,17 @@ export async function Footer() {
       <Container className="grid gap-12 pb-12 pt-20 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
           <p className="max-w-xs font-display text-2xl font-extrabold leading-tight tracking-tight">
-            {dictionary.footer.tagline}
+            {t("footer.tagline")}
           </p>
         </div>
 
-        <nav aria-label={dictionary.nav.footerLabel}>
-          <h2 className={titleClass}>{dictionary.footer.navTitle}</h2>
+        <nav aria-label={t("nav.footerLabel")}>
+          <h2 className={titleClass}>{t("footer.navTitle")}</h2>
           <ul className="mt-4 space-y-1 text-sm">
             {links.map((page) => (
               <li key={page.key}>
                 <Link href={localizedPath(locale, page.path)} className={linkClass}>
-                  {dictionary.nav[page.key]}
+                  {t("nav")[page.key]}
                 </Link>
               </li>
             ))}
@@ -37,7 +37,7 @@ export async function Footer() {
         </nav>
 
         <div>
-          <h2 className={titleClass}>{dictionary.footer.contactTitle}</h2>
+          <h2 className={titleClass}>{t("footer.contactTitle")}</h2>
           <ul className="mt-4 space-y-1 text-sm">
             <li>
               <a href={`tel:${company.phone.international}`} className={linkClass}>
@@ -56,11 +56,11 @@ export async function Footer() {
         </div>
 
         <div>
-          <h2 className={titleClass}>{dictionary.footer.companyTitle}</h2>
+          <h2 className={titleClass}>{t("footer.companyTitle")}</h2>
           <ul className="mt-4 space-y-2 text-sm text-night-muted">
             <li>{company.legalName[locale]}</li>
             <li>
-              {dictionary.footer.registrationLabel}: {company.registrationNumber}
+              {t("footer.registrationLabel")}: {company.registrationNumber}
             </li>
           </ul>
         </div>
@@ -78,7 +78,7 @@ export async function Footer() {
 
       <div className="border-t border-night-line">
         <Container className="py-6 text-sm text-night-muted">
-          © {company.legalName[locale]}. {dictionary.footer.rights}
+          © {company.legalName[locale]}. {t("footer.rights")}
         </Container>
       </div>
     </footer>

@@ -1,5 +1,5 @@
-import { localizedPath, type Locale } from "@/i18n/config";
-import type { Dictionary } from "@/i18n/dictionaries";
+import { localizedPath } from "@/i18n/config";
+import { getLocale, getT } from "@/i18n/server";
 import { company } from "@/lib/company";
 import { servicePath } from "@/lib/services";
 import { pagePath, siteUrl, type SitePageKey } from "@/lib/site";
@@ -10,14 +10,18 @@ const websiteId = `${siteUrl}/#website`;
 const absolute = (path: string) => `${siteUrl}${path}`;
 
 // Фирмата като ProfessionalService — с това търсачките разпознават име, контакти и услуги.
-export function organizationJsonLd(locale: Locale, dictionary: Dictionary) {
+export async function organizationJsonLd() {
+  const locale = await getLocale();
+  const { t: tHome } = await getT("home");
+  const { t: tServices } = await getT("services");
+
   return {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "@id": organizationId,
     name: company.brandName,
     legalName: company.legalName[locale],
-    description: dictionary.meta.home.description,
+    description: tHome("meta.description"),
     url: absolute(localizedPath(locale)),
     email: company.email,
     telephone: company.phone.international,
@@ -36,8 +40,8 @@ export function organizationJsonLd(locale: Locale, dictionary: Dictionary) {
     knowsLanguage: ["bg", "en"],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: dictionary.services.title,
-      itemListElement: dictionary.services.items.map((service) => ({
+      name: tServices("title"),
+      itemListElement: tServices("items").map((service) => ({
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
@@ -50,12 +54,15 @@ export function organizationJsonLd(locale: Locale, dictionary: Dictionary) {
   };
 }
 
-export function websiteJsonLd(locale: Locale, dictionary: Dictionary) {
+export async function websiteJsonLd() {
+  const locale = await getLocale();
+  const { t } = await getT("common");
+
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": websiteId,
-    name: dictionary.meta.siteName,
+    name: t("siteName"),
     url: absolute(localizedPath(locale)),
     inLanguage: locale,
     publisher: { "@id": organizationId },
@@ -63,7 +70,10 @@ export function websiteJsonLd(locale: Locale, dictionary: Dictionary) {
 }
 
 // Път до страницата (начало > текуща страница) за резултатите в търсачките.
-export function breadcrumbJsonLd(locale: Locale, dictionary: Dictionary, key: SitePageKey) {
+export async function breadcrumbJsonLd(key: SitePageKey) {
+  const locale = await getLocale();
+  const { t } = await getT("common");
+
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -71,13 +81,13 @@ export function breadcrumbJsonLd(locale: Locale, dictionary: Dictionary, key: Si
       {
         "@type": "ListItem",
         position: 1,
-        name: dictionary.nav.home,
+        name: t("nav.home"),
         item: absolute(localizedPath(locale)),
       },
       {
         "@type": "ListItem",
         position: 2,
-        name: dictionary.nav[key],
+        name: t(`nav.${key}`),
         item: absolute(localizedPath(locale, pagePath(key))),
       },
     ],

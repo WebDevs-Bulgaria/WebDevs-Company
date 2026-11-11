@@ -3,7 +3,7 @@
 import { headers } from "next/headers";
 import { z } from "zod";
 import { defaultLocale, hasLocale } from "@/i18n/config";
-import { getDictionary } from "@/i18n/dictionaries";
+import { getT } from "@/i18n/server";
 import { sendContactMessage } from "@/lib/mail/send-contact-message";
 import { isServiceId } from "@/lib/services";
 
@@ -57,7 +57,8 @@ export async function submitContactForm(
   // Езикът идва от скрито поле на формата; стойността не се приема на доверие.
   const localeInput = text(formData.get("locale"));
   const locale = hasLocale(localeInput) ? localeInput : defaultLocale;
-  const form = (await getDictionary(locale)).contact.form;
+  const { t } = await getT("contact", { lng: locale });
+  const form = t("form");
 
   // Услугата идва от скрито поле на формата в страницата на услугата; непозната стойност се пренебрегва.
   const serviceInput = text(formData.get("service"));

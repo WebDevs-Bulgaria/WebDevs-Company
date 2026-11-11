@@ -1,5 +1,5 @@
 import { localizedPath } from "@/i18n/config";
-import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { getLocale, getT } from "@/i18n/server";
 import { company } from "@/lib/company";
 import { breadcrumbJsonLd } from "@/lib/seo/json-ld";
 import { buildPageMetadata } from "@/lib/seo/metadata";
@@ -15,12 +15,11 @@ export function generateMetadata() {
 
 export default async function ContactPage() {
   const locale = await getLocale();
-  const dictionary = await getDictionary(locale);
-  const { contact } = dictionary;
+  const { t: tContact } = await getT("contact");
 
   return (
     <>
-      <PageHeader pageKey="contact" title={contact.title} lead={contact.lead} />
+      <PageHeader pageKey="contact" title={tContact("title")} lead={tContact("lead")} />
 
       <Container className="grid gap-16 py-24 sm:py-28 lg:grid-cols-5">
         <section aria-labelledby="contact-details" className="lg:col-span-2">
@@ -28,11 +27,11 @@ export default async function ContactPage() {
             id="contact-details"
             className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-accent"
           >
-            {contact.detailsTitle}
+            {tContact("detailsTitle")}
           </h2>
           <dl className="mt-8 border-t border-line">
             <div className="border-b border-line py-6">
-              <dt className="font-mono text-xs uppercase tracking-[0.16em] text-ink-muted">{contact.phoneLabel}</dt>
+              <dt className="font-mono text-xs uppercase tracking-[0.16em] text-ink-muted">{tContact("phoneLabel")}</dt>
               <dd className="mt-1">
                 <a
                   href={`tel:${company.phone.international}`}
@@ -43,7 +42,7 @@ export default async function ContactPage() {
               </dd>
             </div>
             <div className="border-b border-line py-6">
-              <dt className="font-mono text-xs uppercase tracking-[0.16em] text-ink-muted">{contact.emailLabel}</dt>
+              <dt className="font-mono text-xs uppercase tracking-[0.16em] text-ink-muted">{tContact("emailLabel")}</dt>
               <dd className="mt-1">
                 <a
                   href={`mailto:${company.email}`}
@@ -54,7 +53,7 @@ export default async function ContactPage() {
               </dd>
             </div>
             <div className="border-b border-line py-6">
-              <dt className="font-mono text-xs uppercase tracking-[0.16em] text-ink-muted">{contact.locationLabel}</dt>
+              <dt className="font-mono text-xs uppercase tracking-[0.16em] text-ink-muted">{tContact("locationLabel")}</dt>
               <dd className="mt-1 font-display text-xl font-extrabold tracking-tight text-ink">
                 {company.address.locality[locale]}, {company.address.country[locale]}
               </dd>
@@ -67,17 +66,17 @@ export default async function ContactPage() {
           className="border border-line bg-surface-raised p-6 sm:p-10 lg:col-span-3"
         >
           <h2 id="contact-form" className="mb-8 text-3xl font-extrabold tracking-tight text-ink">
-            {contact.formTitle}
+            {tContact("formTitle")}
           </h2>
           <ContactForm
             locale={locale}
-            labels={contact.form}
+            labels={tContact("form")}
             privacyHref={localizedPath(locale, pagePath("privacy"))}
           />
         </section>
       </Container>
 
-      <JsonLd data={breadcrumbJsonLd(locale, dictionary, "contact")} />
+      <JsonLd data={await breadcrumbJsonLd("contact")} />
     </>
   );
 }

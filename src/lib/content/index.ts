@@ -1,9 +1,10 @@
-import { getDictionary } from "@/i18n/dictionaries";
+import { getT } from "@/i18n/server";
 
 /*
- * Слой за съдържание. Страниците взимат съдържанието си само оттук.
- * Сега източникът са файловете в src/messages; когато се появи административен
- * панел, се сменя само вътрешността на тези функции.
+ * Слой за съдържание: списъците, които се показват от няколко компонента (услуги, стъпки на
+ * процеса, технологии). Сега идват от преводите; когато се появи административен панел,
+ * се сменя само вътрешността на тези функции. Единичните текстове компонентите взимат
+ * направо с t().
  */
 
 // Двете групи услуги: сайтовете са основната дейност, приложенията — втората.
@@ -12,30 +13,20 @@ export type ServiceGroup = "websites" | "applications";
 export const serviceGroups: ServiceGroup[] = ["websites", "applications"];
 
 export async function getServices() {
-  return (await getDictionary()).services;
+  const { t } = await getT("services");
+  return t("items");
 }
 
 export async function getServicesByGroup(group: ServiceGroup) {
-  const services = await getServices();
-  return services.items.filter((service) => service.group === group);
+  return (await getServices()).filter((service) => service.group === group);
 }
 
 export async function getProcessSteps() {
-  return (await getDictionary()).process.steps;
+  const { t } = await getT("services");
+  return t("process.steps");
 }
 
 export async function getTechnologyGroups() {
-  return (await getDictionary()).technology.groups;
-}
-
-export async function getSolutions() {
-  return (await getDictionary()).projects;
-}
-
-export async function getAboutContent() {
-  return (await getDictionary()).about;
-}
-
-export async function getPrivacyPolicy() {
-  return (await getDictionary()).privacy;
+  const { t } = await getT("solutions");
+  return t("technology.groups");
 }

@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "title": "Privacy policy",
+    "description": "How Web Devs Bulgaria EOOD processes the personal data it receives through this website."
+  },
+  "title": "Privacy policy",
+  "updated": "Last updated: 11 November 2026",
+  "sections": [
+    {
+      "title": "Who processes the data",
+      "paragraphs": [
+        "The data controller is Web Devs Bulgaria EOOD, company ID (EIK) 208976599, with its registered seat in Sofia, Bulgaria. For questions about your personal data, write to webdevsbulgaria@gmail.com."
+      ]
+    },
+    {
+      "title": "What data we collect",
+      "paragraphs": [
+        "When you send an enquiry through the contact form, we receive your name, email address, phone number (if you provide it) and the text of your message.",
+        "This website does not use tracking or advertising cookies."
+      ]
+    },
+    {
+      "title": "What we use the data for",
+      "paragraphs": [
+        "We use the data solely to reply to your enquiry and to prepare a proposal if you have asked for one. The legal basis is your consent and taking steps at your request prior to entering into a contract."
+      ]
+    },
+    {
+      "title": "How long we keep it",
+      "paragraphs": [
+        "We keep the correspondence until the conversation about the enquiry is concluded and no longer than one year after the last contact, unless a contractual relationship arises between us."
+      ]
+    },
+    {
+      "title": "Who we share it with",
+      "paragraphs": [
+        "We do not sell or share your data with third parties for their own purposes. The data may be processed by email and hosting service providers acting on our behalf."
+      ]
+    },
+    {
+      "title": "Your rights",
+      "paragraphs": [
+        "You have the right to access your data, to have it corrected or erased, to restrict processing, to data portability and to withdraw your consent at any time. To exercise your rights, write to us at the email address above.",
+        "You have the right to lodge a complaint with the Bulgarian Commission for Personal Data Protection (www.cpdp.bg)."
+      ]
+    }
+  ]
+}

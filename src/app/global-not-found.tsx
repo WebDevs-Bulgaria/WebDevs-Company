@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { locales } from "@/i18n/config";
-import { getDictionary } from "@/i18n/dictionaries";
+import { getT } from "@/i18n/server";
 import { company } from "@/lib/company";
 import { ThemeScript } from "@/components/theme/ThemeScript";
 import { fontVariables } from "./fonts";
@@ -22,7 +22,7 @@ export default async function GlobalNotFound() {
   const messages = await Promise.all(
     locales.map(async (locale) => ({
       locale,
-      text: (await getDictionary(locale)).notFound,
+      text: (await getT("common", { lng: locale })).t("notFound"),
     })),
   );
 

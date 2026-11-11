@@ -1,5 +1,4 @@
-import { getDictionary, getLocale } from "@/i18n/dictionaries";
-import { getSolutions } from "@/lib/content";
+import { getT } from "@/i18n/server";
 import { breadcrumbJsonLd } from "@/lib/seo/json-ld";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { CtaBand } from "@/components/sections/CtaBand";
@@ -16,17 +15,15 @@ export function generateMetadata() {
 // Страницата описва видовете системи, които фирмата изгражда. Конкретни клиентски
 // проекти се добавят тук само след съгласие на клиента.
 export default async function ProjectsPage() {
-  const locale = await getLocale();
-  const dictionary = await getDictionary(locale);
-  const solutions = await getSolutions();
+  const { t: tSolutions } = await getT("solutions");
 
   return (
     <>
-      <PageHeader pageKey="projects" title={solutions.title} lead={solutions.lead} />
+      <PageHeader pageKey="projects" title={tSolutions("title")} lead={tSolutions("lead")} />
 
       <Container className="py-24 sm:py-28">
         <ul className="grid border-l border-t border-line md:grid-cols-2 lg:grid-cols-3">
-          {solutions.items.map((item, index) => (
+          {tSolutions("items").map((item, index) => (
             <li key={item.title} className="border-b border-r border-line p-8 sm:p-10">
               <span aria-hidden="true" className="font-mono text-sm font-semibold text-accent">
                 {String(index + 1).padStart(2, "0")}
@@ -36,7 +33,7 @@ export default async function ProjectsPage() {
             </li>
           ))}
         </ul>
-        <p className="mt-8 font-mono text-xs text-ink-muted">{solutions.note}</p>
+        <p className="mt-8 font-mono text-xs text-ink-muted">{tSolutions("note")}</p>
       </Container>
 
       <section
@@ -47,9 +44,9 @@ export default async function ProjectsPage() {
         <Container className="py-24 sm:py-28">
           <SectionHeading
             id="projects-technology"
-            eyebrow={dictionary.home.technology.eyebrow}
-            title={dictionary.home.technology.title}
-            lead={dictionary.home.technology.lead}
+            eyebrow={tSolutions("technology.eyebrow")}
+            title={tSolutions("technology.title")}
+            lead={tSolutions("technology.lead")}
           />
           <div className="mt-16">
             <TechnologyGroups />
@@ -58,7 +55,7 @@ export default async function ProjectsPage() {
       </section>
 
       <CtaBand />
-      <JsonLd data={breadcrumbJsonLd(locale, dictionary, "projects")} />
+      <JsonLd data={await breadcrumbJsonLd("projects")} />
     </>
   );
 }

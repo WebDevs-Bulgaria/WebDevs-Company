@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { localizedPath } from "@/i18n/config";
-import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { getLocale, getT } from "@/i18n/server";
 import type { SitePageKey } from "@/lib/site";
 import { RibbonField } from "@/components/visuals/RibbonField";
 import { Container } from "./Container";
@@ -17,7 +17,7 @@ export async function PageHeader({
   lead?: string;
 }) {
   const locale = await getLocale();
-  const dictionary = await getDictionary(locale);
+  const { t } = await getT("common");
 
   return (
     <section className="relative overflow-hidden border-b border-line">
@@ -25,18 +25,18 @@ export async function PageHeader({
       <div aria-hidden="true" className="absolute inset-0 bg-linear-to-r from-canvas via-canvas/50 to-canvas/0" />
       <Container className="relative py-20 sm:py-28">
         <nav
-          aria-label={dictionary.nav.breadcrumbLabel}
+          aria-label={t("nav.breadcrumbLabel")}
           className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted"
         >
           <ol className="flex flex-wrap items-center gap-3">
             <li>
               <Link href={localizedPath(locale)} className="hover:text-accent">
-                {dictionary.nav.home}
+                {t("nav.home")}
               </Link>
             </li>
             <li aria-hidden="true" className="h-px w-8 bg-line" />
             <li aria-current="page" className="text-accent">
-              {dictionary.nav[pageKey]}
+              {t("nav")[pageKey]}
             </li>
           </ol>
         </nav>

@@ -1,0 +1,74 @@
+{
+  "siteName": "Web Devs Bulgaria",
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "projects": "Solutions",
+    "about": "About",
+    "contact": "Contact",
+    "privacy": "Privacy",
+    "mainLabel": "Main navigation",
+    "footerLabel": "Footer navigation",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "languageLabel": "Language",
+    "skipToContent": "Skip to content",
+    "breadcrumbLabel": "Breadcrumb",
+    "themeToggle": "Switch between light and dark theme",
+    "palette": {
+      "label": "Site colours",
+      "emerald": "Green",
+      "turquoise": "Turquoise",
+      "violet": "Violet"
+    }
+  },
+  "actions": {
+    "contactCta": "Get in touch",
+    "viewServices": "View services",
+    "learnMore": "Learn more"
+  },
+  "cta": {
+    "title": "Have a project or an idea?",
+    "lead": "Tell us what you want to achieve. We will tell you honestly how we would approach it, how long it takes and what is sensible to build first."
+  },
+  "commitments": {
+    "eyebrow": "Commitments",
+    "title": "What you get",
+    "lead": "We do not promise miracles. We promise clear working rules that we keep on every project.",
+    "items": [
+      {
+        "value": "1 day",
+        "label": "to reply",
+        "text": "We reply to every enquiry within one business day."
+      },
+      {
+        "value": "100%",
+        "label": "the code is yours",
+        "text": "The code and the documentation remain your property."
+      },
+      {
+        "value": "Every stage",
+        "label": "ends with a demo",
+        "text": "After each stage you see a working version, not a presentation."
+      },
+      {
+        "value": "After launch",
+        "label": "we stay with you",
+        "text": "We maintain what we have built and keep developing it."
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "Development and maintenance of websites, web and mobile applications.",
+    "navTitle": "Site",
+    "contactTitle": "Contact",
+    "companyTitle": "Company",
+    "registrationLabel": "Company ID (EIK)",
+    "rights": "All rights reserved."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The address you opened does not exist or has been moved.",
+    "back": "Back to the home page"
+  }
+}
