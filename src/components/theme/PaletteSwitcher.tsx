@@ -21,9 +21,7 @@ function readPalette(): PaletteId {
 }
 
 function applyPalette(id: PaletteId) {
-  // Палитрата по подразбиране няма нужда от атрибут.
-  if (id === defaultPalette) delete document.documentElement.dataset.palette;
-  else document.documentElement.dataset.palette = id;
+  document.documentElement.dataset.palette = id;
 }
 
 function choosePalette(id: PaletteId) {

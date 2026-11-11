@@ -2,12 +2,13 @@
 
 import { useServerInsertedHTML } from "next/navigation";
 import { useRef } from "react";
-import { defaultPalette, paletteStorageKey, palettes } from "./palettes";
+import { paletteStorageKey, palettes } from "./palettes";
 
 export const themeStorageKey = "wd-theme";
 
-// Палитрите, които се задават с атрибут (всички без тази по подразбиране).
-const selectablePalettes = palettes.map((palette) => palette.id).filter((id) => id !== defaultPalette);
+// Позволените стойности за data-palette. Сървърът слага палитрата по подразбиране; скриптът я
+// замества със запазения избор на посетителя.
+const selectablePalettes = palettes.map((palette) => palette.id);
 
 /*
  * Избира темата и палитрата, преди браузърът да нарисува страницата — иначе посетител

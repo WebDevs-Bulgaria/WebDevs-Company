@@ -154,3 +154,6 @@ next-env.d.ts
 
 # Локална памет на Claude (не се комитва)
 _claude-memory/
+
+# Local Netlify folder
+.netlify
