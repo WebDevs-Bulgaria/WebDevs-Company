@@ -56,7 +56,7 @@ export function PaletteSwitcher({
     <div
       role="group"
       aria-label={label}
-      className="fixed bottom-5 right-5 z-50 flex items-center gap-3 rounded-full border border-line bg-surface-raised/90 py-2 pl-4 pr-2.5 shadow-float backdrop-blur-md"
+      className="fixed bottom-20 right-5 z-50 flex items-center gap-3 rounded-full border border-line bg-surface-raised/90 py-2 pl-4 pr-2.5 shadow-float backdrop-blur-md"
     >
       <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-muted">
         {names[active]}
