@@ -184,6 +184,38 @@ export function ContactForm({
         </Field>
       </div>
 
+      {/* Бюджет и срок: по избор, за по-бърз ориентир. На тесен екран са едно под друго. */}
+      <div className="grid gap-6 sm:grid-cols-2">
+        {(
+          [
+            { name: "budget", label: labels.budget, options: labels.budgetOptions },
+            { name: "timeline", label: labels.timeline, options: labels.timelineOptions },
+          ] as const
+        ).map((select) => (
+          <Field
+            key={select.name}
+            id={`contact-${select.name}`}
+            label={select.label}
+            optional={labels.optional}
+            style={style}
+          >
+            <select
+              id={`contact-${select.name}`}
+              name={select.name}
+              defaultValue={state.values?.[select.name] ?? ""}
+              className={`${inputClass(style, false)} min-h-[3.375rem] cursor-pointer`}
+            >
+              <option value="">{labels.choose}</option>
+              {Object.entries(select.options).map(([value, text]) => (
+                <option key={value} value={value}>
+                  {text}
+                </option>
+              ))}
+            </select>
+          </Field>
+        ))}
+      </div>
+
       <Field id="contact-message" label={labels.message} hint={labels.messageHint} error={errors.message} style={style}>
         <textarea
           id="contact-message"

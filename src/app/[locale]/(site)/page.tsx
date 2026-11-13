@@ -3,8 +3,10 @@ import type { CSSProperties } from "react";
 import { localizedPath } from "@/i18n/config";
 import { getLocale, getT } from "@/i18n/server";
 import { buildPageMetadata } from "@/lib/seo/metadata";
+import { servicePath } from "@/lib/services";
 import { pagePath } from "@/lib/site";
 import { CtaBand } from "@/components/sections/CtaBand";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { TechMarquee } from "@/components/sections/TechMarquee";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
@@ -65,10 +67,11 @@ function Arrow({ className = "" }: { className?: string }) {
 }
 
 /*
- * Началната страница е кратък вход към сайта: какво правим в две изречения, какво
- * получава клиентът и връзки към страниците с подробностите. Нарочно НЕ съдържа
- * списъци с услуги, процеса и описания на технологиите — те са в „Услуги“ и
- * „Решения“. Преди да добавите секция тук, проверете дали мястото ѝ не е там.
+ * Началната страница е кратък вход към сайта: какво правим в две изречения, трите
+ * направления (сайтове, приложения, AI), трите линии с ориентировъчни цени, какво получава
+ * клиентът и връзки към страниците с подробностите. Нарочно НЕ съдържа списъци с услуги,
+ * процеса и описания на технологиите — те са в „Услуги“ и „Решения“. Преди да добавите
+ * секция тук, проверете дали мястото ѝ не е там.
  */
 export default async function HomePage() {
   const locale = await getLocale();
@@ -82,7 +85,7 @@ export default async function HomePage() {
     {
       key: "websites",
       tone: "light",
-      number: "01",
+      number: "02",
       href: `${servicesHref}#websites`,
       text: tHome("websites"),
       visual: <RibbonField className="absolute inset-0 h-full w-full" />,
@@ -90,12 +93,30 @@ export default async function HomePage() {
     {
       key: "applications",
       tone: "night",
-      number: "02",
+      number: "03",
       href: `${servicesHref}#applications`,
       text: tHome("applications"),
       visual: <NodeGraph className="absolute inset-0 h-full w-full" />,
     },
   ] as const;
+
+  // Накъде води всяка от трите линии с цени (ключът е id от home.json → packages.items).
+  const packageLinks: Record<string, string> = {
+    "quick-start": localizedPath(locale, servicePath("wordpress-websites")),
+    custom: servicesHref,
+    ai: `${servicesHref}#ai`,
+  };
+  const packages = tHome("packages");
+  const audience = tHome("audience");
+  const faq = tHome("faq");
+  // Накъде води всяка ситуация от „За кого е“ (ключът е id от home.json → audience.items).
+  const audienceLinks: Record<string, string> = {
+    start: localizedPath(locale, servicePath("wordpress-websites")),
+    site: localizedPath(locale, servicePath("corporate-websites")),
+    manual: localizedPath(locale, servicePath("ai-automation")),
+    ai: `${servicesHref}#ai`,
+  };
+  const ai = tHome("ai");
 
   const quickLinks = [
     { href: solutionsHref, ...tHome("explore.solutions") },
@@ -151,7 +172,35 @@ export default async function HomePage() {
 
       <TechMarquee label={tHome("strip.label")} items={tHome("strip.items")} />
 
-      {/* Двете дейности: една секция на цялата ширина, разделена на светла и тъмна половина.
+      {/* Първото направление — AI и автоматизация: лента с цвета на марката по цялата ширина,
+          веднага под лентата с надписите. Цялата лента е връзка към групата в „Услуги“.
+          Потъмняването вдясно пази контраста на белия текст върху светлия край на градиента. */}
+      <Link href={`${servicesHref}#ai`} className="brand-gradient group relative block overflow-hidden">
+        <NodeGraph className="absolute inset-y-0 right-0 h-full w-full opacity-25 mix-blend-screen lg:w-2/3" />
+        <div aria-hidden="true" className="absolute inset-0 bg-linear-to-r from-black/0 to-black/30" />
+        <Container className="relative grid items-end gap-x-16 gap-y-8 py-16 sm:py-24 lg:grid-cols-[1.25fr_1fr]">
+          <div>
+            <p className="flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-white">
+              <span aria-hidden="true" className="h-px w-10 bg-white" />
+              01 — {ai.eyebrow}
+            </p>
+            <h2 className="mt-6 text-4xl font-extrabold leading-[1.03] tracking-tight text-white sm:text-6xl">
+              {ai.title}
+            </h2>
+          </div>
+          <div>
+            <p className="text-base leading-7 text-white sm:text-lg sm:leading-8">{ai.short}</p>
+            <p className="mt-8 flex items-center gap-5 text-sm font-bold tracking-wide text-white">
+              <span className="flex h-14 w-14 items-center justify-center rounded-full border border-white/60 transition duration-300 group-hover:scale-110 group-hover:bg-white group-hover:text-(--brand-from)">
+                <Arrow className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5" />
+              </span>
+              {ai.cta}
+            </p>
+          </div>
+        </Container>
+      </Link>
+
+      {/* Другите две направления: една секция на цялата ширина, разделена на светла и тъмна половина.
           Без кутии — половините опират в краищата на екрана и една в друга, а текстът им е
           подравнен с останалото съдържание. Всяка половина е връзка към своята част от „Услуги“. */}
       <section aria-label={t("actions.viewServices")} className="grid lg:grid-cols-2">
@@ -199,6 +248,143 @@ export default async function HomePage() {
           );
         })}
       </section>
+
+      {/* За кого е: четири разпознаваеми ситуации, всяка води към подходящата услуга.
+          Една колона на телефон, две на таблет, четири на широк екран. */}
+      <section aria-labelledby="home-audience" className="border-b border-line bg-surface">
+        <Container className="py-20 sm:py-28">
+          <SectionHeading id="home-audience" eyebrow={audience.eyebrow} title={audience.title} lead={audience.lead} />
+          <ul className="mt-14 grid border-t border-line sm:grid-cols-2 lg:grid-cols-4">
+            {audience.items.map((item, index) => (
+              <li
+                key={item.id}
+                className="border-b border-line sm:odd:border-r lg:border-b-0 lg:border-r lg:last:border-r-0"
+              >
+                <Link
+                  href={audienceLinks[item.id] ?? servicesHref}
+                  className="group flex h-full flex-col py-8 transition-colors duration-300 hover:bg-surface-raised sm:px-6 lg:px-7"
+                >
+                  <span aria-hidden="true" className="font-mono text-xs font-semibold text-accent">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="mt-4 block font-display text-2xl font-extrabold leading-tight tracking-tight text-ink transition-colors duration-200 group-hover:text-accent">
+                    {item.title}
+                  </span>
+                  <span className="mt-4 block flex-1 text-sm leading-6 text-ink-muted">{item.text}</span>
+                  <span className="mt-6 flex items-center gap-3 text-sm font-bold tracking-wide text-ink">
+                    {item.cta}
+                    <Arrow className="transition-transform duration-300 group-hover:translate-x-1" />
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      {/* Трите линии с ориентировъчни цени. Колони, разделени с линии (без кутии); средната е
+          водещата и е отбелязана с надпис. Всяка колона води към своята част от „Услуги“. */}
+      <section id="prices" aria-labelledby="home-packages" className="scroll-mt-20">
+        <Container className="py-20 sm:py-28">
+          <SectionHeading id="home-packages" eyebrow={packages.eyebrow} title={packages.title} lead={packages.lead} />
+          <ul className="mt-14 grid border-t-2 border-ink lg:grid-cols-3">
+            {packages.items.map((item) => {
+              const featured = item.id === "custom";
+              return (
+                <li
+                  key={item.id}
+                  className={`relative flex flex-col border-b border-line py-10 lg:border-l lg:px-8 lg:first:border-l-0 lg:first:pl-0 lg:last:pr-0 ${featured ? "lg:bg-surface" : ""}`}
+                >
+                  {featured ? (
+                    <span aria-hidden="true" className="brand-gradient absolute inset-x-0 -top-0.5 h-1" />
+                  ) : null}
+                  <p className="flex min-h-6 flex-wrap items-center gap-3 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-ink">
+                    {item.name}
+                    {featured ? (
+                      <span className="rounded-full bg-accent-soft px-2.5 py-1 text-[11px] tracking-[0.12em] text-accent">
+                        {packages.badge}
+                      </span>
+                    ) : null}
+                  </p>
+                  <p className="text-brand-gradient mt-5 font-display text-5xl font-extrabold leading-tight tracking-tight">
+                    {item.price}
+                  </p>
+                  <p className="mt-5 text-base leading-7 text-ink-muted">{item.text}</p>
+                  <ul className="mt-6 flex-1 space-y-3">
+                    {item.points.map((point) => (
+                      <li key={point} className="flex gap-3 text-sm leading-6 text-ink">
+                        <span aria-hidden="true" className="brand-gradient mt-2 h-2 w-2 shrink-0 rotate-45" />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    href={packageLinks[item.id] ?? servicesHref}
+                    className="group mt-8 inline-flex min-h-11 items-center gap-3 text-sm font-bold tracking-wide text-ink transition-colors duration-200 hover:text-accent"
+                  >
+                    {item.cta}
+                    <Arrow className="transition-transform duration-300 group-hover:translate-x-1" />
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+          <div className="mt-10 grid gap-x-16 gap-y-6 lg:grid-cols-[1fr_1.4fr]">
+            <p className="text-sm leading-6 text-ink-muted">{packages.note}</p>
+            <div>
+              <h3 className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-ink">
+                {packages.raisesTitle}
+              </h3>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {packages.raises.map((item) => (
+                  <li key={item} className="border border-line px-3 py-1.5 text-sm text-ink-muted">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Често задавани въпроси: <details>, без JavaScript — отварят се и с клавиатура.
+          Същите въпроси отиват и като структурирани данни (FAQPage). */}
+      <section id="faq" aria-labelledby="home-faq" className="scroll-mt-20 border-t border-line">
+        <Container className="grid gap-x-16 gap-y-10 py-20 sm:py-28 lg:grid-cols-[22rem_1fr]">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <SectionHeading id="home-faq" eyebrow={faq.eyebrow} title={faq.title} lead={faq.lead} />
+          </div>
+          <div className="border-b border-line">
+            {faq.items.map((item) => (
+              <details key={item.question} className="group border-t border-line">
+                <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-6 py-5 font-display text-lg font-extrabold tracking-tight text-ink transition-colors duration-200 hover:text-accent sm:text-xl [&::-webkit-details-marker]:hidden">
+                  {item.question}
+                  <span
+                    aria-hidden="true"
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line text-ink transition-transform duration-300 group-open:rotate-45"
+                  >
+                    <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                      <path d="M8 3v10M3 8h10" />
+                    </svg>
+                  </span>
+                </summary>
+                <p className="max-w-2xl pb-7 text-base leading-7 text-ink-muted">{item.answer}</p>
+              </details>
+            ))}
+          </div>
+        </Container>
+      </section>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faq.items.map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: { "@type": "Answer", text: item.answer },
+          })),
+        }}
+      />
 
       {/* Какво получава клиентът */}
       <section aria-labelledby="home-commitments" className="dot-grid border-y border-line bg-surface">

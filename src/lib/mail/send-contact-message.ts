@@ -8,6 +8,9 @@ export type ContactMessage = {
   locale: string;
   // id на услугата, ако запитването е изпратено от нейната страница.
   service?: string;
+  // Ключове на избраните във формата бюджет и срок (budgetOptions, timelineOptions в contact.json).
+  budget?: string;
+  timeline?: string;
 };
 
 /*

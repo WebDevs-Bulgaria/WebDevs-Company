@@ -44,7 +44,7 @@ export default function OpenGraphImage() {
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           <div style={{ fontSize: 76, fontWeight: 700, lineHeight: 1.1 }}>
-            Software, web and mobile application development
+            AI solutions, websites and applications for business
           </div>
           <div style={{ fontSize: 32, color: "#067a4e" }}>webdevs.bg</div>
         </div>

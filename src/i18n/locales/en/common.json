@@ -3,6 +3,7 @@
   "nav": {
     "home": "Home",
     "services": "Services",
+    "prices": "Prices",
     "projects": "Solutions",
     "about": "About",
     "contact": "Contact",
@@ -29,7 +30,7 @@
   },
   "cta": {
     "title": "Have a project or an idea?",
-    "lead": "Tell us what you want to achieve. We will tell you honestly how we would approach it, how long it takes and what is sensible to build first."
+    "lead": "Tell us what you want to achieve. We will tell you honestly how we would approach it, how long it takes, what it costs and what is sensible to do first."
   },
   "commitments": {
     "eyebrow": "Commitments",
@@ -59,7 +60,7 @@
     ]
   },
   "footer": {
-    "tagline": "Development and maintenance of websites, web and mobile applications.",
+    "tagline": "AI solutions, websites and applications for small and medium businesses.",
     "navTitle": "Site",
     "contactTitle": "Contact",
     "companyTitle": "Company",

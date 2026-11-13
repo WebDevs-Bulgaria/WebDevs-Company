@@ -1,33 +1,140 @@
 {
   "meta": {
-    "title": "Services — websites, online stores and applications",
-    "description": "Corporate websites and online stores, maintenance, hosting and SEO. Web and mobile applications and custom software."
+    "title": "Services and prices — websites, applications, AI and integrations",
+    "description": "WordPress websites from €490, hand-coded websites from €1,200, online stores, custom applications, ERP integrations, AI assistants and automation. Indicative prices for every service."
   },
   "title": "Services",
-  "lead": "We build websites and maintain them. For businesses that need more, we build custom applications.",
+  "lead": "We build websites, develop applications and add artificial intelligence and links between your systems. Every service comes with an indicative price.",
   "groups": {
+    "ai": {
+      "title": "AI solutions",
+      "lead": "Artificial intelligence where it saves time: assistants that answer customers and staff, automation of manual work and AI on your own server."
+    },
     "websites": {
       "title": "Websites",
-      "lead": "From a company website to an online store — with care for speed, search visibility and maintenance after launch."
+      "lead": "From a quick WordPress website to a hand-coded website and an online store — with care for speed, search visibility and maintenance after launch."
     },
     "applications": {
       "title": "Applications",
-      "lead": "Systems built around your processes: portals, platforms, mobile apps and connections between the systems you already use."
+      "lead": "Systems built around your processes: portals, platforms, mobile apps, small ERP systems and links between the software you already use."
     }
   },
   "items": [
     {
+      "id": "ai-assistants",
+      "group": "ai",
+      "title": "AI assistants",
+      "summary": "An assistant that answers your customers or your team from your own materials — at any hour.",
+      "price": "from €600 + from €39 per month",
+      "points": [
+        "Answers from your documents, prices and terms",
+        "On your website, in your store or inside the company",
+        "Hands the conversation to a person when needed",
+        "You see what customers are asking",
+        "An AI mentor for online courses and training"
+      ],
+      "intro": "Most customer questions repeat: prices, deadlines, terms, availability. The AI assistant answers them immediately, at any hour, from your own materials rather than making things up. When the question needs a person, it hands the conversation over together with everything said so far. The same approach works inside the company — an assistant that knows the rules and the documents and helps a new employee.",
+      "suitable": [
+        "You answer the same questions by phone, email and chat.",
+        "Customers write outside working hours and by morning have gone elsewhere.",
+        "New team members keep asking the same things, and the answers are in the documents."
+      ],
+      "result": [
+        "A working assistant on your website or in an internal system.",
+        "Knowledge loaded from your documents, easy to update.",
+        "A view of the conversations — what people ask and where the assistant did not know.",
+        "Monthly maintenance that also covers the cost of the AI model."
+      ]
+    },
+    {
+      "id": "ai-for-stores",
+      "group": "ai",
+      "title": "AI for online stores",
+      "summary": "An assistant that knows your catalogue: it recommends products, answers about delivery and orders, and keeps the customer from leaving.",
+      "price": "from €900",
+      "points": [
+        "Recommends products based on what the customer is looking for",
+        "Answers about stock, delivery and order status",
+        "Product descriptions drafted by AI",
+        "Works with WooCommerce and with custom-built stores"
+      ],
+      "intro": "In a shop on the street the assistant asks what you are looking for and walks you to the shelf. In an online store the customer is alone — and often leaves without finding what they need. The AI assistant knows your catalogue, stock and terms, answers immediately and suggests suitable products. The same tool helps you on the inside: it writes descriptions for new products that you only approve.",
+      "suitable": [
+        "You have many products and customers find it hard to choose between them.",
+        "The same questions about delivery, sizes and returns arrive every day.",
+        "Adding new products with descriptions takes you hours."
+      ],
+      "result": [
+        "An assistant in the store, connected to the catalogue and stock.",
+        "Answers about orders and delivery according to your terms.",
+        "A product description tool in the admin area.",
+        "A view of the conversations — what customers look for and what they do not find."
+      ]
+    },
+    {
+      "id": "ai-automation",
+      "group": "ai",
+      "title": "AI automation and integrations",
+      "summary": "The work that repeats every day starts doing itself — with or without artificial intelligence.",
+      "price": "from €900",
+      "points": [
+        "Enquiry → meeting → task → email, with no manual work",
+        "Reading invoices, contracts and requests",
+        "Meeting recordings turned into text and a summary",
+        "Links between website, store, warehouse and accounting",
+        "Texts and product descriptions drafted by AI for a person to approve"
+      ],
+      "intro": "A customer fills in a form, someone retypes it into a spreadsheet, someone else creates a task, a third person sends an email. Each of these steps can happen on its own. We connect the software you already use and add artificial intelligence where reading and understanding are needed: data from an invoice, routing of enquiries, a ten-line summary of an hour-long meeting.",
+      "suitable": [
+        "Your team retypes the same data from one program into another.",
+        "You process many documents, enquiries or recordings by hand.",
+        "Orders from the store do not reach the warehouse and accounting on their own."
+      ],
+      "result": [
+        "An automated process you can monitor and stop.",
+        "A description of how information flows and what happens on error.",
+        "The source code and documentation.",
+        "Monitoring and maintenance after launch."
+      ]
+    },
+    {
+      "id": "private-ai",
+      "group": "ai",
+      "title": "AI on your own server",
+      "summary": "Search and answers over your documents, on a server that is yours — the data never leaves the company.",
+      "price": "from €2,500",
+      "points": [
+        "Search by meaning across your documents",
+        "Answers with the source cited",
+        "Runs on your server or in a cloud you choose",
+        "Permissions: who can ask and see what"
+      ],
+      "intro": "When documents are confidential — contracts, client files, internal rules — they should not pass through third-party services. We build a solution that runs on your server: an employee asks in plain words, the system finds the exact places in the documents and answers, citing where the answer came from.",
+      "suitable": [
+        "You have thousands of pages of documents and finding the right one takes hours.",
+        "Your data must not leave the company — by law, by contract or by your own decision.",
+        "You want AI without depending on a single external provider."
+      ],
+      "result": [
+        "A working system on your server, with sign-in and permissions for staff.",
+        "Documents loaded and a way to add new ones.",
+        "A description of the infrastructure and the running costs.",
+        "Team training and maintenance after launch."
+      ]
+    },
+    {
       "id": "corporate-websites",
       "group": "websites",
-      "title": "Corporate websites",
-      "summary": "A company website that explains clearly what you do and leads the visitor to an enquiry.",
+      "title": "Custom-built websites",
+      "summary": "A hand-coded website — no template and no dead weight, so it is fast, secure and ranks well on Google.",
+      "price": "from €1,200",
       "points": [
-        "Structure and copy focused on the customer",
-        "Multiple languages",
+        "Design and code written for your business",
+        "Multiple languages and search optimisation from the ground up",
         "Works on phone, tablet and desktop",
         "Easy content updates"
       ],
-      "intro": "Your website is the first place customers check. We build it so that within seconds it is clear what you offer, why they should choose you and how to get in touch. We make it fast and structured for search engines from the ground up, not as an afterthought.",
+      "intro": "Your website is the first place customers check. We code it line by line for your business instead of bending a ready-made template. It loads in a fraction of a second, has no unnecessary add-ons to be breached or go out of date, and is structured for search engines from the ground up rather than as an afterthought.",
       "suitable": [
         "You have no website, or the current one is outdated and brings no enquiries.",
         "You want to update texts and images yourself, without looking for a developer.",
@@ -41,10 +148,36 @@
       ]
     },
     {
+      "id": "wordpress-websites",
+      "group": "websites",
+      "title": "WordPress websites",
+      "summary": "A quick start: a website on the most widely used platform, with a theme written for you, ready in days.",
+      "price": "from €490",
+      "points": [
+        "A custom theme, not a purchased template",
+        "Custom plugins when ready-made ones are not enough",
+        "You update the content yourself",
+        "AI features right inside WordPress"
+      ],
+      "intro": "WordPress is the fastest route to a working website and the easiest to manage for someone who is not a developer. The difference is in the build: we write the theme for your business instead of buying a template with dozens of unnecessary add-ons, and we code our own plugins when you need something the ready-made ones do not do. That keeps the site fast and secure.\n\nWordPress does not mean a website without artificial intelligence. We build AI right into it: an assistant that answers visitors from your content, an AI mentor for courses and training, automatic drafts of texts and descriptions in the admin area. We code them as our own plugins, so they work with your theme and do not depend on third-party subscriptions.",
+      "suitable": [
+        "You are starting a business and need a good website quickly and at a sensible price.",
+        "You want to add pages, news and products yourself.",
+        "You already have a WordPress site that is slow or needs a new feature."
+      ],
+      "result": [
+        "A website of up to 5 pages, ready in 7–10 working days.",
+        "A theme written for you and only the plugins you really need.",
+        "Access to the admin area and a short training session.",
+        "Room to grow: a store, a second language, an AI assistant."
+      ]
+    },
+    {
       "id": "online-stores",
       "group": "websites",
       "title": "Online stores",
       "summary": "A store with a catalogue, basket and checkout that handles load and is easy to manage.",
+      "price": "from €1,900",
       "points": [
         "Catalogue, filters and search",
         "Card payments and cash on delivery",
@@ -69,6 +202,7 @@
       "group": "websites",
       "title": "Maintenance, hosting and SEO",
       "summary": "We keep the website running, secure and visible in search engines.",
+      "price": "from €40 per month",
       "points": [
         "Hosting, certificate and backups",
         "Updates and security",
@@ -93,6 +227,7 @@
       "group": "applications",
       "title": "Web applications and portals",
       "summary": "Customer portals, admin panels and multi-user platforms.",
+      "price": "from €3,000",
       "points": [
         "User accounts, roles and permissions",
         "Online payments and subscriptions",
@@ -117,6 +252,7 @@
       "group": "applications",
       "title": "Mobile applications",
       "summary": "iOS and Android applications connected to your website and systems.",
+      "price": "on request",
       "points": [
         "One code base for both platforms",
         "Notifications and offline use",
@@ -139,19 +275,20 @@
     {
       "id": "custom-software",
       "group": "applications",
-      "title": "Custom software and integrations",
-      "summary": "We connect your systems and automate repetitive work.",
+      "title": "Custom software and ERP",
+      "summary": "Small ERP systems for stock, orders and customers, and links between the software you already use.",
+      "price": "from €3,000",
       "points": [
-        "Process and requirements analysis",
-        "Connecting CRM, accounting and internal systems",
-        "AI assistants working on your own data",
+        "Analysis of processes and requirements",
+        "A system for stock, orders, customers and reports",
+        "Links to accounting software, CRM and an existing ERP",
         "Documentation and code handover"
       ],
-      "intro": "A lot of time is lost copying data from one system into another. We connect the systems you already use, automate repetitive work and, where it makes sense, add an AI assistant that works on your own documents and data.",
+      "intro": "A lot of time is lost in spreadsheets and in retyping data from one program into another. We build a small system for exactly your work — stock, orders, customers, reports — or connect the software you already use so that information flows on its own: from the store to the warehouse, from the warehouse to accounting.",
       "suitable": [
         "The same data is entered by hand in several places.",
-        "You have a process that takes hours every week and could be automated.",
-        "You want customers or your team to get answers from your documents without waiting for a person."
+        "Off-the-shelf ERP systems are too big and too expensive for your company.",
+        "You already have an ERP or accounting software and want your website or store to talk to it."
       ],
       "result": [
         "A working connection between systems, with a description of how information flows.",
@@ -181,7 +318,9 @@
       "We reply within one business day — with questions or a first estimate.",
       "A short call to clarify exactly what you need.",
       "A written proposal with timelines and price, with no obligation on your side."
-    ]
+    ],
+    "priceLabel": "Indicative price",
+    "priceNote": "The price is final — no VAT is added. You get the exact amount in writing before we start work."
   },
   "process": {
     "title": "How we work",

@@ -2,10 +2,12 @@ import { notFound } from "next/navigation";
 import { localizedPath } from "@/i18n/config";
 import { getLocale, getT } from "@/i18n/server";
 import { company } from "@/lib/company";
+import { breadcrumbJsonLd } from "@/lib/seo/json-ld";
 import { buildServiceMetadata } from "@/lib/seo/metadata";
-import { serviceIds } from "@/lib/services";
+import { serviceIds, servicePath } from "@/lib/services";
 import { pagePath } from "@/lib/site";
 import { ContactForm } from "@/components/sections/ContactForm";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -26,7 +28,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/services
   return buildServiceMetadata((await params).service);
 }
 
-// Страницата на една услуга: въведение, какво включва, кога е подходяща, какво се получава накрая
+// Страницата на една услуга: въведение, ориентировъчна цена, какво включва, кога е подходяща, какво се получава накрая
 // и форма за запитване, която изпраща и коя е услугата. Обща покана „Имате проект или идея?“ няма —
 // формата я замества.
 export default async function ServicePage({ params }: PageProps<"/[locale]/services/[service]">) {
@@ -46,15 +48,32 @@ export default async function ServicePage({ params }: PageProps<"/[locale]/servi
 
   return (
     <>
-      <PageHeader pageKey="services" title={service.title} lead={service.summary} />
+      <PageHeader pageKey="services" title={service.title} lead={service.summary} current={service.title} />
 
       <section aria-labelledby="service-includes">
         <Container className="grid gap-x-16 gap-y-12 py-24 sm:py-28 lg:grid-cols-[22rem_1fr]">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <SectionHeading id="service-includes" title={tServices("detail.includes")} lead={tServices("detail.includesLead")} />
+            {/* Ориентировъчната цена на услугата */}
+            <div className="mt-10 border-t-2 border-ink pt-6">
+              <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-ink-muted">
+                {tServices("detail.priceLabel")}
+              </p>
+              <p className="text-brand-gradient mt-3 font-display text-3xl font-extrabold leading-tight tracking-tight">
+                {service.price}
+              </p>
+              <p className="mt-4 text-sm leading-6 text-ink-muted">{tServices("detail.priceNote")}</p>
+            </div>
           </div>
           <div>
-            <p className="text-lg leading-8 text-ink sm:text-xl sm:leading-9">{service.intro}</p>
+            {/* Въведението може да е от няколко абзаца, разделени с празен ред в превода. */}
+            <div className="space-y-6">
+              {service.intro.split("\n\n").map((paragraph) => (
+                <p key={paragraph} className="text-lg leading-8 text-ink sm:text-xl sm:leading-9">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
             <ol className="mt-12 border-b border-line">
               {service.points.map((point, index) => (
                 <li
@@ -163,6 +182,8 @@ export default async function ServicePage({ params }: PageProps<"/[locale]/servi
           </div>
         </Container>
       </section>
+
+      <JsonLd data={await breadcrumbJsonLd("services", { name: service.title, path: servicePath(service.id) })} />
 
       {/* Връзки обратно към „Услуги“ */}
       <Container className="flex flex-wrap gap-3 py-12">

@@ -1,7 +1,7 @@
 import { getTechnologyGroups } from "@/lib/content";
 
 /*
- * Технологиите като четири колони: всяка област има номер, заглавие, кратко обяснение
+ * Технологиите като колони (пет на широк екран): всяка област има номер, заглавие, кратко обяснение
  * защо работим точно с тези инструменти, и под него самите инструменти като плочки,
  * които се оцветяват при посочване.
  */
@@ -9,14 +9,14 @@ export async function TechnologyGroups() {
   const groups = await getTechnologyGroups();
 
   return (
-    <dl className="grid gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+    <dl className="grid gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
       {groups.map((group, index) => (
         <div key={group.title} className="flex flex-col">
           <dt className="flex items-baseline gap-3 border-b-2 border-ink pb-4">
             <span aria-hidden="true" className="font-mono text-xs font-semibold text-accent">
               {String(index + 1).padStart(2, "0")}
             </span>
-            <span className="font-display text-xl font-extrabold tracking-tight text-ink">{group.title}</span>
+            <span className="font-display text-lg font-extrabold tracking-tight text-ink">{group.title}</span>
           </dt>
           <dd className="mt-5 flex flex-1 flex-col">
             {/* Защо точно тези инструменти */}

@@ -1,22 +1,22 @@
 {
   "meta": {
-    "title": "About us — a web studio and software company from Sofia",
-    "description": "Web Devs Bulgaria EOOD builds websites and applications. See how we work, the principles we follow and what you get as a client."
+    "title": "About us — a small team for websites, software and AI from Sofia",
+    "description": "Web Devs Bulgaria Ltd. builds websites, applications and AI solutions for small and medium businesses. See how we work, the principles we follow and what you get as a client."
   },
   "title": "About us",
-  "lead": "Web Devs Bulgaria builds websites and applications. We make them so that a business can rely on them every day.",
+  "lead": "Web Devs Bulgaria builds websites, applications and AI solutions. We make them so that a business can rely on them every day.",
   "sections": [
     {
       "title": "Who we are",
-      "text": "A team of developers with experience in building and maintaining websites and platforms used daily by real users. We have worked on corporate websites, online learning systems, customer portals, integrations and server infrastructure."
+      "text": "A small team of developers with experience in building and maintaining websites and platforms used daily by real users. We have worked on corporate websites, e-learning systems, customer portals, AI assistants, integrations and server infrastructure. With us you talk directly to the people who write the code."
     },
     {
       "title": "How we see the work",
-      "text": "Software is a means, not an end. Before we propose a solution, we want to understand the problem. Sometimes the best solution is smaller than you expected — and we will tell you so."
+      "text": "Software is a means, not an end. Before we propose a solution, we want to understand the problem. Sometimes the best solution is smaller and cheaper than you expected — and we will tell you so."
     },
     {
       "title": "What you get",
-      "text": "One team accountable for the whole project. Code and documentation that remain yours. Clear timelines, regular demonstrations and support after launch."
+      "text": "One team responsible for the whole project. A fixed price before we start. Code and documentation that remain yours. Clear deadlines, regular demos and maintenance after launch."
     }
   ],
   "valuesTitle": "Principles",

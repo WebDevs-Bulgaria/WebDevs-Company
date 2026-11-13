@@ -15,8 +15,8 @@ export function generateMetadata() {
 }
 
 /*
- * Страницата „Услуги“: двете групи услуги с всичко, което включват, и процесът на
- * работа. Под заглавието има залепваща лента с връзки към трите части на страницата.
+ * Страницата „Услуги“: трите групи услуги с всичко, което включват, и процесът на
+ * работа. Под заглавието има залепваща лента с връзки към частите на страницата.
  * Нарочно няма покана „Имате проект или идея?“ накрая — бутонът за връзка е в шапката.
  */
 export default async function ServicesPage() {
@@ -77,7 +77,7 @@ export default async function ServicesPage() {
             id={group}
             aria-labelledby={`${group}-title`}
             // overflow-clip, а не overflow-hidden: иначе залепващото заглавие вляво не работи.
-            className={`relative scroll-mt-32 overflow-clip ${night ? "bg-night" : ""}`}
+            className={`relative scroll-mt-32 overflow-clip ${night ? "bg-night" : group === "websites" ? "border-t border-line bg-surface" : ""}`}
           >
             {night ? (
               <>
@@ -107,12 +107,12 @@ export default async function ServicesPage() {
       <section
         id="process"
         aria-labelledby="services-process"
-        className="dot-grid scroll-mt-32 border-b border-line"
+        className="dot-grid scroll-mt-32 border-y border-line"
       >
         <Container className="py-24 sm:py-28">
           <SectionHeading
             id="services-process"
-            eyebrow={`03 — ${tServices("process.eyebrow")}`}
+            eyebrow={`${String(serviceGroups.length + 1).padStart(2, "0")} — ${tServices("process.eyebrow")}`}
             title={tServices("process.title")}
             lead={tServices("process.lead")}
           />
