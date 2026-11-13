@@ -20,7 +20,9 @@
       "label": "Site colours",
       "emerald": "Green",
       "turquoise": "Turquoise",
-      "violet": "Violet"
+      "violet": "Violet",
+      "orange": "Orange",
+      "multicolor": "Multicolour"
     }
   },
   "actions": {

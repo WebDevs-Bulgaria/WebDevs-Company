@@ -12,7 +12,7 @@
  *  - data-palette — цветовата палитра, също по избор на посетителя
  *    (components/theme/PaletteSwitcher.tsx; списъкът е в components/theme/palettes.ts).
  *
- * Стойностите в @theme са палитрата „emerald“ в светла тема. По подразбиране е „turquoise“
+ * Стойностите в @theme са палитрата „emerald“ в светла тема. По подразбиране е „orange“
  * (defaultPalette в palettes.ts; root layout-ът я слага като data-palette на <html>). Цветовете „night“ са за
  * контрастните ленти (процес, футър). --brand-from/--brand-to са градиентът на марката
  * като фон (под бял текст) и не се менят с темата; --color-accent и --color-brand-2 са
@@ -61,6 +61,11 @@
   --mesh-3: 95 224 165;
   --mesh-strength: 1;
   --shadow-rgb: 12 21 18;
+  /* Цветовете на глобуса на началната. По подразбиране са тези на палитрата (следват и
+     темата); пробните палитри „orange“ и „multicolor“ ги задават отделно. */
+  --globe-from: var(--color-accent);
+  --globe-mid: color-mix(in srgb, var(--color-accent), var(--color-brand-2));
+  --globe-to: var(--color-brand-2);
 }
 
 :root[data-theme="dark"] {
@@ -151,6 +156,186 @@
 
 :root[data-palette="violet"][data-theme="dark"] {
   --color-brand-2: #b7a1ff;
+}
+
+/* ── Пробна палитра „orange“: топло неутрален фон, оранжево за глобуса и акцентите ─────────
+   Яркото оранжево (#ff5a14) е само за глобуса и за едрите образи: като текст върху бяло и
+   като фон под бял текст не държи контраст. Затова акцентът за текст е по-тъмен (#c2410c),
+   а градиентът на марката отива от оранжево към малинено. */
+
+:root[data-palette="orange"] {
+  --color-canvas: #ffffff;
+  --color-surface-raised: #ffffff;
+  --color-surface: #f8f5f1;
+  --color-line: #e9e2d9;
+  --color-ink: #17120e;
+  --color-ink-muted: #5c534a;
+  --color-accent: #c2410c;
+  --color-accent-strong: #9a3412;
+  --color-accent-soft: #ffeedd;
+  --color-brand-2: #d11a4a;
+  --color-teal: #0f8a6d;
+  --color-danger: #b42318;
+
+  --color-night: #17120e;
+  --color-night-raised: #241c16;
+  --color-night-line: #3a2e24;
+  --color-night-muted: #cdbfb2;
+  --color-night-accent: #ff8a4c;
+
+  --brand-from: #cd430d;
+  --brand-to: #c2255c;
+  --globe-from: #ff5a14;
+  --globe-mid: #ff7a1a;
+  --globe-to: #ff9f1a;
+  --mesh-1: 255 106 20;
+  --mesh-2: 217 72 15;
+  --mesh-3: 255 176 32;
+  --shadow-rgb: 23 18 14;
+}
+
+:root[data-palette="orange"][data-theme="dark"] {
+  --color-canvas: #100c09;
+  --color-surface: #19130f;
+  --color-surface-raised: #221a14;
+  --color-line: #3a2e24;
+  --color-ink: #f7efe8;
+  --color-ink-muted: #c2b3a5;
+  --color-accent: #ff8a4c;
+  --color-accent-strong: #ffa873;
+  --color-accent-soft: #3a1e0c;
+  --color-brand-2: #ffb454;
+  --color-teal: #45d1ad;
+  --color-danger: #ff9b8f;
+  --color-success: #6fdc9c;
+
+  --color-night: #080604;
+  --color-night-raised: #19130f;
+  --color-night-line: #3a2e24;
+  --color-night-muted: #c2b3a5;
+
+  --mesh-strength: 0.75;
+  --shadow-rgb: 0 0 0;
+}
+
+/* ── Пробна палитра „multicolor“: оранжево, червено, синьо, тюркоазено и розово върху черно ──
+   Основният акцент е синьото; градиентът на марката отива към розово-лилавото от сцената.
+   Редуването на цветовете е в списъците с клас .hue-cycle (по-долу). */
+
+:root[data-palette="multicolor"] {
+  --color-canvas: #ffffff;
+  --color-surface-raised: #ffffff;
+  --color-surface: #f5f5f8;
+  --color-line: #e4e4ec;
+  --color-ink: #0c0c12;
+  --color-ink-muted: #51515e;
+  --color-accent: #1f4fd8;
+  --color-accent-strong: #173cab;
+  --color-accent-soft: #e8edff;
+  --color-brand-2: #c2188f;
+  --color-teal: #08758f;
+  --color-danger: #c81e2b;
+
+  --color-night: #0a0a10;
+  --color-night-raised: #16161f;
+  --color-night-line: #2b2b3a;
+  --color-night-muted: #bfbfd0;
+  --color-night-accent: #3fd6f0;
+
+  --brand-from: #1f4fd8;
+  --brand-to: #c2188f;
+  --globe-from: #ff5a14;
+  --globe-mid: #ff2fa0;
+  --globe-to: #18b6e6;
+  --mesh-1: 255 47 160;
+  --mesh-2: 31 79 216;
+  --mesh-3: 24 214 230;
+  --shadow-rgb: 12 12 18;
+}
+
+:root[data-palette="multicolor"][data-theme="dark"] {
+  --color-canvas: #08080c;
+  --color-surface: #101016;
+  --color-surface-raised: #181821;
+  --color-line: #2b2b3a;
+  --color-ink: #f4f4fa;
+  --color-ink-muted: #b4b4c6;
+  --color-accent: #7aa2ff;
+  --color-accent-strong: #a3bfff;
+  --color-accent-soft: #18224a;
+  --color-brand-2: #ff6fc0;
+  --color-teal: #3fd6f0;
+  --color-danger: #ff8a8a;
+  --color-success: #6fdc9c;
+
+  --color-night: #040407;
+  --color-night-raised: #101016;
+  --color-night-line: #2b2b3a;
+  --color-night-muted: #b4b4c6;
+
+  --mesh-strength: 0.75;
+  --shadow-rgb: 0 0 0;
+}
+
+/* Редуване на цветовете в списъците (.hue-cycle) — само при „multicolor“. Всеки пети елемент
+   получава собствен акцент: променливите се сменят за целия елемент, затова номерът, чертата,
+   цената и стрелката в него се оцветяват заедно. В другите палитри класът не прави нищо.
+   Ред: оранжево, червено, синьо, тюркоазено, розово-лилаво. Цветовете за светла тема държат
+   контраст 4,5:1 върху бяло и под бял текст; за тъмна тема и за тъмните ленти са по-светли. */
+:root[data-palette="multicolor"] .hue-cycle > :nth-child(5n + 1) {
+  --color-accent: #c2410c;
+  --color-brand-2: #c81e2b;
+  --brand-from: #c2410c;
+  --brand-to: #c81e2b;
+  --color-night-accent: #ff8a4c;
+}
+:root[data-palette="multicolor"] .hue-cycle > :nth-child(5n + 2) {
+  --color-accent: #c81e2b;
+  --color-brand-2: #c2188f;
+  --brand-from: #c81e2b;
+  --brand-to: #c2188f;
+  --color-night-accent: #ff7a7a;
+}
+:root[data-palette="multicolor"] .hue-cycle > :nth-child(5n + 3) {
+  --color-accent: #1f4fd8;
+  --color-brand-2: #08758f;
+  --brand-from: #1f4fd8;
+  --brand-to: #08758f;
+  --color-night-accent: #7aa2ff;
+}
+:root[data-palette="multicolor"] .hue-cycle > :nth-child(5n + 4) {
+  --color-accent: #08758f;
+  --color-brand-2: #1f4fd8;
+  --brand-from: #08758f;
+  --brand-to: #1f4fd8;
+  --color-night-accent: #3fd6f0;
+}
+:root[data-palette="multicolor"] .hue-cycle > :nth-child(5n + 5) {
+  --color-accent: #c2188f;
+  --color-brand-2: #c2410c;
+  --brand-from: #c2188f;
+  --brand-to: #c2410c;
+  --color-night-accent: #ff6fc0;
+}
+:root[data-palette="multicolor"][data-theme="dark"] .hue-cycle > :nth-child(5n + 1) {
+  --color-accent: #ff8a4c;
+  --color-brand-2: #ff7a7a;
+}
+:root[data-palette="multicolor"][data-theme="dark"] .hue-cycle > :nth-child(5n + 2) {
+  --color-accent: #ff7a7a;
+  --color-brand-2: #ff6fc0;
+}
+:root[data-palette="multicolor"][data-theme="dark"] .hue-cycle > :nth-child(5n + 3) {
+  --color-accent: #7aa2ff;
+  --color-brand-2: #3fd6f0;
+}
+:root[data-palette="multicolor"][data-theme="dark"] .hue-cycle > :nth-child(5n + 4) {
+  --color-accent: #3fd6f0;
+  --color-brand-2: #7aa2ff;
+}
+:root[data-palette="multicolor"][data-theme="dark"] .hue-cycle > :nth-child(5n + 5) {
+  --color-accent: #ff6fc0;
+  --color-brand-2: #ffc21a;
 }
 
 /* ─────────────────────────────────────────────────────────────────────── */

@@ -22,7 +22,7 @@ export default async function ProjectsPage() {
       <PageHeader pageKey="projects" title={tSolutions("title")} lead={tSolutions("lead")} />
 
       <Container className="py-24 sm:py-28">
-        <ul className="grid border-l border-t border-line md:grid-cols-2 lg:grid-cols-3">
+        <ul className="hue-cycle grid border-l border-t border-line md:grid-cols-2 lg:grid-cols-3">
           {tSolutions("items").map((item, index) => (
             <li key={item.title} className="border-b border-r border-line p-8 sm:p-10">
               <span aria-hidden="true" className="font-mono text-sm font-semibold text-accent">

@@ -254,7 +254,7 @@ export default async function HomePage() {
       <section aria-labelledby="home-audience" className="border-b border-line bg-surface">
         <Container className="py-20 sm:py-28">
           <SectionHeading id="home-audience" eyebrow={audience.eyebrow} title={audience.title} lead={audience.lead} />
-          <ul className="mt-14 grid border-t border-line sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="hue-cycle mt-14 grid border-t border-line sm:grid-cols-2 lg:grid-cols-4">
             {audience.items.map((item, index) => (
               <li
                 key={item.id}
@@ -287,7 +287,7 @@ export default async function HomePage() {
       <section id="prices" aria-labelledby="home-packages" className="scroll-mt-20">
         <Container className="py-20 sm:py-28">
           <SectionHeading id="home-packages" eyebrow={packages.eyebrow} title={packages.title} lead={packages.lead} />
-          <ul className="mt-14 grid border-t-2 border-ink lg:grid-cols-3">
+          <ul className="hue-cycle mt-14 grid border-t-2 border-ink lg:grid-cols-3">
             {packages.items.map((item) => {
               const featured = item.id === "custom";
               return (
@@ -395,7 +395,7 @@ export default async function HomePage() {
             title={t("commitments.title")}
             lead={t("commitments.lead")}
           />
-          <dl className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <dl className="hue-cycle mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {t("commitments.items").map((item) => (
               <div
                 key={item.label}
@@ -427,7 +427,7 @@ export default async function HomePage() {
             <span aria-hidden="true" className="h-px w-10 bg-accent" />
             {tHome("explore.label")}
           </p>
-          <ul className="mt-8 grid border-t border-line md:grid-cols-3">
+          <ul className="hue-cycle mt-8 grid border-t border-line md:grid-cols-3">
             {quickLinks.map((item) => (
               <li
                 key={item.href}

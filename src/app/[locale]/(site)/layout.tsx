@@ -28,6 +28,8 @@ export default async function SiteLayout({ children }: LayoutProps<"/[locale]">)
           emerald: t("nav.palette.emerald"),
           turquoise: t("nav.palette.turquoise"),
           violet: t("nav.palette.violet"),
+          orange: t("nav.palette.orange"),
+          multicolor: t("nav.palette.multicolor"),
         }}
       />
       <JsonLd data={await organizationJsonLd()} />

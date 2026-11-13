@@ -71,7 +71,8 @@ export async function Footer() {
       <p
         aria-hidden="true"
         className="outline-text select-none whitespace-nowrap pb-6 text-center font-display text-[11.8vw] font-extrabold leading-none tracking-tighter"
-        style={{ "--outline-color": "var(--color-night-line)" } as CSSProperties}
+        // Контурът е смес от акцента и линията на тъмните ленти: само с линията надписът не се виждаше.
+        style={{ "--outline-color": "color-mix(in srgb, var(--color-night-accent) 45%, var(--color-night-line))" } as CSSProperties}
       >
         {company.brandName}
       </p>

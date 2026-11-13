@@ -9,7 +9,7 @@ export async function ProcessSteps() {
   const steps = await getProcessSteps();
 
   return (
-    <ol className="relative grid gap-y-8 lg:grid-cols-5 lg:gap-x-5">
+    <ol className="hue-cycle relative grid gap-y-8 lg:grid-cols-5 lg:gap-x-5">
       {/* Линията на пътя */}
       <span
         aria-hidden="true"

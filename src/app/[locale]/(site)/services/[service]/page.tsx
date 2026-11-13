@@ -74,7 +74,7 @@ export default async function ServicePage({ params }: PageProps<"/[locale]/servi
                 </p>
               ))}
             </div>
-            <ol className="mt-12 border-b border-line">
+            <ol className="hue-cycle mt-12 border-b border-line">
               {service.points.map((point, index) => (
                 <li
                   key={point}

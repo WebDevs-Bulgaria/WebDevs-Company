@@ -47,7 +47,7 @@ export default async function AboutPage() {
             title={t("commitments.title")}
             lead={t("commitments.lead")}
           />
-          <dl className="mt-16 grid border-t border-line sm:grid-cols-2 lg:grid-cols-4">
+          <dl className="hue-cycle mt-16 grid border-t border-line sm:grid-cols-2 lg:grid-cols-4">
             {t("commitments.items").map((item) => (
               <div
                 key={item.label}
@@ -73,7 +73,7 @@ export default async function AboutPage() {
           <h2 id="about-values" className="text-4xl font-extrabold tracking-tight text-night-ink sm:text-6xl">
             {tAbout("valuesTitle")}
           </h2>
-          <dl className="mt-16 grid border-t border-night-line sm:grid-cols-2 lg:grid-cols-4">
+          <dl className="hue-cycle mt-16 grid border-t border-night-line sm:grid-cols-2 lg:grid-cols-4">
             {tAbout("values").map((value) => (
               <div
                 key={value.title}

@@ -56,9 +56,10 @@ export function PaletteSwitcher({
     <div
       role="group"
       aria-label={label}
-      className="fixed bottom-20 right-5 z-50 flex items-center gap-3 rounded-full border border-line bg-surface-raised/90 py-2 pl-4 pr-2.5 shadow-float backdrop-blur-md"
+      className="fixed bottom-20 right-5 z-50 flex items-center gap-3 rounded-full border border-line bg-surface-raised/90 px-2.5 py-2 shadow-float sm:pl-4 backdrop-blur-md"
     >
-      <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-muted">
+      {/* На тесен екран името се скрива, за да се съберат кръгчетата на всички палитри. */}
+      <span className="hidden font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-muted sm:inline">
         {names[active]}
       </span>
       <span className="flex items-center gap-1.5">
@@ -79,7 +80,10 @@ export function PaletteSwitcher({
               <span
                 aria-hidden="true"
                 className="h-5 w-5 rounded-full"
-                style={{ backgroundImage: `linear-gradient(135deg, ${palette.from}, ${palette.to})` }}
+                style={{
+                  backgroundImage:
+                    "swatch" in palette ? palette.swatch : `linear-gradient(135deg, ${palette.from}, ${palette.to})`,
+                }}
               />
             </button>
           );

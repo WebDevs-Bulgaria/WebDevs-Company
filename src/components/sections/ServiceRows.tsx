@@ -39,7 +39,7 @@ export async function ServiceRows({
   const style = tones[tone];
 
   return (
-    <ul className={`border-b ${style.row}`}>
+    <ul className={`hue-cycle border-b ${style.row}`}>
       {services.map((service, index) => {
         if (service.group !== group) return null;
 
