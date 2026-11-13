@@ -12,7 +12,8 @@ function currentTheme(): Theme {
 function preferredTheme(): Theme {
   const saved = window.localStorage.getItem(themeStorageKey);
   if (saved === "light" || saved === "dark") return saved;
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  // Без запазен избор темата е светлата; настройката на устройството не се следва.
+  return "light";
 }
 
 const iconProps = {
