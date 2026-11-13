@@ -1,34 +1,34 @@
 {
   "meta": {
-    "title": "Solutions — the websites and systems we build",
-    "description": "Corporate and multilingual websites, online stores, online learning platforms, customer portals, internal systems and AI assistants."
+    "title": "Solutions — the websites, systems and AI we build",
+    "description": "Custom and WordPress websites, online stores, e-learning platforms, customer portals, ERP integrations, automation and AI assistants."
   },
   "title": "Solutions",
-  "lead": "The kinds of websites and systems we design and build. Each solution is shaped around the specific business.",
+  "lead": "The kinds of websites, systems and AI solutions we design and build. Every solution is made for the specific business.",
   "items": [
     {
-      "title": "Corporate and multilingual websites",
-      "text": "Fast websites with strong search visibility that your team can update without a developer."
+      "title": "AI assistants",
+      "text": "Assistants that answer customers and staff from your documents, prices and rules — on your website, in your online store or inside the company."
+    },
+    {
+      "title": "Automation and integrations",
+      "text": "Enquiries, documents and orders that move from one program to another on their own. With artificial intelligence where reading and understanding are needed."
+    },
+    {
+      "title": "Custom and WordPress websites",
+      "text": "Hand-coded websites for top speed and WordPress websites with a custom theme for a quick start. Either way you update the content without a developer."
     },
     {
       "title": "Online stores",
       "text": "Catalogue, basket, payment and delivery, connected to your stock and accounting."
     },
     {
-      "title": "Online learning platforms",
-      "text": "Courses, lessons, progress tracking, enrolment and payment, certificates and an admin panel."
+      "title": "Internal systems and ERP",
+      "text": "Small ERP systems for stock, orders and customers, admin panels and reports that replace spreadsheets."
     },
     {
-      "title": "Customer portals",
-      "text": "A secure place where your customers submit requests, follow their status, pay and find their documents."
-    },
-    {
-      "title": "Internal systems and integrations",
-      "text": "Admin panels, reports and connections between systems that replace spreadsheets and manual copying of data."
-    },
-    {
-      "title": "AI assistants",
-      "text": "Assistants that answer from your documents and data and handle repetitive enquiries."
+      "title": "Portals and e-learning platforms",
+      "text": "A secure sign-in for customers — requests, payments, documents — and platforms with courses, lessons, certificates and an AI mentor that helps learners."
     }
   ],
   "note": "We publish information about specific projects only with our clients' consent.",
@@ -37,6 +37,16 @@
     "lead": "We choose the technology to fit the task, not the other way round. We work with established tools that are maintained for the long term and easy to hire for.",
     "eyebrow": "Technology",
     "groups": [
+      {
+        "title": "AI models",
+        "reason": "We work with the leading language models through their APIs. When data must not leave the company, document search runs on your own server.",
+        "items": [
+          "Claude API",
+          "OpenAI API",
+          "RAG",
+          "Whisper"
+        ]
+      },
       {
         "title": "Front end",
         "reason": "Pages are sent ready from the server, so the website loads fast and is found by search engines. TypeScript catches errors before they reach the visitor.",
@@ -49,7 +59,7 @@
       },
       {
         "title": "Back end",
-        "reason": "Node.js for custom-built applications. WordPress when your team needs to update the content themselves, without a developer.",
+        "reason": "Node.js — for applications coded to order. WordPress — with themes and plugins written by us, when the site has to be ready quickly and your team needs to update it themselves.",
         "items": [
           "Node.js",
           "Express",

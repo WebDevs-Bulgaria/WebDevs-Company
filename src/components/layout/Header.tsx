@@ -18,12 +18,15 @@ export async function Header() {
     label: t("actions.contactCta"),
   };
   // „Контакт“ е бутонът вдясно, затова не се повтаря като връзка в навигацията.
+  // „Цени“ не е отделна страница, а секция на началната (#prices); стои веднага след „Услуги“.
   const links = navPages
     .filter((page) => page.key !== "contact")
-    .map((page) => ({
-      href: localizedPath(locale, page.path),
-      label: t("nav")[page.key],
-    }));
+    .flatMap((page) => {
+      const link = { href: localizedPath(locale, page.path), label: t("nav")[page.key] };
+      return page.key === "services"
+        ? [link, { href: `${localizedPath(locale)}#prices`, label: t("nav.prices") }]
+        : [link];
+    });
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-canvas/85 backdrop-blur-md">
@@ -46,7 +49,7 @@ export async function Header() {
         </Link>
 
         <nav aria-label={t("nav.mainLabel")} className="hidden lg:block">
-          <ul className="flex items-center gap-9 text-sm font-semibold">
+          <ul className="flex items-center gap-7 text-sm font-semibold xl:gap-9">
             {links.map((link) => (
               <li key={link.href}>
                 <Link

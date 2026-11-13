@@ -1,10 +1,10 @@
 {
   "meta": {
     "title": "Contact — get in touch with Web Devs Bulgaria",
-    "description": "Tell us about your project. Reach us by phone, email or the enquiry form and we will reply within one business day."
+    "description": "Tell us about your project and get an indicative price within one working day. Reach us by phone, email or the enquiry form."
   },
   "title": "Contact",
-  "lead": "Tell us about your project. We reply within one business day.",
+  "lead": "Tell us what you want to achieve. Within one working day you get a reply with questions or an indicative price — with no obligation.",
   "detailsTitle": "Contact details",
   "phoneLabel": "Phone",
   "emailLabel": "Email",
@@ -15,6 +15,22 @@
     "email": "Email",
     "phone": "Phone",
     "optional": "optional",
+    "budget": "Indicative budget",
+    "timeline": "When you need it",
+    "choose": "Choose",
+    "budgetOptions": {
+      "under-500": "Up to €500",
+      "500-1500": "€500 – €1,500",
+      "1500-3000": "€1,500 – €3,000",
+      "over-3000": "Over €3,000",
+      "unsure": "Not sure yet"
+    },
+    "timelineOptions": {
+      "asap": "As soon as possible",
+      "one-month": "Within a month",
+      "three-months": "Within three months",
+      "flexible": "No deadline"
+    },
     "message": "Message",
     "messageHint": "Briefly describe what you want to achieve.",
     "consentPrefix": "I agree to my data being processed in order to receive a reply, in accordance with the",

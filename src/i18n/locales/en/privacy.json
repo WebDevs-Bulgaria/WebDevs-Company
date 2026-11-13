@@ -4,7 +4,7 @@
     "description": "How Web Devs Bulgaria EOOD processes the personal data it receives through this website."
   },
   "title": "Privacy policy",
-  "updated": "Last updated: 11 November 2026",
+  "updated": "Last updated: 13 November 2026",
   "sections": [
     {
       "title": "Who processes the data",
@@ -15,7 +15,7 @@
     {
       "title": "What data we collect",
       "paragraphs": [
-        "When you send an enquiry through the contact form, we receive your name, email address, phone number (if you provide it) and the text of your message.",
+        "When you send an enquiry through the contact form, we receive your name, email address, phone number (if you provide it), the text of your message and, if you choose them, your indicative budget and preferred timeline. When the enquiry is sent from a service page, we also receive which service it is about.",
         "This website does not use tracking or advertising cookies."
       ]
     },

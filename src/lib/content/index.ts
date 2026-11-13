@@ -7,10 +7,11 @@ import { getT } from "@/i18n/server";
  * направо с t().
  */
 
-// Двете групи услуги: сайтовете са основната дейност, приложенията — втората.
-export type ServiceGroup = "websites" | "applications";
+// Трите групи услуги, в реда, в който се показват (AI е първа — с нея се отличаваме). Името на групата е и котва в „Услуги“
+// (/services#ai) и ключ в home.json (eyebrow) и services.json (groups).
+export type ServiceGroup = "websites" | "applications" | "ai";
 
-export const serviceGroups: ServiceGroup[] = ["websites", "applications"];
+export const serviceGroups: ServiceGroup[] = ["ai", "websites", "applications"];
 
 export async function getServices() {
   const { t } = await getT("services");

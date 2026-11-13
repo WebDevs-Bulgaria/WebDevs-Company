@@ -69,8 +69,9 @@ export async function websiteJsonLd() {
   };
 }
 
-// Път до страницата (начало > текуща страница) за резултатите в търсачките.
-export async function breadcrumbJsonLd(key: SitePageKey) {
+// Път до страницата (начало > текуща страница) за резултатите в търсачките. С leaf пътят
+// получава трето ниво — подстраница на key (начало > услуги > името на услугата).
+export async function breadcrumbJsonLd(key: SitePageKey, leaf?: { name: string; path: string }) {
   const locale = await getLocale();
   const { t } = await getT("common");
 
@@ -90,6 +91,16 @@ export async function breadcrumbJsonLd(key: SitePageKey) {
         name: t(`nav.${key}`),
         item: absolute(localizedPath(locale, pagePath(key))),
       },
+      ...(leaf
+        ? [
+            {
+              "@type": "ListItem",
+              position: 3,
+              name: leaf.name,
+              item: absolute(localizedPath(locale, leaf.path)),
+            },
+          ]
+        : []),
     ],
   };
 }
