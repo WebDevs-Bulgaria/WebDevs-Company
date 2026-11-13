@@ -9,7 +9,7 @@ export async function TechnologyGroups() {
   const groups = await getTechnologyGroups();
 
   return (
-    <dl className="grid gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+    <dl className="hue-cycle grid gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
       {groups.map((group, index) => (
         <div key={group.title} className="flex flex-col">
           <dt className="flex items-baseline gap-3 border-b-2 border-ink pb-4">

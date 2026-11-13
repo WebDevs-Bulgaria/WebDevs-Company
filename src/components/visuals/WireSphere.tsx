@@ -45,13 +45,15 @@ export function WireSphere({ className = "" }: { className?: string }) {
     >
       <defs>
         <linearGradient id={strokeId} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="var(--color-accent)" />
-          <stop offset="1" stopColor="var(--color-brand-2)" />
+          {/* --globe-* по подразбиране са цветовете на палитрата (globals.css); пробните палитри ги сменят. */}
+          <stop offset="0" stopColor="var(--globe-from)" />
+          <stop offset="0.5" stopColor="var(--globe-mid)" />
+          <stop offset="1" stopColor="var(--globe-to)" />
         </linearGradient>
         <radialGradient id={glowId}>
-          <stop offset="0" stopColor="var(--color-accent)" stopOpacity="0.28" />
-          <stop offset="0.6" stopColor="var(--color-brand-2)" stopOpacity="0.1" />
-          <stop offset="1" stopColor="var(--color-brand-2)" stopOpacity="0" />
+          <stop offset="0" stopColor="var(--globe-from)" stopOpacity="0.28" />
+          <stop offset="0.6" stopColor="var(--globe-to)" stopOpacity="0.1" />
+          <stop offset="1" stopColor="var(--globe-to)" stopOpacity="0" />
         </radialGradient>
       </defs>
 
@@ -105,7 +107,7 @@ export function WireSphere({ className = "" }: { className?: string }) {
             className="sphere-orbit"
             style={{ animationDuration: `${orbit.seconds}s`, animationDelay: `${orbit.delay}s` }}
           >
-            <circle cx={orbit.radius} r="9" fill="var(--color-accent)" />
+            <circle cx={orbit.radius} r="9" fill="var(--globe-from)" />
           </g>
         </g>
       ))}

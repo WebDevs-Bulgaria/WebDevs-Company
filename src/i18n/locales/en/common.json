@@ -20,7 +20,9 @@
       "label": "Site colours",
       "emerald": "Green",
       "turquoise": "Turquoise",
-      "violet": "Violet"
+      "violet": "Violet",
+      "orange": "Orange",
+      "multicolor": "Multicolour"
     }
   },
   "actions": {
@@ -58,6 +60,14 @@
         "text": "We maintain what we have built and keep developing it."
       }
     ]
+  },
+  "assistant": {
+    "open": "AI assistant",
+    "close": "Close",
+    "badge": "Coming soon",
+    "title": "The AI assistant is on its way",
+    "text": "Here you will be able to ask about services, prices and deadlines at any hour. Until then, write to us — we reply within one working day.",
+    "cta": "Send an enquiry"
   },
   "footer": {
     "tagline": "AI solutions, websites and applications for small and medium businesses.",

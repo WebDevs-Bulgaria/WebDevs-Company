@@ -16,7 +16,7 @@ export async function Footer() {
 
   return (
     <footer className="overflow-hidden bg-night text-night-ink">
-      <Container className="grid gap-12 pb-12 pt-20 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <Container className="grid gap-12 pb-12 pt-14 sm:pt-20 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
           <p className="max-w-xs font-display text-2xl font-extrabold leading-tight tracking-tight">
             {t("footer.tagline")}
@@ -71,7 +71,8 @@ export async function Footer() {
       <p
         aria-hidden="true"
         className="outline-text select-none whitespace-nowrap pb-6 text-center font-display text-[11.8vw] font-extrabold leading-none tracking-tighter"
-        style={{ "--outline-color": "var(--color-night-line)" } as CSSProperties}
+        // Контурът е смес от акцента и линията на тъмните ленти: само с линията надписът не се виждаше.
+        style={{ "--outline-color": "color-mix(in srgb, var(--color-night-accent) 45%, var(--color-night-line))" } as CSSProperties}
       >
         {company.brandName}
       </p>

@@ -1,12 +1,15 @@
-import { getT } from "@/i18n/server";
+import { localizedPath } from "@/i18n/config";
+import { getLocale, getT } from "@/i18n/server";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo/json-ld";
+import { pagePath } from "@/lib/site";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { PaletteSwitcher } from "@/components/theme/PaletteSwitcher";
+import { AssistantOrb } from "@/components/assistant/AssistantOrb";
 
 // Рамката на публичния сайт: шапка, съдържание, футър и данните за фирмата за търсачките.
 export default async function SiteLayout({ children }: LayoutProps<"/[locale]">) {
+  const locale = await getLocale();
   const { t } = await getT("common");
 
   return (
@@ -22,14 +25,8 @@ export default async function SiteLayout({ children }: LayoutProps<"/[locale]">)
         {children}
       </main>
       <Footer />
-      <PaletteSwitcher
-        label={t("nav.palette.label")}
-        names={{
-          emerald: t("nav.palette.emerald"),
-          turquoise: t("nav.palette.turquoise"),
-          violet: t("nav.palette.violet"),
-        }}
-      />
+      {/* Изборът на палитра е в шапката (Header.tsx); долният десен ъгъл е за AI асистента. */}
+      <AssistantOrb labels={t("assistant")} contactHref={localizedPath(locale, pagePath("contact"))} />
       <JsonLd data={await organizationJsonLd()} />
       <JsonLd data={await websiteJsonLd()} />
     </>

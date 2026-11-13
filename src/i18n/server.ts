@@ -10,7 +10,7 @@ import settings from "./settings";
  *   const { t } = await getT("common");            // винаги с име на namespace: getT() без име дава твърде широк тип
  *   const { t: tHome } = await getT("home");       // по една функция на namespace
  *   t("nav.services")
- *   tHome("hero.eyebrow")
+ *   tHome("hero.lead")
  *   tServices("items")                             // списък или обект (returnObjects е включено)
  *
  * В сървърните компоненти езикът идва от адреса (next/root-params), затова страниците остават
