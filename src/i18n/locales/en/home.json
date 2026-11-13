@@ -1,46 +1,169 @@
 {
   "meta": {
-    "title": "Web Devs Bulgaria — website and application development",
-    "description": "Websites, online stores and custom applications. Fast websites that are found on Google and bring enquiries, with maintenance and hosting from one team in Sofia."
+    "title": "Web Devs Bulgaria — AI solutions, websites and applications for business",
+    "description": "WordPress and hand-coded websites, online stores, custom applications, AI assistants and integrations between your systems. Indicative prices and a fixed quote before we start."
   },
   "hero": {
-    "eyebrow": "Software company · Sofia",
-    "lead": "We build websites that load fast, are found on Google and bring enquiries. And when your business needs more, we build custom web and mobile applications.",
-    "titleStart": "Websites that",
-    "titleAccent": "work",
-    "titleEnd": "for your business"
+    "titleStart": "Technology that",
+    "titleAccent": "works",
+    "titleEnd": "for your business",
+    "lead": "We make artificial intelligence useful for small and medium businesses: assistants, automation and links between your systems. And we build what it stands on — websites, online stores and custom applications. With a clear price from the first conversation."
   },
   "strip": {
-    "label": "We work with",
+    "label": "What we do",
     "items": [
-      "React",
+      "AI assistants",
+      "Custom websites",
+      "WordPress",
+      "Online stores",
+      "Automation",
+      "Integrations",
+      "ERP",
       "Next.js",
-      "TypeScript",
-      "Node.js",
-      "PostgreSQL",
-      "Docker",
-      "WordPress"
+      "React",
+      "Mobile apps"
     ]
   },
   "websites": {
     "eyebrow": "Websites",
-    "title": "Website development",
+    "title": "Websites and online stores",
     "lead": "Your website is the first place customers check. We make it fast, clear and easy to find — and we stay to maintain it.",
     "cta": "Website services",
-    "short": "Corporate websites, online stores, maintenance and SEO."
+    "short": "Hand-coded websites, WordPress websites with a custom theme, online stores, maintenance and SEO."
   },
   "applications": {
     "eyebrow": "Applications",
-    "title": "Custom applications",
+    "title": "Custom software",
     "lead": "When off-the-shelf tools are not enough, we build a system for your own processes — a customer portal, an internal system or a mobile app.",
     "cta": "Application services",
-    "short": "Portals, mobile apps and custom software."
+    "short": "Portals, mobile apps, small ERP systems and links between the software you already use."
+  },
+  "ai": {
+    "eyebrow": "AI and automation",
+    "title": "Artificial intelligence that gets work done",
+    "lead": "We do not sell artificial intelligence for its own sake. We put it where it saves hours: answering customers, processing documents, repetitive tasks.",
+    "cta": "AI services",
+    "short": "An assistant that answers your customers from your own materials. Automation of manual work. AI on your own server when the data must not leave the company."
+  },
+  "audience": {
+    "eyebrow": "Who it is for",
+    "title": "Where are you starting from?",
+    "lead": "You do not need to know exactly what you need. See which situation is closest to yours.",
+    "items": [
+      {
+        "id": "start",
+        "title": "I am starting a business",
+        "text": "You need a good website quickly and at a sensible price, without learning the technology.",
+        "cta": "Quick start with WordPress"
+      },
+      {
+        "id": "site",
+        "title": "I have a website, but it brings no customers",
+        "text": "It is slow, does not show up on Google or looks dated. We fix it or rebuild it.",
+        "cta": "Custom-built websites"
+      },
+      {
+        "id": "manual",
+        "title": "We lose time on manual work",
+        "text": "Retyping between programs, spreadsheets, the same emails again and again. This can run on its own.",
+        "cta": "Automation"
+      },
+      {
+        "id": "ai",
+        "title": "I want AI in what I already have",
+        "text": "An assistant for your website or store, without replacing anything you use now.",
+        "cta": "AI solutions"
+      }
+    ]
+  },
+  "packages": {
+    "eyebrow": "Prices",
+    "title": "Three ways to start",
+    "lead": "We do not hide our prices. These are the starting points — the exact amount depends on the scope and you get it in writing before we begin.",
+    "badge": "Our speciality",
+    "items": [
+      {
+        "id": "quick-start",
+        "name": "Quick start",
+        "price": "from €490",
+        "text": "A WordPress website or store, ready in days. With a theme written for you, not a purchased template, and custom plugins when the ready-made ones are not enough.",
+        "points": [
+          "Up to 5 pages in 7–10 working days",
+          "You update the content yourself",
+          "Can be extended with an AI assistant"
+        ],
+        "cta": "WordPress websites"
+      },
+      {
+        "id": "custom",
+        "name": "Custom-built",
+        "price": "from €1,200",
+        "text": "A website, store or application coded line by line for your business. No dead weight — so it is faster, more secure and grows with you.",
+        "points": [
+          "Top speed and visibility on Google",
+          "Everything ready-made platforms cannot do",
+          "The code is yours, with documentation"
+        ],
+        "cta": "All services"
+      },
+      {
+        "id": "ai",
+        "name": "AI and automation",
+        "price": "from €600",
+        "text": "An assistant for your website, an automated process or a link between your systems. Added to a site you already have or to a new one.",
+        "points": [
+          "An AI assistant that answers from your materials",
+          "No more retyping between programs",
+          "Works on WordPress too"
+        ],
+        "cta": "AI services"
+      }
+    ],
+    "raisesTitle": "What raises the price",
+    "raises": [
+      "Number of pages and languages",
+      "Online payments and courier connections",
+      "Links to other systems",
+      "Moving content from an old website"
+    ],
+    "note": "Prices are final — no VAT is added. You get an estimate for your case within one working day."
+  },
+  "faq": {
+    "eyebrow": "Questions",
+    "title": "Frequently asked questions",
+    "lead": "What people ask us most often before the first conversation.",
+    "items": [
+      {
+        "question": "How long does a website take?",
+        "answer": "A WordPress website of up to 5 pages is ready in 7–10 working days. A hand-coded company website usually takes 3 to 5 weeks, and an online store 4 to 8 weeks. The deadline is written into the proposal before we start."
+      },
+      {
+        "question": "Can I start with WordPress and move to a custom-built site later?",
+        "answer": "Yes, and many clients start exactly that way. The content, the domain and your Google rankings carry over. Only what sits underneath changes."
+      },
+      {
+        "question": "Who owns the website, the code and the domain?",
+        "answer": "You do. The domain is registered in your name, and the code and access details are handed over with documentation. If you decide to continue with another team, you take everything with you."
+      },
+      {
+        "question": "What do I pay every month?",
+        "answer": "Only the domain and hosting are required. Maintenance from €40 per month is optional. The AI assistant has a monthly fee from €39 that covers the cost of the AI model and looking after it."
+      },
+      {
+        "question": "Do I need artificial intelligence?",
+        "answer": "Not always. If it will save you time or bring you enquiries, we will suggest it. If not, we will tell you plainly that it is not worth the money."
+      },
+      {
+        "question": "What if I do not know exactly what I need?",
+        "answer": "That is normal. Tell us what you want to achieve and we will suggest an option and an indicative price within one working day, with no obligation on your side."
+      }
+    ]
   },
   "explore": {
     "label": "Explore",
     "solutions": {
       "title": "Solutions",
-      "text": "The websites and systems we build and the technology behind them."
+      "text": "The websites, systems and AI solutions we build and the technology behind them."
     },
     "about": {
       "title": "About us",

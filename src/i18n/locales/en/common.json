@@ -3,6 +3,7 @@
   "nav": {
     "home": "Home",
     "services": "Services",
+    "prices": "Prices",
     "projects": "Solutions",
     "about": "About",
     "contact": "Contact",
@@ -19,7 +20,9 @@
       "label": "Site colours",
       "emerald": "Green",
       "turquoise": "Turquoise",
-      "violet": "Violet"
+      "violet": "Violet",
+      "orange": "Orange",
+      "multicolor": "Multicolour"
     }
   },
   "actions": {
@@ -29,7 +32,7 @@
   },
   "cta": {
     "title": "Have a project or an idea?",
-    "lead": "Tell us what you want to achieve. We will tell you honestly how we would approach it, how long it takes and what is sensible to build first."
+    "lead": "Tell us what you want to achieve. We will tell you honestly how we would approach it, how long it takes, what it costs and what is sensible to do first."
   },
   "commitments": {
     "eyebrow": "Commitments",
@@ -58,8 +61,16 @@
       }
     ]
   },
+  "assistant": {
+    "open": "AI assistant",
+    "close": "Close",
+    "badge": "Coming soon",
+    "title": "The AI assistant is on its way",
+    "text": "Here you will be able to ask about services, prices and deadlines at any hour. Until then, write to us — we reply within one working day.",
+    "cta": "Send an enquiry"
+  },
   "footer": {
-    "tagline": "Development and maintenance of websites, web and mobile applications.",
+    "tagline": "AI solutions, websites and applications for small and medium businesses.",
     "navTitle": "Site",
     "contactTitle": "Contact",
     "companyTitle": "Company",

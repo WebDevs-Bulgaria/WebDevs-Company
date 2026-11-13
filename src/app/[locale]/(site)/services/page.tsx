@@ -8,6 +8,8 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { LivingOrb } from "@/components/visuals/LivingOrb";
+import { SectionVisual } from "@/components/visuals/SectionVisual";
 import { NodeGraph } from "@/components/visuals/NodeGraph";
 
 export function generateMetadata() {
@@ -15,8 +17,8 @@ export function generateMetadata() {
 }
 
 /*
- * Страницата „Услуги“: двете групи услуги с всичко, което включват, и процесът на
- * работа. Под заглавието има залепваща лента с връзки към трите части на страницата.
+ * Страницата „Услуги“: трите групи услуги с всичко, което включват, и процесът на
+ * работа. Под заглавието има залепваща лента с връзки към частите на страницата.
  * Нарочно няма покана „Имате проект или идея?“ накрая — бутонът за връзка е в шапката.
  */
 export default async function ServicesPage() {
@@ -77,7 +79,7 @@ export default async function ServicesPage() {
             id={group}
             aria-labelledby={`${group}-title`}
             // overflow-clip, а не overflow-hidden: иначе залепващото заглавие вляво не работи.
-            className={`relative scroll-mt-32 overflow-clip ${night ? "bg-night" : ""}`}
+            className={`relative scroll-mt-32 overflow-clip ${night ? "bg-night" : group === "websites" ? "border-t border-line bg-surface" : ""}`}
           >
             {night ? (
               <>
@@ -88,7 +90,7 @@ export default async function ServicesPage() {
                 />
               </>
             ) : null}
-            <Container className="relative grid gap-x-16 gap-y-12 py-24 sm:py-28 lg:grid-cols-[22rem_1fr]">
+            <Container className="relative grid gap-x-16 gap-y-12 py-14 sm:py-20 lg:py-28 lg:grid-cols-[22rem_1fr]">
               <div className="lg:sticky lg:top-40 lg:self-start">
                 <SectionHeading
                   id={`${group}-title`}
@@ -97,6 +99,29 @@ export default async function ServicesPage() {
                   title={tServices("groups")[group].title}
                   lead={tServices("groups")[group].lead}
                 />
+                {/* Всяка група има един малък жив образ под заглавието си: разговор с асистент,
+                    снимка или макет (избира се в SectionVisual.tsx). Повече от един на група не се слага. */}
+                {group === "websites" ? <SectionVisual slot="websites" className="mt-10 max-w-sm" /> : null}
+                {group === "applications" ? <SectionVisual slot="applications" tone="night" className="mt-10 max-w-sm" /> : null}
+                {/* Разговорът: въпросът стои, точките „пише“ мигат и отговорът се появява; после се повтаря. */}
+                {group === "ai" ? (
+                  <figure aria-label={tServices("groups.ai.demo.label")} className="chat-demo mt-10 max-w-sm space-y-3">
+                    <p className="ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-sm bg-accent-soft px-4 py-3 text-sm leading-6 text-ink">
+                      {tServices("groups.ai.demo.question")}
+                    </p>
+                    <div className="flex items-end gap-3">
+                      <LivingOrb className="h-9 w-9 shrink-0" />
+                      <div className="relative min-w-0">
+                        <p className="chat-demo__answer w-fit rounded-2xl rounded-bl-sm border border-line bg-surface-raised px-4 py-3 text-sm leading-6 text-ink">
+                          {tServices("groups.ai.demo.answer")}
+                        </p>
+                        <span aria-hidden="true" className="chat-demo__typing absolute bottom-0 left-0 flex gap-1.5 rounded-2xl rounded-bl-sm border border-line bg-surface-raised px-4 py-4">
+                          <i /><i /><i />
+                        </span>
+                      </div>
+                    </div>
+                  </figure>
+                ) : null}
               </div>
               <ServiceRows group={group} tone={night ? "night" : "light"} />
             </Container>
@@ -107,12 +132,12 @@ export default async function ServicesPage() {
       <section
         id="process"
         aria-labelledby="services-process"
-        className="dot-grid scroll-mt-32 border-b border-line"
+        className="dot-grid scroll-mt-32 border-y border-line"
       >
-        <Container className="py-24 sm:py-28">
+        <Container className="py-14 sm:py-20 lg:py-28">
           <SectionHeading
             id="services-process"
-            eyebrow={`03 — ${tServices("process.eyebrow")}`}
+            eyebrow={`${String(serviceGroups.length + 1).padStart(2, "0")} — ${tServices("process.eyebrow")}`}
             title={tServices("process.title")}
             lead={tServices("process.lead")}
           />

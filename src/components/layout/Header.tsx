@@ -4,6 +4,7 @@ import { localizedPath } from "@/i18n/config";
 import { getLocale, getT } from "@/i18n/server";
 import { company } from "@/lib/company";
 import { navPages, pagePath } from "@/lib/site";
+import { PaletteSwitcher } from "@/components/theme/PaletteSwitcher";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { Container } from "@/components/ui/Container";
 import { LanguageSwitcher } from "./LanguageSwitcher";
@@ -18,12 +19,26 @@ export async function Header() {
     label: t("actions.contactCta"),
   };
   // „Контакт“ е бутонът вдясно, затова не се повтаря като връзка в навигацията.
+  // „Цени“ не е отделна страница, а секция на началната (#prices); стои веднага след „Услуги“.
   const links = navPages
     .filter((page) => page.key !== "contact")
-    .map((page) => ({
-      href: localizedPath(locale, page.path),
-      label: t("nav")[page.key],
-    }));
+    .flatMap((page) => {
+      const link = { href: localizedPath(locale, page.path), label: t("nav")[page.key] };
+      return page.key === "services"
+        ? [link, { href: `${localizedPath(locale)}#prices`, label: t("nav.prices") }]
+        : [link];
+    });
+
+  const palette = {
+    label: t("nav.palette.label"),
+    names: {
+      emerald: t("nav.palette.emerald"),
+      turquoise: t("nav.palette.turquoise"),
+      violet: t("nav.palette.violet"),
+      orange: t("nav.palette.orange"),
+      multicolor: t("nav.palette.multicolor"),
+    },
+  };
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-canvas/85 backdrop-blur-md">
@@ -46,7 +61,7 @@ export async function Header() {
         </Link>
 
         <nav aria-label={t("nav.mainLabel")} className="hidden lg:block">
-          <ul className="flex items-center gap-9 text-sm font-semibold">
+          <ul className="flex items-center gap-7 text-sm font-semibold xl:gap-9">
             {links.map((link) => (
               <li key={link.href}>
                 <Link
@@ -65,6 +80,10 @@ export async function Header() {
             <LanguageSwitcher current={locale} label={t("nav.languageLabel")} />
           </Suspense>
           <ThemeToggle label={t("nav.themeToggle")} />
+          {/* Палитрата: на широк екран е кръгче тук, на тесен — ред в мобилното меню. */}
+          <div className="hidden lg:block">
+            <PaletteSwitcher variant="popover" {...palette} />
+          </div>
           {/* Постоянна ширина: надписът е с различна дължина на двата езика. */}
           <Link
             href={contact.href}
@@ -89,6 +108,7 @@ export async function Header() {
             </span>
           </Link>
           <MobileMenu
+            extra={<PaletteSwitcher variant="inline" {...palette} />}
             links={links}
             cta={contact}
             labels={{

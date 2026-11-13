@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useState, type ReactNode } from "react";
 
 type MenuLink = { href: string; label: string };
 
@@ -10,9 +10,12 @@ export function MobileMenu({
   links,
   cta,
   labels,
+  extra,
 }: {
   links: MenuLink[];
   cta: MenuLink;
+  // Допълнително съдържание под бутона (изборът на палитра).
+  extra?: ReactNode;
   labels: { open: string; close: string; navigation: string };
 }) {
   const [open, setOpen] = useState(false);
@@ -77,6 +80,7 @@ export function MobileMenu({
             >
               {cta.label}
             </Link>
+            {extra ? <div className="mt-5 border-t border-line pt-4">{extra}</div> : null}
           </nav>
         </div>
       ) : null}

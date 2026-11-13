@@ -6,6 +6,7 @@ import { TechnologyGroups } from "@/components/sections/TechnologyGroups";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { SectionVisual } from "@/components/visuals/SectionVisual";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function generateMetadata() {
@@ -21,8 +22,8 @@ export default async function ProjectsPage() {
     <>
       <PageHeader pageKey="projects" title={tSolutions("title")} lead={tSolutions("lead")} />
 
-      <Container className="py-24 sm:py-28">
-        <ul className="grid border-l border-t border-line md:grid-cols-2 lg:grid-cols-3">
+      <Container className="py-14 sm:py-20 lg:py-28">
+        <ul className="hue-cycle grid border-l border-t border-line md:grid-cols-2 lg:grid-cols-3">
           {tSolutions("items").map((item, index) => (
             <li key={item.title} className="border-b border-r border-line p-8 sm:p-10">
               <span aria-hidden="true" className="font-mono text-sm font-semibold text-accent">
@@ -41,13 +42,17 @@ export default async function ProjectsPage() {
         aria-labelledby="projects-technology"
         className="scroll-mt-20 border-t border-line bg-surface"
       >
-        <Container className="py-24 sm:py-28">
-          <SectionHeading
-            id="projects-technology"
-            eyebrow={tSolutions("technology.eyebrow")}
-            title={tSolutions("technology.title")}
-            lead={tSolutions("technology.lead")}
-          />
+        <Container className="py-14 sm:py-20 lg:py-28">
+          {/* Вдясно от заглавието: образът към технологиите (SectionVisual.tsx). На тесен екран отива под него. */}
+          <div className="grid items-end gap-x-16 gap-y-10 lg:grid-cols-[1fr_24rem]">
+            <SectionHeading
+              id="projects-technology"
+              eyebrow={tSolutions("technology.eyebrow")}
+              title={tSolutions("technology.title")}
+              lead={tSolutions("technology.lead")}
+            />
+            <SectionVisual slot="technology" className="w-full max-w-sm" />
+          </div>
           <div className="mt-16">
             <TechnologyGroups />
           </div>

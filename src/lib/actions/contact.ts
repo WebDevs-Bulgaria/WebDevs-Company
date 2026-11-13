@@ -15,7 +15,7 @@ export type ContactFormState = {
   message?: string;
   fieldErrors?: Partial<Record<FieldName, string>>;
   // Въведеното се връща, за да не се губи при грешка.
-  values?: { name: string; email: string; phone: string; message: string };
+  values?: { name: string; email: string; phone: string; message: string; budget: string; timeline: string };
 };
 
 const schema = z.object({
@@ -64,11 +64,17 @@ export async function submitContactForm(
   const serviceInput = text(formData.get("service"));
   const service = isServiceId(serviceInput) ? serviceInput : undefined;
 
+  // Бюджетът и срокът са по избор и идват от падащи списъци; приема се само ключ от превода,
+  // всичко друго се смята за „не е избрано“.
+  const optionKey = (value: string, options: Record<string, string>) => (Object.hasOwn(options, value) ? value : "");
+
   const values = {
     name: text(formData.get("name")),
     email: text(formData.get("email")),
     phone: text(formData.get("phone")),
     message: text(formData.get("message")),
+    budget: optionKey(text(formData.get("budget")), form.budgetOptions),
+    timeline: optionKey(text(formData.get("timeline")), form.timelineOptions),
   };
 
   // Поле-капан: хората не го виждат, ботовете го попълват. Отговаря се с „успех“,
@@ -106,6 +112,8 @@ export async function submitContactForm(
       message: parsed.data.message,
       locale,
       service,
+      budget: values.budget || undefined,
+      timeline: values.timeline || undefined,
     });
   } catch (error) {
     console.error("[contact] запитването не беше изпратено:", error);

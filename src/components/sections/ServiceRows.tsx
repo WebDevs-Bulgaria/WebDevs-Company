@@ -23,9 +23,9 @@ const tones = {
 
 /*
  * Услугите от една група на страницата „Услуги“ като големи бутони: номер, име,
- * едно изречение и стрелка. Всеки води към собствената страница на услугата
+ * едно изречение, ориентировъчна цена и стрелка. Всеки води към собствената страница на услугата
  * (/services/<id>), където е какво включва тя. Номерацията е обща за всички услуги
- * (01–06), затова номерът идва от мястото на услугата в целия списък.
+ * (01–10), затова номерът идва от мястото на услугата в целия списък.
  */
 export async function ServiceRows({
   group,
@@ -39,7 +39,7 @@ export async function ServiceRows({
   const style = tones[tone];
 
   return (
-    <ul className={`border-b ${style.row}`}>
+    <ul className={`hue-cycle border-b ${style.row}`}>
       {services.map((service, index) => {
         if (service.group !== group) return null;
 
@@ -69,6 +69,11 @@ export async function ServiceRows({
                 </span>
                 <span className={`mt-3 block max-w-2xl text-base leading-7 sm:text-lg ${style.summary}`}>
                   {service.summary}
+                </span>
+                <span
+                  className={`mt-4 block font-mono text-xs font-semibold uppercase tracking-[0.16em] ${style.number}`}
+                >
+                  {service.price}
                 </span>
               </span>
               <span
