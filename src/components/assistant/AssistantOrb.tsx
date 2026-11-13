@@ -39,7 +39,9 @@ export function AssistantOrb({
   }, [open]);
 
   return (
-    <div ref={rootRef} className="fixed bottom-5 right-4 z-50 flex flex-col items-end gap-4 sm:bottom-6 sm:right-6">
+    // ВРЕМЕННО е вдигнато (bottom-20): на пробния адрес значката на Netlify пада върху кълбото.
+    // Когато сайтът отиде на истинския хостинг, се връща на "bottom-5 … sm:bottom-6".
+    <div ref={rootRef} className="fixed bottom-20 right-4 z-50 flex flex-col items-end gap-4 sm:right-6">
       {open ? (
         <div
           id={panelId}

@@ -21,10 +21,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a100d" },
-  ],
+  // Цветът на лентата на браузъра е за светлата тема: тя е по подразбиране и на устройства с тъмна настройка.
+  themeColor: "#ffffff",
   colorScheme: "light dark",
 };
 
