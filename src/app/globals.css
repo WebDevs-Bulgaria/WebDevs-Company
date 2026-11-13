@@ -250,22 +250,18 @@ h3 {
   animation: node-pulse 4s ease-in-out infinite;
 }
 
-/* Движеща се лента: съдържанието е повторено два пъти и се измества с половината си ширина. */
+/* Движеща се лента: съдържанието е повторено четири пъти и се измества с ширината на едно копие. */
 @keyframes marquee {
   from {
     transform: translateX(0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(-25%);
   }
 }
 
 .marquee-track {
   animation: marquee 38s linear infinite;
-}
-
-.marquee:hover .marquee-track {
-  animation-play-state: paused;
 }
 
 /* Глобусът от линии: всеки меридиан е окръжност, която се свива и разпуска по
@@ -316,6 +312,12 @@ h3 {
 .rise-in {
   animation: rise-in 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
   animation-delay: var(--delay, 0s);
+}
+
+/* При смяна на езика страницата се монтира наново; появяването не се повтаря
+   (атрибутът се слага от components/layout/LanguageSwitcher.tsx). */
+:root[data-lang-switch] .rise-in {
+  animation: none;
 }
 
 @supports (animation-timeline: view()) {

@@ -14,10 +14,14 @@ const selectablePalettes = palettes.map((palette) => palette.id);
  * Избира темата и палитрата, преди браузърът да нарисува страницата — иначе посетител
  * с тъмна тема или с избрана палитра вижда за миг вида по подразбиране.
  *  - Тема: запазеният избор има предимство; при първо посещение се следва устройството.
- *  - Палитра: слага се само ако запазената стойност е от списъка (стара или чужда
- *    стойност в localStorage се пренебрегва).
+ *  - Палитра: запазеният избор, ако е от списъка; иначе тази, която сървърът е сложил.
+ *
+ * Скриптът и пази двата атрибута (MutationObserver). При смяна на езика React презаписва
+ * атрибутите на <html> със стойностите от сървъра (data-theme="light"); наблюдателят ги връща
+ * в същата задача, преди браузърът да нарисува кадър. Затова изборът се записва в localStorage
+ * ПРЕДИ да се смени атрибутът (ThemeToggle, PaletteSwitcher) — иначе наблюдателят го връща.
  */
-const script = `(function(){try{var d=document.documentElement,t=localStorage.getItem("${themeStorageKey}");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}d.setAttribute("data-theme",t);var p=localStorage.getItem("${paletteStorageKey}");if(${JSON.stringify(selectablePalettes)}.indexOf(p)>-1){d.setAttribute("data-palette",p)}}catch(e){}})()`;
+const script = `(function(){var d=document.documentElement,L=${JSON.stringify(selectablePalettes)},P=d.getAttribute("data-palette");function a(){try{var t=localStorage.getItem("${themeStorageKey}");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}if(d.getAttribute("data-theme")!==t){d.setAttribute("data-theme",t)}var p=localStorage.getItem("${paletteStorageKey}");if(L.indexOf(p)<0){p=P}if(p&&d.getAttribute("data-palette")!==p){d.setAttribute("data-palette",p)}}catch(e){}}a();try{new MutationObserver(a).observe(d,{attributes:true,attributeFilter:["data-theme","data-palette"]})}catch(e){}})()`;
 
 /*
  * Скриптът се вмъква само в HTML от сървъра (useServerInsertedHTML), веднъж. Така

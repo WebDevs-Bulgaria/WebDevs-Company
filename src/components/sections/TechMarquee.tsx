@@ -1,11 +1,13 @@
-// Движеща се лента с едри надписи. Съдържанието е повторено два пъти, за да няма
-// прекъсване; второто копие е скрито за екранните четци.
+// Движеща се лента с едри надписи. Съдържанието е повторено четири пъти и лентата се измества
+// с ширината на едно копие (вижте @keyframes marquee): така и на много широк екран вдясно не
+// остава празно място преди началото на следващия цикъл. Копията след първото са скрити за
+// екранните четци.
 export function TechMarquee({ label, items }: { label: string; items: string[] }) {
   return (
     <section aria-label={label} className="marquee overflow-hidden border-b border-line bg-surface py-7">
       <div className="marquee-track flex w-max">
-        {[0, 1].map((copy) => (
-          <ul key={copy} aria-hidden={copy === 1} className="flex shrink-0 items-center">
+        {[0, 1, 2, 3].map((copy) => (
+          <ul key={copy} aria-hidden={copy > 0} className="flex shrink-0 items-center">
             {items.map((item) => (
               <li
                 key={item}

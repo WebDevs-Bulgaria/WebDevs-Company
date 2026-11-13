@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { themeStorageKey } from "./ThemeScript";
 
 type Theme = "light" | "dark";
@@ -46,6 +46,10 @@ function Moon({ className }: { className: string }) {
  * плъзга към избраната. Изборът се помни в браузъра. Положението на кръгчето и
  * иконата в него се управляват от CSS според data-theme — компонентът няма
  * състояние в React и не може да се размине със страницата при зареждане.
+ *
+ * Кръгчето се плъзга с анимация само след натискане (data-animate на бутона). При смяна на
+ * езика React презаписва атрибутите на <html>, data-theme минава за миг през „light“ и с
+ * постоянен transition кръгчето се местеше видимо, без темата да се е сменила.
  */
 export function ThemeToggle({ label }: { label: string }) {
   // При разработка React нулира атрибутите на <html> при повторното монтиране
@@ -54,19 +58,31 @@ export function ThemeToggle({ label }: { label: string }) {
     document.documentElement.setAttribute("data-theme", preferredTheme());
   }, []);
 
+  const button = useRef<HTMLButtonElement>(null);
+  const animationTimer = useRef<number | undefined>(undefined);
+
   function toggle() {
+    if (button.current) {
+      button.current.dataset.animate = "true";
+      window.clearTimeout(animationTimer.current);
+      animationTimer.current = window.setTimeout(() => {
+        if (button.current) delete button.current.dataset.animate;
+      }, 400);
+    }
     const next: Theme = currentTheme() === "dark" ? "light" : "dark";
-    document.documentElement.setAttribute("data-theme", next);
+    // Първо записът, после атрибутът: ThemeScript връща атрибута към записаната стойност.
     window.localStorage.setItem(themeStorageKey, next);
+    document.documentElement.setAttribute("data-theme", next);
   }
 
   return (
     <button
+      ref={button}
       type="button"
       onClick={toggle}
       aria-label={label}
       title={label}
-      className="group relative inline-flex h-10 w-[4.5rem] shrink-0 items-center rounded-full border border-line bg-surface p-1 transition-colors duration-300 hover:border-accent"
+      className="group relative inline-flex h-10 w-[4.5rem] shrink-0 items-center rounded-full border border-line bg-surface p-1 hover:border-accent"
     >
       {/* Двете икони на релсата */}
       <span className="flex w-full items-center justify-between px-1.5 text-ink-muted">
@@ -75,7 +91,7 @@ export function ThemeToggle({ label }: { label: string }) {
       </span>
 
       {/* Плъзгащото се кръгче с иконата на активната тема */}
-      <span className="brand-gradient absolute left-1 top-1 flex h-[1.875rem] w-[1.875rem] items-center justify-center rounded-full text-white shadow-card transition-transform duration-300 ease-out group-active:scale-90 dark:translate-x-8">
+      <span className="brand-gradient absolute left-1 top-1 flex h-[1.875rem] w-[1.875rem] items-center justify-center rounded-full text-white shadow-card ease-out group-active:scale-90 group-data-[animate=true]:transition-transform group-data-[animate=true]:duration-300 dark:translate-x-8">
         <Sun className="h-4 w-4 dark:hidden" />
         <Moon className="hidden h-4 w-4 dark:block" />
       </span>
