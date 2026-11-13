@@ -5,6 +5,7 @@ import { getLocale, getT } from "@/i18n/server";
 import { company } from "@/lib/company";
 import { sitePages } from "@/lib/site";
 import { Container } from "@/components/ui/Container";
+import { Logo } from "@/components/ui/Logo";
 
 const linkClass = "inline-flex min-h-8 items-center text-night-muted transition-colors hover:text-night-ink";
 const titleClass = "font-mono text-xs font-semibold uppercase tracking-[0.18em] text-night-accent";
@@ -18,7 +19,8 @@ export async function Footer() {
     <footer className="overflow-hidden bg-night text-night-ink">
       <Container className="grid gap-12 pb-12 pt-14 sm:pt-20 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
-          <p className="max-w-xs font-display text-2xl font-extrabold leading-tight tracking-tight">
+          <Logo id="footer-logo" tone="night" />
+          <p className="mt-6 max-w-xs text-[15px] leading-7 text-night-muted">
             {t("footer.tagline")}
           </p>
         </div>

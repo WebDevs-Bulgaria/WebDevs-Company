@@ -2,11 +2,11 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { localizedPath } from "@/i18n/config";
 import { getLocale, getT } from "@/i18n/server";
-import { company } from "@/lib/company";
 import { navPages, pagePath } from "@/lib/site";
 import { PaletteSwitcher } from "@/components/theme/PaletteSwitcher";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { Container } from "@/components/ui/Container";
+import { Logo } from "@/components/ui/Logo";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { MobileMenu } from "./MobileMenu";
 
@@ -45,19 +45,9 @@ export async function Header() {
       {/* Три колони: логото и бутоните са в еднакво широки странични колони, а навигацията е
           в средата. Така дължината на надписите на различните езици не мести нищо. */}
       <Container className="relative flex h-18 items-center justify-between gap-4 lg:grid lg:grid-cols-[1fr_auto_1fr]">
-        <Link
-          href={localizedPath(locale)}
-          className="flex items-center gap-3 font-display text-lg font-extrabold tracking-tight text-ink"
-        >
-          {/* Временен знак до готовото лого. */}
-          <span
-            aria-hidden="true"
-            className="brand-gradient inline-flex h-9 w-9 items-center justify-center rounded-sm font-mono text-xs font-bold text-white"
-          >
-            WD
-          </span>
+        <Link href={localizedPath(locale)} className="flex items-center">
           {/* На тесен екран остава само знакът, за да има място за бутоните вдясно. */}
-          <span className="sr-only sm:not-sr-only">{company.brandName}</span>
+          <Logo id="header-logo" hideTextOnMobile />
         </Link>
 
         <nav aria-label={t("nav.mainLabel")} className="hidden lg:block">

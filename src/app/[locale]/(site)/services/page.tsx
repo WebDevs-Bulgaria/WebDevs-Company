@@ -90,12 +90,12 @@ export default async function ServicesPage() {
                 />
               </>
             ) : null}
-            <Container className="relative grid gap-x-16 gap-y-12 py-14 sm:py-20 lg:py-28 lg:grid-cols-[22rem_1fr]">
+            <Container className="relative grid gap-x-16 gap-y-12 py-14 sm:py-20 lg:grid-cols-[22rem_1fr]">
               <div className="lg:sticky lg:top-40 lg:self-start">
                 <SectionHeading
                   id={`${group}-title`}
                   tone={night ? "night" : "light"}
-                  eyebrow={`${String(groupIndex + 1).padStart(2, "0")} — ${tHome(`${group}.eyebrow`)}`}
+                  eyebrow={`${String(groupIndex + 1).padStart(2, "0")}. ${tHome(`${group}.eyebrow`)}`}
                   title={tServices("groups")[group].title}
                   lead={tServices("groups")[group].lead}
                 />
@@ -134,10 +134,10 @@ export default async function ServicesPage() {
         aria-labelledby="services-process"
         className="dot-grid scroll-mt-32 border-y border-line"
       >
-        <Container className="py-14 sm:py-20 lg:py-28">
+        <Container className="py-14 sm:py-20">
           <SectionHeading
             id="services-process"
-            eyebrow={`${String(serviceGroups.length + 1).padStart(2, "0")} — ${tServices("process.eyebrow")}`}
+            eyebrow={`${String(serviceGroups.length + 1).padStart(2, "0")}. ${tServices("process.eyebrow")}`}
             title={tServices("process.title")}
             lead={tServices("process.lead")}
           />

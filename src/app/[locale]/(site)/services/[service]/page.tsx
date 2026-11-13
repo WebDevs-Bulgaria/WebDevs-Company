@@ -51,7 +51,7 @@ export default async function ServicePage({ params }: PageProps<"/[locale]/servi
       <PageHeader pageKey="services" title={service.title} lead={service.summary} current={service.title} />
 
       <section aria-labelledby="service-includes">
-        <Container className="grid gap-x-16 gap-y-12 py-14 sm:py-20 lg:py-28 lg:grid-cols-[22rem_1fr]">
+        <Container className="grid gap-x-16 gap-y-12 py-14 sm:py-20 lg:grid-cols-[22rem_1fr]">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <SectionHeading id="service-includes" title={tServices("detail.includes")} lead={tServices("detail.includesLead")} />
             {/* Ориентировъчната цена на услугата */}
@@ -94,7 +94,7 @@ export default async function ServicePage({ params }: PageProps<"/[locale]/servi
       </section>
 
       <section className="dot-grid border-y border-line bg-surface">
-        <Container className="grid gap-5 py-14 sm:py-20 lg:py-28 lg:grid-cols-2">
+        <Container className="grid gap-5 py-14 sm:py-20 lg:grid-cols-2">
           {lists.map((list) => (
             <div key={list.title} className="border border-line bg-surface-raised p-8 sm:p-10">
               <h2 className="text-3xl font-extrabold tracking-tight text-ink">{list.title}</h2>
@@ -122,7 +122,7 @@ export default async function ServicePage({ params }: PageProps<"/[locale]/servi
         <NodeGraph className="absolute inset-y-0 left-0 h-full w-full opacity-70 lg:w-2/3" />
         <div aria-hidden="true" className="absolute inset-0 bg-linear-to-r from-night/40 via-night/85 to-night" />
 
-        <Container className="relative grid gap-y-14 py-14 sm:py-20 lg:py-28 lg:grid-cols-[1fr_1.3fr]">
+        <Container className="relative grid gap-y-14 py-14 sm:py-20 lg:grid-cols-[1fr_1.3fr]">
           <div className="lg:sticky lg:top-28 lg:self-start lg:pr-16">
             <SectionHeading
               id="service-inquiry"

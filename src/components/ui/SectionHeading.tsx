@@ -1,14 +1,15 @@
+import { Marker } from "./Marker";
+
 const tones = {
-  light: { eyebrow: "text-accent", rule: "bg-accent", title: "text-ink", lead: "text-ink-muted" },
+  light: { eyebrow: "text-accent", title: "text-ink", lead: "text-ink-muted" },
   night: {
     eyebrow: "text-night-accent",
-    rule: "bg-night-accent",
     title: "text-night-ink",
     lead: "text-night-muted",
   },
 } as const;
 
-// Заглавие на секция (h2): малък надпис с черта отгоре, едро заглавие и кратко въведение.
+// Заглавие на секция (h2): малък надпис със знак пред него, едро заглавие и кратко въведение.
 export function SectionHeading({
   id,
   eyebrow,
@@ -30,7 +31,7 @@ export function SectionHeading({
         <p
           className={`flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-[0.2em] ${style.eyebrow}`}
         >
-          <span aria-hidden="true" className={`h-px w-10 ${style.rule}`} />
+          <Marker />
           {eyebrow}
         </p>
       ) : null}
