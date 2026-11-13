@@ -21,7 +21,7 @@ export default async function ContactPage() {
     <>
       <PageHeader pageKey="contact" title={tContact("title")} lead={tContact("lead")} />
 
-      <Container className="grid gap-16 py-24 sm:py-28 lg:grid-cols-5">
+      <Container className="grid gap-16 py-14 sm:py-20 lg:py-28 lg:grid-cols-5">
         <section aria-labelledby="contact-details" className="lg:col-span-2">
           <h2
             id="contact-details"

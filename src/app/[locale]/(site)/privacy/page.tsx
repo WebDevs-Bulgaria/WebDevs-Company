@@ -14,7 +14,7 @@ export default async function PrivacyPage() {
     <>
       <PageHeader pageKey="privacy" title={tPrivacy("title")} lead={tPrivacy("updated")} />
 
-      <Container className="py-24 sm:py-28">
+      <Container className="py-14 sm:py-20 lg:py-28">
         <div className="max-w-3xl space-y-10">
           {tPrivacy("sections").map((section) => (
             <section key={section.title} aria-label={section.title}>

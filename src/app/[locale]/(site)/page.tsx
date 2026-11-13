@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import { localizedPath } from "@/i18n/config";
 import { getLocale, getT } from "@/i18n/server";
 import { buildPageMetadata } from "@/lib/seo/metadata";
+import { serviceGroups } from "@/lib/content";
 import { servicePath } from "@/lib/services";
 import { pagePath } from "@/lib/site";
 import { CtaBand } from "@/components/sections/CtaBand";
@@ -11,6 +12,7 @@ import { TechMarquee } from "@/components/sections/TechMarquee";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SectionVisual } from "@/components/visuals/SectionVisual";
 import { NodeGraph } from "@/components/visuals/NodeGraph";
 import { RibbonField } from "@/components/visuals/RibbonField";
 import { WireSphere } from "@/components/visuals/WireSphere";
@@ -77,6 +79,7 @@ export default async function HomePage() {
   const locale = await getLocale();
   const { t } = await getT("common");
   const { t: tHome } = await getT("home");
+  const { t: tServices } = await getT("services");
 
   const servicesHref = localizedPath(locale, pagePath("services"));
   const solutionsHref = localizedPath(locale, pagePath("projects"));
@@ -133,17 +136,32 @@ export default async function HomePage() {
           aria-hidden="true"
           className="absolute inset-0 bg-linear-to-r from-canvas via-canvas/60 to-canvas/0"
         />
-        <Container className="relative grid items-center gap-x-8 gap-y-4 py-16 sm:py-24 lg:grid-cols-[1.2fr_0.8fr] lg:py-28">
+        <Container className="relative grid items-center gap-x-8 gap-y-4 pb-16 pt-9 sm:pb-24 sm:pt-12 lg:grid-cols-[1.2fr_0.8fr] lg:pb-28 lg:pt-14">
           <div>
-            <p
-              className="rise-in flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-accent"
+            {/* Трите направления като бързи връзки към своите групи в „Услуги“. Имената идват от
+                services.json → groups, в реда на serviceGroups — нова група се появява тук сама. */}
+            <nav
+              aria-label={t("actions.viewServices")}
+              className="rise-in font-mono text-xs font-semibold uppercase tracking-[0.2em] text-accent"
               style={delay(0)}
             >
-              <span aria-hidden="true" className="h-px w-10 bg-accent" />
-              {tHome("hero.eyebrow")}
-            </p>
+              <ul className="flex flex-wrap items-center gap-x-3">
+                <li aria-hidden="true" className="h-px w-10 bg-accent" />
+                {serviceGroups.map((group, index) => (
+                  <li key={group} className="flex items-center gap-3">
+                    {index > 0 ? <span aria-hidden="true">·</span> : null}
+                    <Link
+                      href={`${servicesHref}#${group}`}
+                      className="relative inline-flex min-h-9 items-center transition-colors after:absolute after:inset-x-0 after:bottom-1.5 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform hover:text-ink hover:after:scale-x-100"
+                    >
+                      {tServices("groups")[group].title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
             <h1
-              className="rise-in mt-8 text-5xl font-extrabold leading-[0.98] tracking-tight text-ink sm:text-7xl xl:text-8xl"
+              className="rise-in mt-5 text-5xl font-extrabold leading-[0.98] tracking-tight text-ink sm:text-7xl xl:text-8xl"
               style={delay(0.1)}
             >
               {tHome("hero.titleStart")}{" "}
@@ -178,7 +196,7 @@ export default async function HomePage() {
       <Link href={`${servicesHref}#ai`} className="brand-gradient group relative block overflow-hidden">
         <NodeGraph className="absolute inset-y-0 right-0 h-full w-full opacity-25 mix-blend-screen lg:w-2/3" />
         <div aria-hidden="true" className="absolute inset-0 bg-linear-to-r from-black/0 to-black/30" />
-        <Container className="relative grid items-end gap-x-16 gap-y-8 py-16 sm:py-24 lg:grid-cols-[1.25fr_1fr]">
+        <Container className="relative grid items-end gap-x-16 gap-y-8 py-14 sm:py-20 lg:py-24 lg:grid-cols-[1.25fr_1fr]">
           <div>
             <p className="flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-white">
               <span aria-hidden="true" className="h-px w-10 bg-white" />
@@ -219,7 +237,7 @@ export default async function HomePage() {
               <div aria-hidden="true" className={`absolute inset-0 ${tone.veil}`} />
 
               <div
-                className={`relative flex min-h-[30rem] w-full flex-col px-4 py-16 sm:px-6 sm:py-20 lg:max-w-[36rem] lg:px-8 ${tone.align}`}
+                className={`relative flex min-h-[24rem] w-full flex-col px-4 py-12 sm:min-h-[30rem] sm:px-6 sm:py-20 lg:max-w-[36rem] lg:px-8 ${tone.align}`}
               >
                 <p
                   className={`flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-[0.2em] ${tone.label}`}
@@ -252,8 +270,12 @@ export default async function HomePage() {
       {/* За кого е: четири разпознаваеми ситуации, всяка води към подходящата услуга.
           Една колона на телефон, две на таблет, четири на широк екран. */}
       <section aria-labelledby="home-audience" className="border-b border-line bg-surface">
-        <Container className="py-20 sm:py-28">
-          <SectionHeading id="home-audience" eyebrow={audience.eyebrow} title={audience.title} lead={audience.lead} />
+        <Container className="py-14 sm:py-20 lg:py-28">
+          {/* Вдясно от заглавието: образът към секцията (SectionVisual.tsx). На тесен екран отива под него. */}
+          <div className="grid items-end gap-x-16 gap-y-10 lg:grid-cols-[1fr_22rem]">
+            <SectionHeading id="home-audience" eyebrow={audience.eyebrow} title={audience.title} lead={audience.lead} />
+            <SectionVisual slot="audience" className="w-full max-w-sm" />
+          </div>
           <ul className="hue-cycle mt-14 grid border-t border-line sm:grid-cols-2 lg:grid-cols-4">
             {audience.items.map((item, index) => (
               <li
@@ -285,7 +307,7 @@ export default async function HomePage() {
       {/* Трите линии с ориентировъчни цени. Колони, разделени с линии (без кутии); средната е
           водещата и е отбелязана с надпис. Всяка колона води към своята част от „Услуги“. */}
       <section id="prices" aria-labelledby="home-packages" className="scroll-mt-20">
-        <Container className="py-20 sm:py-28">
+        <Container className="py-14 sm:py-20 lg:py-28">
           <SectionHeading id="home-packages" eyebrow={packages.eyebrow} title={packages.title} lead={packages.lead} />
           <ul className="hue-cycle mt-14 grid border-t-2 border-ink lg:grid-cols-3">
             {packages.items.map((item) => {
@@ -350,7 +372,7 @@ export default async function HomePage() {
       {/* Често задавани въпроси: <details>, без JavaScript — отварят се и с клавиатура.
           Същите въпроси отиват и като структурирани данни (FAQPage). */}
       <section id="faq" aria-labelledby="home-faq" className="scroll-mt-20 border-t border-line">
-        <Container className="grid gap-x-16 gap-y-10 py-20 sm:py-28 lg:grid-cols-[22rem_1fr]">
+        <Container className="grid gap-x-16 gap-y-10 py-14 sm:py-20 lg:py-28 lg:grid-cols-[22rem_1fr]">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <SectionHeading id="home-faq" eyebrow={faq.eyebrow} title={faq.title} lead={faq.lead} />
           </div>
@@ -388,7 +410,7 @@ export default async function HomePage() {
 
       {/* Какво получава клиентът */}
       <section aria-labelledby="home-commitments" className="dot-grid border-y border-line bg-surface">
-        <Container className="py-20 sm:py-28">
+        <Container className="py-14 sm:py-20 lg:py-28">
           <SectionHeading
             id="home-commitments"
             eyebrow={t("commitments.eyebrow")}
@@ -422,7 +444,7 @@ export default async function HomePage() {
 
       {/* Бързи връзки към останалото */}
       <section aria-label={tHome("explore.label")}>
-        <Container className="py-16 sm:py-20">
+        <Container className="py-12 sm:py-20">
           <p className="flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-accent">
             <span aria-hidden="true" className="h-px w-10 bg-accent" />
             {tHome("explore.label")}

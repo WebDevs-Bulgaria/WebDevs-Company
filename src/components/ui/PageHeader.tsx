@@ -27,7 +27,8 @@ export async function PageHeader({
     <section className="relative overflow-hidden border-b border-line">
       <RibbonField className="absolute inset-0 h-full w-full" />
       <div aria-hidden="true" className="absolute inset-0 bg-linear-to-r from-canvas via-canvas/50 to-canvas/0" />
-      <Container className="relative py-20 sm:py-28">
+      {/* Отгоре е по-малко, отколкото отдолу: пътят стои близо до шапката, както на началната. */}
+      <Container className="relative pb-12 pt-9 sm:pb-20 sm:pt-12 lg:pb-24 lg:pt-14">
         <nav
           aria-label={t("nav.breadcrumbLabel")}
           className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted lg:text-[15px]"
@@ -58,7 +59,7 @@ export async function PageHeader({
             )}
           </ol>
         </nav>
-        <h1 className="mt-8 max-w-4xl text-5xl font-extrabold leading-[1] tracking-tight text-ink sm:text-7xl lg:text-8xl">
+        <h1 className="mt-5 max-w-4xl text-5xl font-extrabold leading-[1] tracking-tight text-ink sm:text-7xl lg:text-8xl">
           {title}
         </h1>
         {lead ? (

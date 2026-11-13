@@ -588,6 +588,48 @@ h3 {
   30% { transform: translateY(-4px); opacity: 1; }
 }
 
+/* ── Макетите (components/visuals/Mockups.tsx) ───────────────────────────────────────────
+   --i е поредният номер на частта и определя закъснението ѝ. Без анимации всичко стои готово. */
+.mockup-step {
+  animation: mockup-step 10s ease-in-out infinite;
+  /* Преди да дойде редът ѝ, частта стои скрита (първият кадър), а не готова. */
+  animation-fill-mode: backwards;
+  animation-delay: calc(var(--i, 0) * 0.3s);
+}
+.mockup-bar {
+  transform-origin: bottom;
+  animation: mockup-bar 4.5s ease-in-out infinite alternate;
+  animation-delay: calc(var(--i, 0) * 0.35s);
+}
+.mockup-type {
+  transform-origin: left;
+  animation: mockup-type 9s ease-in-out infinite;
+  /* Преди да дойде редът ѝ, частта стои скрита (първият кадър), а не готова. */
+  animation-fill-mode: backwards;
+  animation-delay: calc(var(--i, 0) * 0.55s);
+}
+.mockup-cursor {
+  animation: mockup-cursor 1s steps(2, jump-none) infinite;
+}
+@keyframes mockup-step {
+  0% { opacity: 0; transform: translateY(8px); }
+  7%, 86% { opacity: 1; transform: translateY(0); }
+  94%, 100% { opacity: 0; transform: translateY(0); }
+}
+@keyframes mockup-bar {
+  0% { transform: scaleY(0.4); }
+  100% { transform: scaleY(1); }
+}
+@keyframes mockup-type {
+  0% { clip-path: inset(0 100% 0 0); }
+  9%, 88% { clip-path: inset(0 0 0 0); }
+  96%, 100% { clip-path: inset(0 100% 0 0); }
+}
+@keyframes mockup-cursor {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
 /* Светлинните ленти бавно се люлеят. */
 @keyframes ribbon-drift {
   0% {

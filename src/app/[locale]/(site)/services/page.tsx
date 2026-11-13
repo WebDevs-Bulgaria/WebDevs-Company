@@ -9,6 +9,7 @@ import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { LivingOrb } from "@/components/visuals/LivingOrb";
+import { SectionVisual } from "@/components/visuals/SectionVisual";
 import { NodeGraph } from "@/components/visuals/NodeGraph";
 
 export function generateMetadata() {
@@ -89,7 +90,7 @@ export default async function ServicesPage() {
                 />
               </>
             ) : null}
-            <Container className="relative grid gap-x-16 gap-y-12 py-24 sm:py-28 lg:grid-cols-[22rem_1fr]">
+            <Container className="relative grid gap-x-16 gap-y-12 py-14 sm:py-20 lg:py-28 lg:grid-cols-[22rem_1fr]">
               <div className="lg:sticky lg:top-40 lg:self-start">
                 <SectionHeading
                   id={`${group}-title`}
@@ -98,8 +99,11 @@ export default async function ServicesPage() {
                   title={tServices("groups")[group].title}
                   lead={tServices("groups")[group].lead}
                 />
-                {/* Проба (етап 3): малък жив образ към групата — разговор с асистент, нарисуван с код.
-                    Въпросът стои, точките „пише“ мигат и отговорът се появява; после се повтаря. */}
+                {/* Всяка група има един малък жив образ под заглавието си: разговор с асистент,
+                    снимка или макет (избира се в SectionVisual.tsx). Повече от един на група не се слага. */}
+                {group === "websites" ? <SectionVisual slot="websites" className="mt-10 max-w-sm" /> : null}
+                {group === "applications" ? <SectionVisual slot="applications" tone="night" className="mt-10 max-w-sm" /> : null}
+                {/* Разговорът: въпросът стои, точките „пише“ мигат и отговорът се появява; после се повтаря. */}
                 {group === "ai" ? (
                   <figure aria-label={tServices("groups.ai.demo.label")} className="chat-demo mt-10 max-w-sm space-y-3">
                     <p className="ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-sm bg-accent-soft px-4 py-3 text-sm leading-6 text-ink">
@@ -130,7 +134,7 @@ export default async function ServicesPage() {
         aria-labelledby="services-process"
         className="dot-grid scroll-mt-32 border-y border-line"
       >
-        <Container className="py-24 sm:py-28">
+        <Container className="py-14 sm:py-20 lg:py-28">
           <SectionHeading
             id="services-process"
             eyebrow={`${String(serviceGroups.length + 1).padStart(2, "0")} — ${tServices("process.eyebrow")}`}

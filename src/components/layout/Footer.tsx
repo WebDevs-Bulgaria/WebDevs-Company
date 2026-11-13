@@ -16,7 +16,7 @@ export async function Footer() {
 
   return (
     <footer className="overflow-hidden bg-night text-night-ink">
-      <Container className="grid gap-12 pb-12 pt-20 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <Container className="grid gap-12 pb-12 pt-14 sm:pt-20 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
           <p className="max-w-xs font-display text-2xl font-extrabold leading-tight tracking-tight">
             {t("footer.tagline")}
