@@ -5,6 +5,7 @@ import { buildPageMetadata } from "@/lib/seo/metadata";
 import { ProcessSteps } from "@/components/sections/ProcessSteps";
 import { ServiceRows } from "@/components/sections/ServiceRows";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { NetworkIcon } from "@/components/ui/BrandIcons";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -92,6 +93,8 @@ export default async function ServicesPage() {
             ) : null}
             <Container className="relative grid gap-x-16 gap-y-12 py-14 sm:py-20 lg:grid-cols-[22rem_1fr]">
               <div className="lg:sticky lg:top-40 lg:self-start">
+                {/* Знакът „мрежа“ над заглавието на AI групата (проба от 13.11.2026). */}
+                {group === "ai" ? <NetworkIcon className="mb-6 h-12 w-12 text-accent" /> : null}
                 <SectionHeading
                   id={`${group}-title`}
                   tone={night ? "night" : "light"}

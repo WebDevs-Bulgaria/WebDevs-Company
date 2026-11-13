@@ -412,9 +412,20 @@ h3 {
   position: relative;
   display: inline-block;
   border-radius: 50%;
-  /* Сянката под кълбото е тук, а не върху тялото: тялото се изрязва с clip-path, който би я отрязал. */
-  box-shadow: 0 6px 18px rgb(var(--shadow-rgb) / 0.3);
+  isolation: isolate;
   animation: orb-breathe 5.5s ease-in-out infinite;
+}
+
+/* Сянката под кълбото е отделен слой, а не box-shadow на тялото: тялото се изрязва с clip-path,
+   който би отрязал и сянката. Мени формата си заедно с тялото (същата анимация orb-morph). */
+.living-orb::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 50%;
+  box-shadow: 0 6px 18px rgb(var(--shadow-rgb) / 0.3);
+  animation: orb-morph 9s ease-in-out infinite;
 }
 
 /* Сиянието отвън диша по-бавно от самото кълбо. */
@@ -435,13 +446,14 @@ h3 {
 .living-orb__body {
   position: absolute;
   inset: 0;
+  z-index: 2;
   clip-path: inset(0 round 50%);
   border-radius: 50%;
   background: radial-gradient(circle at 50% 60%, color-mix(in srgb, var(--globe-from) 55%, #14060a) 0%, #14060a 100%);
   box-shadow:
     inset 0 0 0 1px rgb(255 255 255 / 0.28),
     inset 0 -18% 30% rgb(0 0 0 / 0.35);
-  animation: orb-morph 9s ease-in-out infinite;
+  animation: orb-morph 9s ease-in-out infinite, orb-morph-clip 9s ease-in-out infinite;
 }
 
 /* Трите петна вътре: различни цветове, пътища и скорости — никога не се повтарят заедно. */
@@ -531,21 +543,18 @@ h3 {
   0%, 100% { opacity: 0.3; transform: scale(0.94); }
   50% { opacity: 0.6; transform: scale(1.08); }
 }
-/* clip-path реже съдържанието, border-radius води вътрешния контур — двете се менят заедно. */
 @keyframes orb-morph {
-  0%, 100% { border-radius: 50%; clip-path: inset(0 round 50%); }
-  25% {
-    border-radius: 46% 54% 52% 48% / 53% 47% 55% 45%;
-    clip-path: inset(0 round 46% 54% 52% 48% / 53% 47% 55% 45%);
-  }
-  50% {
-    border-radius: 53% 47% 46% 54% / 47% 54% 46% 53%;
-    clip-path: inset(0 round 53% 47% 46% 54% / 47% 54% 46% 53%);
-  }
-  75% {
-    border-radius: 48% 52% 55% 45% / 54% 46% 52% 48%;
-    clip-path: inset(0 round 48% 52% 55% 45% / 54% 46% 52% 48%);
-  }
+  0%, 100% { border-radius: 50%; }
+  25% { border-radius: 46% 54% 52% 48% / 53% 47% 55% 45%; }
+  50% { border-radius: 53% 47% 46% 54% / 47% 54% 46% 53%; }
+  75% { border-radius: 48% 52% 55% 45% / 54% 46% 52% 48%; }
+}
+/* Същите форми като orb-morph, но за изрязването на тялото — двете вървят заедно. */
+@keyframes orb-morph-clip {
+  0%, 100% { clip-path: inset(0 round 50%); }
+  25% { clip-path: inset(0 round 46% 54% 52% 48% / 53% 47% 55% 45%); }
+  50% { clip-path: inset(0 round 53% 47% 46% 54% / 47% 54% 46% 53%); }
+  75% { clip-path: inset(0 round 48% 52% 55% 45% / 54% 46% 52% 48%); }
 }
 @keyframes orb-drift-a {
   0%, 100% { transform: translate(0, 0) scale(1); }

@@ -9,6 +9,7 @@ import { pagePath } from "@/lib/site";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { TechMarquee } from "@/components/sections/TechMarquee";
+import { NetworkIcon } from "@/components/ui/BrandIcons";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { Marker } from "@/components/ui/Marker";
@@ -199,6 +200,8 @@ export default async function HomePage() {
         <div aria-hidden="true" className="absolute inset-0 bg-linear-to-r from-black/0 to-black/30" />
         <Container className="relative grid items-end gap-x-16 gap-y-8 py-14 sm:py-20 lg:grid-cols-[1.25fr_1fr]">
           <div>
+            {/* Знакът „мрежа“ над надписа на лентата за AI (проба от 13.11.2026). */}
+            <NetworkIcon className="mb-6 h-12 w-12 text-white" />
             <p className="flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-white">
               <Marker />
               01. {ai.eyebrow}
@@ -283,7 +286,9 @@ export default async function HomePage() {
                 key={item.id}
                 className="border-b border-line sm:odd:border-r lg:border-b-0 lg:border-r lg:last:border-r-0"
               >
+                {/* prefetch: повечето от тези връзки водят към страница на услуга (вж. ServiceRows.tsx). */}
                 <Link
+                  prefetch
                   href={audienceLinks[item.id] ?? servicesHref}
                   className="group flex h-full flex-col py-8 transition-colors duration-300 hover:bg-surface-raised sm:px-6 lg:px-7"
                 >
@@ -342,6 +347,7 @@ export default async function HomePage() {
                     ))}
                   </ul>
                   <Link
+                    prefetch
                     href={packageLinks[item.id] ?? servicesHref}
                     className="group mt-8 inline-flex min-h-11 items-center gap-3 text-sm font-bold tracking-wide text-ink transition-colors duration-200 hover:text-accent"
                   >

@@ -45,7 +45,10 @@ export async function ServiceRows({
 
         return (
           <li key={service.id} className={`relative border-t ${style.row}`}>
+            {/* prefetch: страницата на услугата зависи от адреса (params) и без това браузърът тегли
+                съдържанието ѝ чак след натискането — на хостинга това се усещаше като забавяне до секунди. */}
             <Link
+              prefetch
               href={localizedPath(locale, servicePath(service.id))}
               className="group relative grid gap-x-8 gap-y-3 py-10 md:grid-cols-[3.5rem_1fr_auto] md:items-center"
             >
