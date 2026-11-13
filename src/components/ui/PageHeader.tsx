@@ -4,6 +4,7 @@ import { getLocale, getT } from "@/i18n/server";
 import { pagePath, type SitePageKey } from "@/lib/site";
 import { RibbonField } from "@/components/visuals/RibbonField";
 import { Container } from "./Container";
+import { Marker } from "./Marker";
 
 // Горната част на вътрешна страница: път до страницата, едро заглавие (h1) и въведение
 // върху светлинните ленти. При подстраница (страницата на една услуга) се подава current —
@@ -28,7 +29,7 @@ export async function PageHeader({
       <RibbonField className="absolute inset-0 h-full w-full" />
       <div aria-hidden="true" className="absolute inset-0 bg-linear-to-r from-canvas via-canvas/50 to-canvas/0" />
       {/* Отгоре е по-малко, отколкото отдолу: пътят стои близо до шапката, както на началната. */}
-      <Container className="relative pb-12 pt-9 sm:pb-20 sm:pt-12 lg:pb-24 lg:pt-14">
+      <Container className="relative pb-12 pt-9 sm:pb-20 sm:pt-12 lg:pt-14">
         <nav
           aria-label={t("nav.breadcrumbLabel")}
           className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted lg:text-[15px]"
@@ -39,7 +40,9 @@ export async function PageHeader({
                 {t("nav.home")}
               </Link>
             </li>
-            <li aria-hidden="true" className="h-px w-8 bg-line" />
+            <li aria-hidden="true" className="flex text-ink-muted/60">
+              <Marker single />
+            </li>
             {current ? (
               <>
                 <li>
@@ -47,7 +50,9 @@ export async function PageHeader({
                     {t("nav")[pageKey]}
                   </Link>
                 </li>
-                <li aria-hidden="true" className="h-px w-8 bg-line" />
+                <li aria-hidden="true" className="flex text-ink-muted/60">
+                  <Marker single />
+                </li>
                 <li aria-current="page" className="text-accent">
                   {current}
                 </li>
@@ -59,7 +64,9 @@ export async function PageHeader({
             )}
           </ol>
         </nav>
-        <h1 className="mt-5 max-w-4xl text-5xl font-extrabold leading-[1] tracking-tight text-ink sm:text-7xl lg:text-8xl">
+        {/* На телефон размерът следва ширината на екрана (clamp): дълга дума като „поверителност“ иначе
+            излизаше извън екрана и се режеше. overflow-wrap е предпазна мрежа за още по-дълги думи. */}
+        <h1 className="mt-5 max-w-4xl text-[clamp(2rem,10.5vw,3rem)] font-extrabold leading-[1.05] tracking-tight text-ink [overflow-wrap:anywhere] sm:text-7xl sm:leading-[1] lg:text-8xl">
           {title}
         </h1>
         {lead ? (

@@ -21,7 +21,7 @@ export default async function AboutPage() {
     <>
       <PageHeader pageKey="about" title={tAbout("title")} lead={tAbout("lead")} />
 
-      <Container className="py-14 sm:py-20 lg:py-28">
+      <Container className="py-14 sm:py-20">
         <div className="grid border-t border-line lg:grid-cols-3">
           {tAbout("sections").map((section, index) => (
             <section
@@ -40,7 +40,7 @@ export default async function AboutPage() {
       </Container>
 
       <section aria-labelledby="about-commitments" className="border-t border-line bg-surface">
-        <Container className="py-14 sm:py-20 lg:py-28">
+        <Container className="py-14 sm:py-20">
           <SectionHeading
             id="about-commitments"
             eyebrow={t("commitments.eyebrow")}
@@ -69,7 +69,7 @@ export default async function AboutPage() {
       </section>
 
       <section aria-labelledby="about-values" className="relative overflow-hidden bg-night">
-        <Container className="py-14 sm:py-20 lg:py-28">
+        <Container className="py-14 sm:py-20">
           <h2 id="about-values" className="text-4xl font-extrabold tracking-tight text-night-ink sm:text-6xl">
             {tAbout("valuesTitle")}
           </h2>
@@ -88,7 +88,7 @@ export default async function AboutPage() {
       </section>
 
       <section aria-labelledby="about-company">
-        <Container className="py-14 sm:py-20 lg:py-28">
+        <Container className="py-14 sm:py-20">
           <h2 id="about-company" className="text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
             {tAbout("companyTitle")}
           </h2>

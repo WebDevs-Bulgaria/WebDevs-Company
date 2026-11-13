@@ -22,7 +22,7 @@ export default async function ProjectsPage() {
     <>
       <PageHeader pageKey="projects" title={tSolutions("title")} lead={tSolutions("lead")} />
 
-      <Container className="py-14 sm:py-20 lg:py-28">
+      <Container className="py-14 sm:py-20">
         <ul className="hue-cycle grid border-l border-t border-line md:grid-cols-2 lg:grid-cols-3">
           {tSolutions("items").map((item, index) => (
             <li key={item.title} className="border-b border-r border-line p-8 sm:p-10">
@@ -42,7 +42,7 @@ export default async function ProjectsPage() {
         aria-labelledby="projects-technology"
         className="scroll-mt-20 border-t border-line bg-surface"
       >
-        <Container className="py-14 sm:py-20 lg:py-28">
+        <Container className="py-14 sm:py-20">
           {/* Вдясно от заглавието: образът към технологиите (SectionVisual.tsx). На тесен екран отива под него. */}
           <div className="grid items-end gap-x-16 gap-y-10 lg:grid-cols-[1fr_24rem]">
             <SectionHeading
