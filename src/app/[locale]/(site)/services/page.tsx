@@ -8,6 +8,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { LivingOrb } from "@/components/visuals/LivingOrb";
 import { NodeGraph } from "@/components/visuals/NodeGraph";
 
 export function generateMetadata() {
@@ -97,6 +98,26 @@ export default async function ServicesPage() {
                   title={tServices("groups")[group].title}
                   lead={tServices("groups")[group].lead}
                 />
+                {/* Проба (етап 3): малък жив образ към групата — разговор с асистент, нарисуван с код.
+                    Въпросът стои, точките „пише“ мигат и отговорът се появява; после се повтаря. */}
+                {group === "ai" ? (
+                  <figure aria-label={tServices("groups.ai.demo.label")} className="chat-demo mt-10 max-w-sm space-y-3">
+                    <p className="ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-sm bg-accent-soft px-4 py-3 text-sm leading-6 text-ink">
+                      {tServices("groups.ai.demo.question")}
+                    </p>
+                    <div className="flex items-end gap-3">
+                      <LivingOrb className="h-9 w-9 shrink-0" />
+                      <div className="relative min-w-0">
+                        <p className="chat-demo__answer w-fit rounded-2xl rounded-bl-sm border border-line bg-surface-raised px-4 py-3 text-sm leading-6 text-ink">
+                          {tServices("groups.ai.demo.answer")}
+                        </p>
+                        <span aria-hidden="true" className="chat-demo__typing absolute bottom-0 left-0 flex gap-1.5 rounded-2xl rounded-bl-sm border border-line bg-surface-raised px-4 py-4">
+                          <i /><i /><i />
+                        </span>
+                      </div>
+                    </div>
+                  </figure>
+                ) : null}
               </div>
               <ServiceRows group={group} tone={night ? "night" : "light"} />
             </Container>

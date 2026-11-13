@@ -8,7 +8,12 @@
   "groups": {
     "ai": {
       "title": "AI solutions",
-      "lead": "Artificial intelligence where it saves time: assistants that answer customers and staff, automation of manual work and AI on your own server."
+      "lead": "Artificial intelligence where it saves time: assistants that answer customers and staff, automation of manual work and AI on your own server.",
+      "demo": {
+        "label": "A sample conversation with an AI assistant",
+        "question": "Hello, do you have a free slot tomorrow?",
+        "answer": "Yes — at 10:30 and at 15:00. Shall I book one of them for you?"
+      }
     },
     "websites": {
       "title": "Websites",
