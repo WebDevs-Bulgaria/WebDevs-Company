@@ -5,6 +5,7 @@ import { buildPageMetadata } from "@/lib/seo/metadata";
 import { ProcessSteps } from "@/components/sections/ProcessSteps";
 import { ServiceRows } from "@/components/sections/ServiceRows";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { NetworkIcon } from "@/components/ui/BrandIcons";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -90,12 +91,14 @@ export default async function ServicesPage() {
                 />
               </>
             ) : null}
-            <Container className="relative grid gap-x-16 gap-y-12 py-14 sm:py-20 lg:py-28 lg:grid-cols-[22rem_1fr]">
+            <Container className="relative grid gap-x-16 gap-y-12 py-14 sm:py-20 lg:grid-cols-[22rem_1fr]">
               <div className="lg:sticky lg:top-40 lg:self-start">
+                {/* Знакът „мрежа“ над заглавието на AI групата (проба от 13.11.2026). */}
+                {group === "ai" ? <NetworkIcon className="mb-6 h-12 w-12 text-accent" /> : null}
                 <SectionHeading
                   id={`${group}-title`}
                   tone={night ? "night" : "light"}
-                  eyebrow={`${String(groupIndex + 1).padStart(2, "0")} — ${tHome(`${group}.eyebrow`)}`}
+                  eyebrow={`${String(groupIndex + 1).padStart(2, "0")}. ${tHome(`${group}.eyebrow`)}`}
                   title={tServices("groups")[group].title}
                   lead={tServices("groups")[group].lead}
                 />
@@ -134,10 +137,10 @@ export default async function ServicesPage() {
         aria-labelledby="services-process"
         className="dot-grid scroll-mt-32 border-y border-line"
       >
-        <Container className="py-14 sm:py-20 lg:py-28">
+        <Container className="py-14 sm:py-20">
           <SectionHeading
             id="services-process"
-            eyebrow={`${String(serviceGroups.length + 1).padStart(2, "0")} — ${tServices("process.eyebrow")}`}
+            eyebrow={`${String(serviceGroups.length + 1).padStart(2, "0")}. ${tServices("process.eyebrow")}`}
             title={tServices("process.title")}
             lead={tServices("process.lead")}
           />

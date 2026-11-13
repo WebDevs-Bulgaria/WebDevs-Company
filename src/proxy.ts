@@ -50,5 +50,6 @@ export function proxy(request: NextRequest) {
 export const config = {
   // Пропускат се вътрешните адреси на Next.js, API и всеки файл с разширение
   // (sitemap.xml, robots.txt, икони, картинки).
-  matcher: ["/((?!_next|api|.*\\..*).*)"],
+  // apple-icon е без разширение (генерира се от src/app/apple-icon.tsx), затова се изключва по име.
+  matcher: ["/((?!_next|api|apple-icon|.*\\..*).*)"],
 };

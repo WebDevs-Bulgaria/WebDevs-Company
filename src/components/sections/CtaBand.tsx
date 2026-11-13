@@ -15,7 +15,7 @@ export async function CtaBand() {
     <section aria-labelledby="cta-title" className="relative overflow-hidden border-t border-line">
       <RibbonField className="absolute inset-0 h-full w-full" />
       <div aria-hidden="true" className="absolute inset-0 bg-linear-to-r from-canvas via-canvas/50 to-canvas/0" />
-      <Container className="relative py-16 sm:py-24 lg:py-32">
+      <Container className="relative py-16 sm:py-24">
         <h2
           id="cta-title"
           className="max-w-4xl text-5xl font-extrabold leading-[1.02] tracking-tight text-ink sm:text-7xl"
