@@ -9,7 +9,7 @@ import { pagePath } from "@/lib/site";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { TechMarquee } from "@/components/sections/TechMarquee";
-import { NetworkIcon } from "@/components/ui/BrandIcons";
+import { BrandMark, type BrandMarkKind } from "@/components/ui/BrandIcons";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { Marker } from "@/components/ui/Marker";
@@ -91,6 +91,7 @@ export default async function HomePage() {
       number: "02",
       href: `${servicesHref}#websites`,
       text: tHome("websites"),
+      mark: "globe",
       visual: <RibbonField className="absolute inset-0 h-full w-full" />,
     },
     {
@@ -99,6 +100,7 @@ export default async function HomePage() {
       number: "03",
       href: `${servicesHref}#applications`,
       text: tHome("applications"),
+      mark: "code",
       visual: <NodeGraph className="absolute inset-0 h-full w-full" />,
     },
   ] as const;
@@ -118,6 +120,13 @@ export default async function HomePage() {
     site: localizedPath(locale, servicePath("corporate-websites")),
     manual: localizedPath(locale, servicePath("ai-automation")),
     ai: `${servicesHref}#ai`,
+  };
+  // Знак на марката за всяка ситуация (същият ключ; кои са знаците — вж. BrandIcons.tsx).
+  const audienceIcons: Record<string, BrandMarkKind> = {
+    start: "chevrons",
+    site: "wdot",
+    manual: "network",
+    ai: "orb",
   };
   const ai = tHome("ai");
 
@@ -201,7 +210,7 @@ export default async function HomePage() {
         <Container className="relative grid items-end gap-x-16 gap-y-8 py-14 sm:py-20 lg:grid-cols-[1.25fr_1fr]">
           <div>
             {/* Знакът „мрежа“ над надписа на лентата за AI (проба от 13.11.2026). */}
-            <NetworkIcon className="mb-6 h-12 w-12 text-white" />
+            <BrandMark kind="network" id="home-ai-mark" className="mb-6 h-12 w-12" />
             <p className="flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-white">
               <Marker />
               01. {ai.eyebrow}
@@ -243,6 +252,8 @@ export default async function HomePage() {
               <div
                 className={`relative flex min-h-[24rem] w-full flex-col px-4 py-12 sm:min-h-[30rem] sm:px-6 sm:py-20 lg:max-w-[36rem] lg:px-8 ${tone.align}`}
               >
+                {/* Иконка на направлението, както знакът „мрежа“ на лентата за AI. */}
+                <BrandMark kind={activity.mark} id={`home-${activity.key}-mark`} className="mb-6 h-12 w-12" />
                 <p
                   className={`flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-[0.2em] ${tone.label}`}
                 >
@@ -292,8 +303,11 @@ export default async function HomePage() {
                   href={audienceLinks[item.id] ?? servicesHref}
                   className="group flex h-full flex-col py-8 transition-colors duration-300 hover:bg-surface-raised sm:px-6 lg:px-7"
                 >
-                  <span aria-hidden="true" className="font-mono text-xs font-semibold text-accent">
+                  <span aria-hidden="true" className="flex items-center justify-between font-mono text-xs font-semibold text-accent">
                     {String(index + 1).padStart(2, "0")}
+                    {audienceIcons[item.id] ? (
+                      <BrandMark kind={audienceIcons[item.id]} id={`audience-${item.id}-mark`} className="h-10 w-10" />
+                    ) : null}
                   </span>
                   <span className="mt-4 block font-display text-2xl font-extrabold leading-tight tracking-tight text-ink transition-colors duration-200 group-hover:text-accent">
                     {item.title}

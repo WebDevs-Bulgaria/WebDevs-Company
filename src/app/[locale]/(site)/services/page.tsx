@@ -5,7 +5,7 @@ import { buildPageMetadata } from "@/lib/seo/metadata";
 import { ProcessSteps } from "@/components/sections/ProcessSteps";
 import { ServiceRows } from "@/components/sections/ServiceRows";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { NetworkIcon } from "@/components/ui/BrandIcons";
+import { BrandMark } from "@/components/ui/BrandIcons";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -94,7 +94,10 @@ export default async function ServicesPage() {
             <Container className="relative grid gap-x-16 gap-y-12 py-14 sm:py-20 lg:grid-cols-[22rem_1fr]">
               <div className="lg:sticky lg:top-40 lg:self-start">
                 {/* Знакът „мрежа“ над заглавието на AI групата (проба от 13.11.2026). */}
-                {group === "ai" ? <NetworkIcon className="mb-6 h-12 w-12 text-accent" /> : null}
+                {group === "ai" ? <BrandMark kind="network" id="services-ai-mark" className="mb-6 h-12 w-12" /> : null}
+                {/* Другите две групи имат свой знак на марката на същото място (14.11.2026). */}
+                {group === "websites" ? <BrandMark kind="globe" id="services-websites-mark" className="mb-6 h-12 w-12" /> : null}
+                {group === "applications" ? <BrandMark kind="code" id="services-applications-mark" className="mb-6 h-12 w-12" /> : null}
                 <SectionHeading
                   id={`${group}-title`}
                   tone={night ? "night" : "light"}

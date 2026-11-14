@@ -7,6 +7,7 @@ import { pagePath } from "@/lib/site";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Container } from "@/components/ui/Container";
+import { MailIcon, PhoneIcon, PinIcon } from "@/components/ui/Icons";
 import { PageHeader } from "@/components/ui/PageHeader";
 
 export function generateMetadata() {
@@ -31,7 +32,10 @@ export default async function ContactPage() {
           </h2>
           <dl className="mt-8 border-t border-line">
             <div className="border-b border-line py-6">
-              <dt className="font-mono text-xs uppercase tracking-[0.16em] text-ink-muted">{tContact("phoneLabel")}</dt>
+              <dt className="flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.16em] text-ink-muted">
+                <PhoneIcon className="h-4 w-4 text-accent" />
+                {tContact("phoneLabel")}
+              </dt>
               <dd className="mt-1">
                 <a
                   href={`tel:${company.phone.international}`}
@@ -42,7 +46,10 @@ export default async function ContactPage() {
               </dd>
             </div>
             <div className="border-b border-line py-6">
-              <dt className="font-mono text-xs uppercase tracking-[0.16em] text-ink-muted">{tContact("emailLabel")}</dt>
+              <dt className="flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.16em] text-ink-muted">
+                <MailIcon className="h-4 w-4 text-accent" />
+                {tContact("emailLabel")}
+              </dt>
               <dd className="mt-1">
                 <a
                   href={`mailto:${company.email}`}
@@ -53,7 +60,10 @@ export default async function ContactPage() {
               </dd>
             </div>
             <div className="border-b border-line py-6">
-              <dt className="font-mono text-xs uppercase tracking-[0.16em] text-ink-muted">{tContact("locationLabel")}</dt>
+              <dt className="flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.16em] text-ink-muted">
+                <PinIcon className="h-4 w-4 text-accent" />
+                {tContact("locationLabel")}
+              </dt>
               <dd className="mt-1 font-display text-xl font-extrabold tracking-tight text-ink">
                 {company.address.locality[locale]}, {company.address.country[locale]}
               </dd>
