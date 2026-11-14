@@ -33,15 +33,15 @@ export function LogoMark({ id, className = "" }: { id: string; className?: strin
 export function Logo({
   id,
   tone = "light",
-  hideTextOnMobile = false,
+  hideMarkOnMobile = false,
   className = "",
 }: {
   // Уникално име за градиента на знака на това място (например "header-logo").
   id: string;
   // „night“ — върху тъмна лента (футърът): надписът е бял независимо от темата.
   tone?: "light" | "night";
-  // В шапката на тесен екран остава само знакът, за да има място за бутоните.
-  hideTextOnMobile?: boolean;
+  // В шапката на тесен екран остава само надписът, без кълбото (14.11.2026).
+  hideMarkOnMobile?: boolean;
   className?: string;
 }) {
   const ink = tone === "night" ? "text-night-ink" : "text-ink";
@@ -49,10 +49,10 @@ export function Logo({
 
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
-      <LogoMark id={id} className="h-10 w-10 shrink-0" />
+      <LogoMark id={id} className={`h-10 w-10 shrink-0 ${hideMarkOnMobile ? "hidden sm:block" : ""}`} />
       {/* Името се чете от екранните четци като едно цяло; нарисуваният надпис е скрит за тях. */}
       <span className="sr-only">{company.brandName}</span>
-      <span aria-hidden="true" className={`leading-none ${hideTextOnMobile ? "hidden sm:block" : "block"}`}>
+      <span aria-hidden="true" className="block leading-none">
         <span className={`block font-display text-[1.375rem] font-extrabold leading-none tracking-tight ${ink}`}>
           Web
           <span className="bg-clip-text text-transparent" style={{ backgroundImage: brandGradient }}>

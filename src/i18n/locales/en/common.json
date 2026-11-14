@@ -15,6 +15,7 @@
     "languageLabel": "Language",
     "skipToContent": "Skip to content",
     "breadcrumbLabel": "Breadcrumb",
+    "themeLabel": "Theme",
     "themeToggle": "Switch between light and dark theme",
     "palette": {
       "label": "Site colours",
