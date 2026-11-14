@@ -19,6 +19,6 @@ export type PaletteId = (typeof palettes)[number]["id"];
 
 // Палитрата за посетител без собствен избор; root layout-ът я слага като data-palette на <html>.
 // „emerald“ няма собствен блок в globals.css — тя е стойностите от @theme.
-export const defaultPalette: PaletteId = "multicolor";
+export const defaultPalette: PaletteId = "orange";
 
 export const paletteStorageKey = "wd-palette-2";
