@@ -46,8 +46,8 @@ export async function Header() {
           в средата. Така дължината на надписите на различните езици не мести нищо. */}
       <Container className="relative flex h-18 items-center justify-between gap-4 lg:grid lg:grid-cols-[1fr_auto_1fr]">
         <Link href={localizedPath(locale)} className="flex items-center">
-          {/* На тесен екран остава само знакът, за да има място за бутоните вдясно. */}
-          <Logo id="header-logo" hideTextOnMobile />
+          {/* На тесен екран остава само надписът: с кълбото и двата превключвателя не се побира. */}
+          <Logo id="header-logo" hideMarkOnMobile />
         </Link>
 
         <nav aria-label={t("nav.mainLabel")} className="hidden lg:block">
@@ -69,7 +69,10 @@ export async function Header() {
           <Suspense fallback={null}>
             <LanguageSwitcher current={locale} label={t("nav.languageLabel")} />
           </Suspense>
-          <ThemeToggle label={t("nav.themeToggle")} />
+          {/* На телефон темата е в мобилното меню, до палитрата — в шапката остава само езикът. */}
+          <div className="hidden sm:block">
+            <ThemeToggle label={t("nav.themeToggle")} />
+          </div>
           {/* Палитрата: на широк екран е кръгче тук, на тесен — ред в мобилното меню. */}
           <div className="hidden lg:block">
             <PaletteSwitcher variant="popover" {...palette} />
@@ -98,7 +101,17 @@ export async function Header() {
             </span>
           </Link>
           <MobileMenu
-            extra={<PaletteSwitcher variant="inline" {...palette} />}
+            extra={
+              <div className="space-y-3">
+                <div className="flex items-center justify-between gap-4 sm:hidden">
+                  <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-muted">
+                    {t("nav.themeLabel")}
+                  </span>
+                  <ThemeToggle label={t("nav.themeToggle")} />
+                </div>
+                <PaletteSwitcher variant="inline" {...palette} />
+              </div>
+            }
             links={links}
             cta={contact}
             labels={{

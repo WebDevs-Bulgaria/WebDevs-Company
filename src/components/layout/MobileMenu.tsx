@@ -14,7 +14,7 @@ export function MobileMenu({
 }: {
   links: MenuLink[];
   cta: MenuLink;
-  // Допълнително съдържание под бутона (изборът на палитра).
+  // Допълнително съдържание под бутона (темата на телефон и изборът на палитра).
   extra?: ReactNode;
   labels: { open: string; close: string; navigation: string };
 }) {

@@ -5,6 +5,7 @@ import { getLocale, getT } from "@/i18n/server";
 import { company } from "@/lib/company";
 import { sitePages } from "@/lib/site";
 import { WDot } from "@/components/ui/BrandIcons";
+import { MailIcon, PhoneIcon, PinIcon } from "@/components/ui/Icons";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
 
@@ -49,16 +50,19 @@ export async function Footer() {
           <h2 className={titleClass}>{t("footer.contactTitle")}</h2>
           <ul className="mt-4 space-y-1 text-sm">
             <li>
-              <a href={`tel:${company.phone.international}`} className={linkClass}>
+              <a href={`tel:${company.phone.international}`} className={`${linkClass} gap-2.5`}>
+                <PhoneIcon className="h-4 w-4 text-night-accent" />
                 {company.phone.display}
               </a>
             </li>
             <li>
-              <a href={`mailto:${company.email}`} className={`${linkClass} break-all`}>
+              <a href={`mailto:${company.email}`} className={`${linkClass} gap-2.5 break-all`}>
+                <MailIcon className="h-4 w-4 text-night-accent" />
                 {company.email}
               </a>
             </li>
-            <li className="flex min-h-8 items-center text-night-muted">
+            <li className="flex min-h-8 items-center gap-2.5 text-night-muted">
+              <PinIcon className="h-4 w-4 text-night-accent" />
               {company.address.locality[locale]}, {company.address.country[locale]}
             </li>
           </ul>
